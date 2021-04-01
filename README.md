@@ -1,12 +1,10 @@
 # Laravel Modules Command
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_name/:package_name.svg?style=flat-square)](https://packagist.org/packages/:vendor_name/:package_name)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_name/:package_name/Tests?label=tests)](https://github.com/:vendor_name/:package_name/actions?query=workflow%3ATests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_name/:package_name.svg?style=flat-square)](https://packagist.org/packages/:vendor_name/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/socoladaica/laravel-modules-command.svg?style=flat-square)](https://packagist.org/packages/socoladaica/laravel-modules-command)
+[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/socoladaica/laravel-modules-command/Tests?label=tests)](https://github.com/socoladaica/laravel-modules-command/actions?query=workflow%3ATests+branch%3Amaster)
+[![Total Downloads](https://img.shields.io/packagist/dt/socoladaica/laravel-modules-command.svg?style=flat-square)](https://packagist.org/packages/socoladaica/laravel-modules-command)
 
-**Note:** Run `./configure-skeleton` to get started, or manually replace ```:author_name``` ```:author_username``` ```:author_email``` ```:vendor_name``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](.github/CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
-
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+Generate Command for Laravel Modules base on laravel Generate Command
 
 ## Installation
 
@@ -19,7 +17,33 @@ composer require socoladaica/laravel-modules-command
 ## Usage
 
 ```bash
-php artisan cms:make:cast <name> <module> 
+php artisan cms:make:cast <name> <module>
+php artisan cms:make:channel <name> <module> 
+php artisan cms:make:component <name> <module> 
+php artisan cms:make:controller <name> <module>
+php artisan cms:make:event <name> <module>
+php artisan cms:make:exception <name> <module> 
+php artisan cms:make:factory <name> <module>
+php artisan cms:make:job <name> <module>
+php artisan cms:make:listener <name> <module> 
+php artisan cms:make:mail <name> <module>
+php artisan cms:make:middleware <name> <module> 
+php artisan cms:make:migration <name> <module>
+php artisan cms:make:model <name> <module>
+php artisan cms:make:notification <name> <module>
+php artisan cms:make:observer <name> <module>
+php artisan cms:make:policy <name> <module>
+php artisan cms:make:provider <name> <module>
+php artisan cms:make:request <name> <module>
+php artisan cms:make:resource <name> <module>
+php artisan cms:make:rule <name> <module>
+php artisan cms:make:seeder <name> <module>
+php artisan cms:make:test <name> <module>
+```
+
+You can use all option like laravel command. Example:
+```bash
+php artisan cms:make:controller <name> --resource <module>
 ```
 
 ## Testing

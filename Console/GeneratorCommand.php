@@ -3,6 +3,7 @@
 namespace SocolaDaica\LaravelModulesCommand\Console;
 
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
 use Symfony\Component\Console\Input\InputArgument;
@@ -135,5 +136,22 @@ trait GeneratorCommand
     {
         $command = 'cms:'.$command.' '.$this->argument('module');
         return parent::runCommand($command, $arguments, $output);
+    }
+
+    protected function getDefaultNamespace($rootNamespace)
+    {
+        $type = $this->type;
+        if ($type == 'component') {
+            $type = 'component-class';
+        }
+        if (Config::has('modules.paths.generator.'.Str::lower($type).'.path')) {
+            return $rootNamespace .'\\'.
+                str_replace('/', '\\',
+                    Config::get('modules.paths.generator.'.Str::lower($type).'.path'
+                ))
+            ;
+        }
+
+        return parent::getDefaultNamespace($rootNamespace);
     }
 }
