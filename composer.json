@@ -1,0 +1,25 @@
+{
+    "name": "socoladaica/laravel-modules-command",
+    "description": "",
+    "authors": [
+        {
+            "name": "Socola Đại Ca",
+            "email": "SocolaDaiCa@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SocolaDaiCa\\LaravelModulesCommand\\Providers\\LaravelModulesCommandServiceProvider"
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "SocolaDaiCa\\LaravelModulesCommand\\": ""
+        }
+    }
+}
