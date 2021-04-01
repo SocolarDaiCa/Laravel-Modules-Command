@@ -21,5 +21,8 @@
         "psr-4": {
             "SocolaDaiCa\\LaravelModulesCommand\\": ""
         }
+    },
+    "require": {
+        "nwidart/laravel-modules": "^8.2"
     }
 }
