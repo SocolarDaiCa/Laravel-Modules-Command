@@ -4,11 +4,12 @@ namespace SocolaDaiCa\LaravelModulesCommand\Providers;
 
 use Illuminate\Console\GeneratorCommand;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\CastMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ChannelMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ComponentMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ConsoleMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ControllerMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\EventMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ExceptionMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\FactoryMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\JobMakeCommand;
@@ -26,9 +27,6 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ResourceMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\RuleMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\SeederMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\TestMakeCommand;
-use SocolaDaiCa\LaravelModulesCommand\Console\ConsoleMakeCommand;
-use SocolaDaiCa\LaravelModulesCommand\Console\EventMakeCommand;
-use SocolaDaiCa\LaravelModulesCommand\Console\GenCommand;
 
 class LaravelModulesCommandServiceProvider extends ServiceProvider
 {
@@ -50,13 +48,10 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->commands([
-            GenCommand::class,
-            ConsoleMakeCommand::class,
-
             CastMakeCommand::class,
             ChannelMakeCommand::class,
             ComponentMakeCommand::class,
-
+            ConsoleMakeCommand::class,
             ControllerMakeCommand::class,
             EventMakeCommand::class,
             ExceptionMakeCommand::class,
