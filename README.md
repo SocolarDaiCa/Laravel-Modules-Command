@@ -46,6 +46,12 @@ You can use all option like laravel command. Example:
 php artisan cms:make:controller <name> --resource <module>
 ```
 
+## Publish stub
+
+```bash
+php artisan stub:publish
+```
+
 ## Testing
 
 ```bash
