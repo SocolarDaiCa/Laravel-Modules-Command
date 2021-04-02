@@ -76,20 +76,6 @@ trait GeneratorCommand
         return $views.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
-    /**
-     * Run the given the console command.
-     *
-     * @param  \Symfony\Component\Console\Command\Command|string  $command
-     * @param  array  $arguments
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
-     * @return int
-     */
-    protected function runCommand($command, array $arguments, OutputInterface $output)
-    {
-        $command = 'cms:'.$command.' '.$this->argument('module');
-        return parent::runCommand($command, $arguments, $output);
-    }
-
     protected function getDefaultNamespace($rootNamespace)
     {
         $type = Str::lower($this->type);

@@ -4,8 +4,15 @@ namespace SocolaDaiCa\LaravelModulesCommand\Console;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Output\OutputInterface;
 
-trait CommonCommand {
+trait CommonCommand
+{
+    public function __construct()
+    {
+        $this->name = 'cms:' . $this->name;
+        parent::__construct();
+    }
 
     /**
      * @var \Nwidart\Modules\Laravel\Module
@@ -61,4 +68,17 @@ trait CommonCommand {
         ];
     }
 
+    /**
+     * Run the given the console command.
+     *
+     * @param  \Symfony\Component\Console\Command\Command|string  $command
+     * @param  array  $arguments
+     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @return int
+     */
+    protected function runCommand($command, array $arguments, OutputInterface $output)
+    {
+        $command = 'cms:'.$command.' '.$this->argument('module');
+        return parent::runCommand($command, $arguments, $output);
+    }
 }
