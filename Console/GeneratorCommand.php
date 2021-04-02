@@ -93,8 +93,8 @@ trait GeneratorCommand
     protected function getDefaultNamespace($rootNamespace)
     {
         $type = Str::lower($this->type);
-        $typs = [
-            'console comamnd' => 'command',
+        $types = [
+            'console command' => 'command',
             'component'       => 'component-class',
         ];
 
