@@ -1,0 +1,13 @@
+{
+    "name": "LaravelModulesCommand",
+    "alias": "laravelmodulescommand",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "SocolaDaiCa\\LaravelModulesCommand\\Providers\\LaravelModulesCommandServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
