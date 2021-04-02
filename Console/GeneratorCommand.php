@@ -1,6 +1,6 @@
 <?php
 
-namespace SocolaDaica\LaravelModulesCommand\Console;
+namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\Config;
@@ -11,6 +11,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 trait GeneratorCommand
 {
+    use CommonCommand;
     /**
      * Create a new controller creator command instance.
      *
@@ -21,35 +22,6 @@ trait GeneratorCommand
     {
         $this->name = 'cms:' . $this->name;
         parent::__construct($files);
-    }
-
-    /**
-     * @var \Nwidart\Modules\Laravel\Module
-     */
-    protected $module = null;
-
-    /**
-     * @return \Nwidart\Modules\Laravel\Module
-     */
-    public function getModule(): \Nwidart\Modules\Laravel\Module
-    {
-        if ($this->module == null) {
-            $this->module = Module::find($this->argument('module'));
-        }
-        return $this->module;
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [
-            ...parent::getArguments(),
-            ['module', InputArgument::REQUIRED, 'The name of module will be used.'],
-        ];
     }
 
     protected function getPath($name)
@@ -104,26 +76,6 @@ trait GeneratorCommand
         return $views.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
-    public function getGeneratorPath($key, $name)
-    {
-        $name = Str::replaceFirst($this->rootNamespace(), '', $name);
-        return $this->getModule()->getPath()
-            . '/'
-            . $this->laravel['config']['modules']['paths']['generator'][$key]['path']
-            . '/'
-            . str_replace('\\', '/', $name)
-            . '.php'
-        ;
-    }
-
-    public function getGeneratorNamespace($key)
-    {
-        $namespace = $this->rootNamespace() . $this->laravel['config']['modules']['paths']['generator'][$key]['path'];
-        $namespace = str_replace('/', '\\', $namespace);
-
-        return $namespace;
-    }
-
     /**
      * Run the given the console command.
      *
@@ -140,18 +92,19 @@ trait GeneratorCommand
 
     protected function getDefaultNamespace($rootNamespace)
     {
-        $type = $this->type;
+        $type = Str::lower($this->type);
         if ($type == 'component') {
             $type = 'component-class';
         }
-        if (Config::has('modules.paths.generator.'.Str::lower($type).'.path')) {
-            return $rootNamespace .'\\'.
-                str_replace('/', '\\',
-                    Config::get('modules.paths.generator.'.Str::lower($type).'.path'
-                ))
-            ;
+
+        print_r(['type' => $type]);
+
+        if (Config::has('modules.paths.generator.'.$type.'.path') == false) {
+            return parent::getDefaultNamespace($rootNamespace);
         }
 
-        return parent::getDefaultNamespace($rootNamespace);
+        return $rootNamespace.'\\'.str_replace('/', '\\',
+            Config::get('modules.paths.generator.'.$type.'.path')
+        );
     }
 }

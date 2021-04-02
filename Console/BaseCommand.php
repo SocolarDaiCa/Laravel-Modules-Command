@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\InputArgument;
 
 trait BaseCommand
 {
+    use CommonCommand;
     /**
      * Create a new migration install command instance.
      *

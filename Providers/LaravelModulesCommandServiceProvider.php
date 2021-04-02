@@ -2,7 +2,7 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Providers;
 
-use Illuminate\Console\GeneratorCommand;
+use Illuminate\Database\Migrations\MigrationCreator;
 use Illuminate\Support\ServiceProvider;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\CastMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ChannelMakeCommand;
@@ -47,6 +47,11 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->app->when(MigrationCreator::class)
+            ->needs('$customStubPath')
+            ->give(function ($app) {
+                return $app->basePath('stubs');
+            });
         $this->commands([
             CastMakeCommand::class,
             ChannelMakeCommand::class,
@@ -60,7 +65,7 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
             ListenerMakeCommand::class,
             MailMakeCommand::class,
             MiddlewareMakeCommand::class,
-//            MigrateMakeCommand::class,
+            MigrateMakeCommand::class,
             ModelMakeCommand::class,
             NotificationMakeCommand::class,
             ObserverMakeCommand::class,
