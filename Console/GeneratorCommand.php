@@ -93,11 +93,12 @@ trait GeneratorCommand
     protected function getDefaultNamespace($rootNamespace)
     {
         $type = Str::lower($this->type);
-        if ($type == 'component') {
-            $type = 'component-class';
-        }
+        $typs = [
+            'console comamnd' => 'command',
+            'component'       => 'component-class',
+        ];
 
-        print_r(['type' => $type]);
+        $type = $types[$type] ?? $type;
 
         if (Config::has('modules.paths.generator.'.$type.'.path') == false) {
             return parent::getDefaultNamespace($rootNamespace);
