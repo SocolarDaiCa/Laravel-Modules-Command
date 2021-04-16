@@ -11,16 +11,4 @@ use Symfony\Component\Console\Input\InputArgument;
 trait BaseCommand
 {
     use CommonCommand;
-    /**
-     * Create a new migration install command instance.
-     *
-     * @param  \Illuminate\Database\Migrations\MigrationCreator  $creator
-     * @param  \Illuminate\Support\Composer  $composer
-     * @return void
-     */
-    public function __construct(MigrationCreator $creator, Composer $composer)
-    {
-        $this->signature = 'cms:' . $this->signature . '{module}';
-        parent::__construct($creator, $composer);
-    }
 }

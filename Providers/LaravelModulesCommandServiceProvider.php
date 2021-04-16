@@ -25,8 +25,10 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ProviderMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\RequestMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ResourceMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\RuleMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\SeedCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\SeederMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\TestMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\Migrations;
 
 class LaravelModulesCommandServiceProvider extends ServiceProvider
 {
@@ -65,6 +67,7 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
             ListenerMakeCommand::class,
             MailMakeCommand::class,
             MiddlewareMakeCommand::class,
+//            Migrations\StatusCommand::class,
             MigrateMakeCommand::class,
             ModelMakeCommand::class,
             NotificationMakeCommand::class,
@@ -74,6 +77,7 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
             RequestMakeCommand::class,
             ResourceMakeCommand::class,
             RuleMakeCommand::class,
+//            SeedCommand::class,
             SeederMakeCommand::class,
             TestMakeCommand::class,
         ]);
