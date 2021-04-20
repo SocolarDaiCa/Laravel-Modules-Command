@@ -27,7 +27,13 @@ trait GeneratorCommand
     protected function getPath($name)
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
-        return $this->module->getPath().'/'.str_replace('\\', '/', $name).'.php';
+        $path = $this->module->getPath();
+
+//        if (is_dir($path.'/src')) {
+//            $path .= '/src';
+//        }
+
+        return $path.'/'.str_replace('\\', '/', $name).'.php';
     }
 
     /**

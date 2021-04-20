@@ -25,7 +25,7 @@ trait CommonCommand
     public function getModule(): \Nwidart\Modules\Laravel\Module
     {
         if ($this->module == null) {
-            $this->module = Module::find($this->argument('module'));
+            $this->module = Module::find(Str::camel($this->argument('module')));
         }
         return $this->module;
     }

@@ -21,4 +21,21 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
         $this->signature = 'cms:' . $this->signature . '{module}';
         parent::__construct($creator, $composer);
     }
+
+    /**
+     * Get migration path (either specified by '--path' option or default location).
+     *
+     * @return string
+     */
+    protected function getMigrationPath()
+    {
+        return $this->getGeneratorFolder('migration');
+//        if (! is_null($targetPath = $this->input->getOption('path'))) {
+//            return ! $this->usingRealPath()
+//                ? $this->laravel->basePath().'/'.$targetPath
+//                : $targetPath;
+//        }
+//
+//        return parent::getMigrationPath();
+    }
 }
