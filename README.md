@@ -17,6 +17,8 @@ composer require socoladaica/laravel-modules-command
 ## Usage
 
 ```bash
+php artisan cms:make:module
+
 php artisan cms:make:cast <name> <module>
 php artisan cms:make:channel <name> <module> 
 php artisan cms:make:component <name> <module> 
@@ -78,3 +80,9 @@ Please review [our security policy](../../security/policy) on how to report secu
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+
+## Reference
+
+- <https://github.com/spatie/package-skeleton-laravel>
+- <https://laravel-news.com/building-your-own-laravel-packages>
+- <https://laravelpackage.com/#reasons-to-develop-a-package>

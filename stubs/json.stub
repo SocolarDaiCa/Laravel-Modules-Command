@@ -1,0 +1,14 @@
+{
+    "name": "$STUDLY_NAME$",
+    "alias": "$LOWER_NAME$",
+    "namespace": "__MODULE_NAMESPACE__\\__STUDLY_NAME__",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "$MODULE_NAMESPACE$\\$STUDLY_NAME$\\$PROVIDER_NAMESPACE$\\$STUDLY_NAME$ServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}

@@ -1,0 +1,47 @@
+{
+    "name": "__VENDOR__/__LOWER_NAME__",
+    "description": "",
+    "type": "library",
+    "license": "__LICENSE__",
+    "authors": [
+        {
+            "name": "__AUTHOR_NAME__",
+            "email": "__AUTHOR_EMAIL__",
+            "role": "__AUTHOR_ROLE__",
+            "homepage": "__AUTHOR_HOMEPAGE__"
+        }
+    ],
+    "require": {
+        "php": "__PHP__",
+        "laravel/framework": "^9.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\__PROVIDER_NAMESPACE__\\__STUDLY_NAME__ServiceProvider"
+            ],
+            "dont-discover": [
+
+            ],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\": "src/",
+            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Factories\\": "database/factories/",
+            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Migrations\\": "database/migrations/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Seeders\\": "database/seeders/",
+            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Tests\\": "tests/"
+        }
+    }
+}

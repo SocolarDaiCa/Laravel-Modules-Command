@@ -1,6 +1,7 @@
 {
     "name": "LaravelModulesCommand",
-    "alias": "laravelmodulescommand",
+    "alias": "laravel-modules-command",
+    "namespace": "SocolaDaiCa\\LaravelModulesCommand",
     "description": "",
     "keywords": [],
     "priority": 0,

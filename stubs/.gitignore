@@ -1,0 +1,21 @@
+# Folders
+/.vscode
+/build
+/coverage
+/docs
+/vendor
+# Fildes
+#composer.lock
+.env
+.env.backup
+.idea
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+node_modules
+npm-debug.log
+phpstan.neon
+phpunit.xml
+testbench.yaml
+yarn-error.log
