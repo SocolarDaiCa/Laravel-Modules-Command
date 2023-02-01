@@ -2,11 +2,11 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
-use SocolaDaiCa\LaravelModulesCommand\Console\GeneratorCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\GeneratorDatabaseCommand;
 
 class SeederMakeCommand extends \Illuminate\Database\Console\Seeds\SeederMakeCommand
 {
-    use GeneratorCommand;
+    use GeneratorDatabaseCommand;
 
     protected function getPath($name)
     {

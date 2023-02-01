@@ -49,7 +49,7 @@ class Handler extends ExceptionHandler
         if ($handler instanceof \App\Exceptions\Handler) {
             $handler
                 ->renderable(function (Throwable $e, $request) {
-                    return $this->render($request, $e);
+                    return $this->renderViaCallbacks($request, $e);
                 })
                 ->reportable(function (Throwable $e) {
                     $this->report($e);

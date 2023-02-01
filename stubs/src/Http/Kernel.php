@@ -45,7 +45,7 @@ class Kernel extends ServiceProvider
 
     public function register()
     {
-        $kernel = app(\App\Http\Kernel::class);
+        $kernel = app(\Illuminate\Contracts\Http\Kernel::class);
         $router = app(Router::class);
 
         foreach ($this->middleware as $middleware) {

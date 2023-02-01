@@ -56,7 +56,7 @@ trait CommonCommand
 
     public function getGeneratorNamespace($key)
     {
-        $namespace = $this->rootNamespace() . $this->laravel['config']['modules']['paths']['generator'][$key]['path'];
+        $namespace = $this->rootNamespace() . $this->laravel['config']['modules']['paths']['generator'][$key]['namespace'];
         $namespace = str_replace('/', '\\', $namespace);
 
         return $namespace;

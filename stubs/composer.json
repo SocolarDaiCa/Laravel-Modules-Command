@@ -35,7 +35,8 @@
         "psr-4": {
             "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\": "src/",
             "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Factories\\": "database/factories/",
-            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Migrations\\": "database/migrations/"
+            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Migrations\\": "database/migrations/",
+            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {

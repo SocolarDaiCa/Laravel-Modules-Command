@@ -2,6 +2,7 @@
 
 namespace __MODULE_NAMESPACE__\__STUDLY_NAME__\Providers;
 
+use __MODULE_NAMESPACE__\__STUDLY_NAME__\Exceptions\Handler;
 use Illuminate\Support\ServiceProvider;
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Http\Kernel as HttpKernel;
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Console\Kernel as ConsoleKernel;
@@ -34,6 +35,8 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        app(Handler::class);
+
         $this->app->register(BroadcastServiceProvider::class);
         $this->app->register(EventServiceProvider::class);
         $this->app->register(RouteServiceProvider::class);
