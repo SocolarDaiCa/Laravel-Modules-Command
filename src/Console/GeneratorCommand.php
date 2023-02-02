@@ -13,15 +13,15 @@ trait GeneratorCommand
 {
     use ModuleCommandTrait;
     use CommonCommand;
+
     /**
      * Create a new controller creator command instance.
      *
-     * @param  \Illuminate\Filesystem\Filesystem  $files
      * @return void
      */
     public function __construct(Filesystem $files)
     {
-        $this->name = 'cms:' . $this->name;
+        $this->name = 'cms:'.$this->name;
         parent::__construct($files);
     }
 
@@ -50,7 +50,7 @@ trait GeneratorCommand
         $module = $this->getModule();
 
         if ($module->get('namespace')) {
-            return trim($module->get('namespace'), '\\') . '\\';
+            return trim($module->get('namespace'), '\\').'\\';
         }
 
         $extra = str_replace($this->getClass(), '', $this->argument('module'));
@@ -59,24 +59,25 @@ trait GeneratorCommand
 
         $namespace = $this->laravel['modules']->config('namespace');
 
-        $namespace .= '\\' . $module->getStudlyName();
+        $namespace .= '\\'.$module->getStudlyName();
 
-        $namespace .= '\\' . $extra;
+        $namespace .= '\\'.$extra;
 
         $namespace = str_replace('/', '\\', $namespace);
 
-        return trim($namespace, '\\') . '\\';
+        return trim($namespace, '\\').'\\';
     }
 
     /**
      * Get the first view directory path from the application configuration.
      *
-     * @param  string  $path
+     * @param string $path
+     *
      * @return string
      */
     protected function viewPath($path = '')
     {
-        $views = $this->getModule()->getPath() . '/' . $this->laravel['config']['modules']['paths']['generator']['views']['path'];
+        $views = $this->getModule()->getPath().'/'.$this->laravel['config']['modules']['paths']['generator']['views']['path'];
 
         return $views.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
@@ -96,22 +97,19 @@ trait GeneratorCommand
         $type = Str::lower($this->type);
         $types = [
             'console command' => 'command',
-            'component'       => 'component-class',
+            'component' => 'component-class',
         ];
 
         return $types[$type] ?? $type;
     }
 
-    /**
-     * @return mixed
-     */
     protected function getDestinationFilePath()
     {
         $path = $this->laravel['modules']->getModulePath($this->getModuleName());
 
         $commandPath = GenerateConfigReader::read($this->getType());
 
-        return $path . $commandPath->getPath() . '/' . $this->getFileName() . '.php';
+        return $path.$commandPath->getPath().'/'.$this->getFileName().'.php';
     }
 
     /**
@@ -121,17 +119,17 @@ trait GeneratorCommand
     {
         $filename = $this->argument('name');
         $filename = Str::replace(['.', '/', '\\'], '/', $filename);
-        $filename = collect(explode('/', $filename))
+
+        return collect(explode('/', $filename))
             ->map(fn ($item) => trim(Str::studly($item), '/'))
             ->join('/')
         ;
-
-        return $filename;
     }
 
     public function handle()
     {
         Helper::overwrireModulesConfig();
+
         return parent::handle();
     }
 

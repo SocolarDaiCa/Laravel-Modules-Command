@@ -11,15 +11,16 @@ class TestMakeCommand extends \Illuminate\Foundation\Console\TestMakeCommand
     /**
      * Get the default namespace for the class.
      *
-     * @param  string  $rootNamespace
+     * @param string $rootNamespace
+     *
      * @return string
      */
     protected function getDefaultNamespace($rootNamespace)
     {
         if ($this->option('unit')) {
             return $this->getGeneratorNamespace('test');
-        } else {
-            return $this->getGeneratorNamespace('test-feature');
         }
+
+        return $this->getGeneratorNamespace('test-feature');
     }
 }

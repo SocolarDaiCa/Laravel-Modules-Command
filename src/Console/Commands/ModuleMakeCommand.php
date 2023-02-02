@@ -28,7 +28,7 @@ class ModuleMakeCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle() : int
+    public function handle(): int
     {
         Helper::overwrireModulesConfig();
         $names = $this->argument('name');
@@ -46,7 +46,8 @@ class ModuleMakeCommand extends Command
                 ->setType($this->getModuleType())
                 // ->setActive(!$this->option('disabled'))
                 ->setActive(false)
-                ->generate();
+                ->generate()
+            ;
 
             if ($code === E_ERROR) {
                 $success = false;
@@ -93,12 +94,15 @@ class ModuleMakeCommand extends Command
         if ($isPlain && $isApi) {
             return 'web';
         }
+
         if ($isPlain) {
             return 'plain';
-        } elseif ($isApi) {
-            return 'api';
-        } else {
-            return 'web';
         }
+
+        if ($isApi) {
+            return 'api';
+        }
+
+        return 'web';
     }
 }

@@ -7,8 +7,8 @@ use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use ReflectionException;
 use ReflectionClass;
+use ReflectionException;
 use Symfony\Component\Finder\Finder;
 
 class Kernel
@@ -18,6 +18,7 @@ class Kernel
         $this->commands();
         $this->registerCommands([
         ]);
+
         if (app()->runningInConsole()) {
             app()->booted(function () {
                 $this->schedule(app(Schedule::class));
@@ -28,7 +29,6 @@ class Kernel
     /**
      * Define the application's command schedule.
      *
-     * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
     protected function schedule(Schedule $schedule)
@@ -39,8 +39,9 @@ class Kernel
     /**
      * Register the commands for the application.
      *
-     * @return void
      * @throws ReflectionException
+     *
+     * @return void
      */
     protected function commands()
     {
@@ -53,8 +54,10 @@ class Kernel
      * Register all of the commands in the given directory.
      *
      * @param array|string $paths
-     * @return void
+     *
      * @throws ReflectionException
+     *
+     * @return void
      */
     protected function load($paths)
     {
@@ -70,14 +73,14 @@ class Kernel
 
         $namespace = Str::before(static::class, '\Kernel');
 
-        foreach ((new Finder)->in($paths)->files() as $command) {
+        foreach ((new Finder())->in($paths)->files() as $command) {
             $command = $namespace.str_replace(
                 ['/', '.php'],
                 ['\\', ''],
                 Str::after($command->getRealPath(), __DIR__)
             );
 
-            if (is_subclass_of($command, Command::class) && ! (new ReflectionClass($command))->isAbstract()) {
+            if (is_subclass_of($command, Command::class) && !(new ReflectionClass($command))->isAbstract()) {
                 Artisan::starting(function ($artisan) use ($command) {
                     $artisan->resolve($command);
                 });

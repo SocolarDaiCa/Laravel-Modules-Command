@@ -3,7 +3,6 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use SocolaDaiCa\LaravelModulesCommand\Console\CommonCommand;
 

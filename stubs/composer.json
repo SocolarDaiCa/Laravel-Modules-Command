@@ -16,7 +16,9 @@
         "laravel/framework": "^9.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "socoladaica/laravel-audit": "*",
+        "socoladaica/laravel-badassium": "*"
     },
     "extra": {
         "laravel": {
@@ -41,8 +43,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Database\\Seeders\\": "database/seeders/",
             "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Tests\\": "tests/"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

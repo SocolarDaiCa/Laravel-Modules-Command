@@ -17,7 +17,7 @@ class SeederMakeCommand extends \Illuminate\Database\Console\Seeds\SeederMakeCom
     {
         return str_replace(
             'namespace DatabaseTest\Seeders;',
-            'namespace ' . $this->getGeneratorNamespace('seeder') . ';',
+            'namespace '.$this->getGeneratorNamespace('seeder').';',
             parent::buildClass($name)
         );
     }

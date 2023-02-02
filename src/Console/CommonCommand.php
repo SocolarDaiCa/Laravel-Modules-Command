@@ -1,4 +1,5 @@
 <?php
+
 namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
 use Illuminate\Support\Str;
@@ -11,11 +12,11 @@ trait CommonCommand
     public function __construct()
     {
         if (!empty($this->getName())) {
-            $this->setName('cms:' . $this->getName());
+            $this->setName('cms:'.$this->getName());
         }
 
         if (!empty($this->signature)) {
-            $this->signature = 'cms:' . $this->signature . ' {module}';
+            $this->signature = 'cms:'.$this->signature.' {module}';
         }
 
         parent::__construct();
@@ -24,42 +25,41 @@ trait CommonCommand
     /**
      * @var \Nwidart\Modules\Laravel\Module
      */
-    protected $module = null;
+    protected $module;
 
-    /**
-     * @return \Nwidart\Modules\Laravel\Module
-     */
     public function getModule(): \Nwidart\Modules\Laravel\Module
     {
         if ($this->module == null) {
             $this->module = Module::find(Str::camel($this->argument('module')));
         }
+
         return $this->module;
     }
 
-    public function getGeneratorFolder($key) {
+    public function getGeneratorFolder($key)
+    {
         return $this->getModule()->getPath()
-            . '/'
-            . $this->laravel['config']['modules']['paths']['generator'][$key]['path']
+            .'/'
+            .$this->laravel['config']['modules']['paths']['generator'][$key]['path']
         ;
     }
 
     public function getGeneratorPath($key, $name)
     {
         $name = Str::replaceFirst($this->rootNamespace(), '', $name);
+
         return $this->getGeneratorFolder($key)
-            . '/'
-            . str_replace('\\', '/', $name)
-            . '.php'
+            .'/'
+            .str_replace('\\', '/', $name)
+            .'.php'
         ;
     }
 
     public function getGeneratorNamespace($key)
     {
-        $namespace = $this->rootNamespace() . $this->laravel['config']['modules']['paths']['generator'][$key]['namespace'];
-        $namespace = str_replace('/', '\\', $namespace);
+        $namespace = $this->rootNamespace().$this->laravel['config']['modules']['paths']['generator'][$key]['namespace'];
 
-        return $namespace;
+        return str_replace('/', '\\', $namespace);
     }
 
     /**
@@ -78,14 +78,14 @@ trait CommonCommand
     /**
      * Run the given the console command.
      *
-     * @param  \Symfony\Component\Console\Command\Command|string  $command
-     * @param  array  $arguments
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @param string|\Symfony\Component\Console\Command\Command $command
+     *
      * @return int
      */
     protected function runCommand($command, array $arguments, OutputInterface $output)
     {
         $command = 'cms:'.$command.' '.$this->argument('module');
+
         return parent::runCommand($command, $arguments, $output);
     }
 }

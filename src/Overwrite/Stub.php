@@ -9,7 +9,7 @@ class Stub extends \Nwidart\Modules\Support\Stub
         $contents = parent::getContents();
 
         foreach ($this->replaces as $search => $replace) {
-            $contents = str_replace('__' . strtoupper($search) . '__', $replace, $contents);
+            $contents = str_replace('__'.strtoupper($search).'__', $replace, $contents);
         }
 
         return $contents;
@@ -22,7 +22,7 @@ class Stub extends \Nwidart\Modules\Support\Stub
      */
     public function getPath()
     {
-        $path = static::getBasePath() . $this->path;
+        $path = static::getBasePath().$this->path;
 
         // $pathRawFile = preg_replace('/\.stub$/', '', $path);
         //

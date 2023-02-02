@@ -11,6 +11,7 @@ class ComponentMakeCommand extends \Illuminate\Foundation\Console\ComponentMakeC
     protected function buildClass($name)
     {
         $alias = $this->getModule()->get('alias');
+
         return str_replace(
             'view(\'components.',
             "view('{$alias}::components.",

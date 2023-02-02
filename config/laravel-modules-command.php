@@ -26,13 +26,13 @@ return [
     'composer' => [
         // 'vendor' => 'socoladaica',
         'vendor' => 'licence528',
-        "php" => "^8.1",
+        'php' => '^8.1',
         'license' => License::MIT,
         'author' => [
             'name' => 'Socola Đại Ca',
             'email' => 'SocolaDaiCa@gmail.com',
             'role' => 'Developer',
-            'homepage' => 'https://github.com/SocolaDaiCa'
+            'homepage' => 'https://github.com/SocolaDaiCa',
         ],
         'composer-output' => false,
     ],

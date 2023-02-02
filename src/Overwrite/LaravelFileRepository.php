@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 class LaravelFileRepository extends \Nwidart\Modules\Laravel\LaravelFileRepository
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
     protected function createModule(...$args)
     {

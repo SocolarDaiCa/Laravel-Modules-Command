@@ -2,10 +2,10 @@
 
 namespace __MODULE_NAMESPACE__\__STUDLY_NAME__\Providers;
 
-use __MODULE_NAMESPACE__\__STUDLY_NAME__\Exceptions\Handler;
-use Illuminate\Support\ServiceProvider;
-use __MODULE_NAMESPACE__\__STUDLY_NAME__\Http\Kernel as HttpKernel;
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Console\Kernel as ConsoleKernel;
+use __MODULE_NAMESPACE__\__STUDLY_NAME__\Exceptions\Handler;
+use __MODULE_NAMESPACE__\__STUDLY_NAME__\Http\Kernel as HttpKernel;
+use Illuminate\Support\ServiceProvider;
 
 class __STUDLY_NAME__ServiceProvider extends ServiceProvider
 {
@@ -23,6 +23,7 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
         $this->registerMigrations();
         $this->app->singleton(ConsoleKernel::class);
         $this->app->make(ConsoleKernel::class);
+
         foreach (config('__LOWER_NAME__.alias', []) as $alias => $class) {
             $this->app->alias($class, $alias);
         }

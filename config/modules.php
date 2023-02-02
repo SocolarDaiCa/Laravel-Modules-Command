@@ -41,20 +41,22 @@ return [
             'src/Providers/EventServiceProvider.php' => 'src/Providers/EventServiceProvider.php',
             'src/Providers/RouteServiceProvider.php' => 'src/Providers/RouteServiceProvider.php',
             /* File */
-            "LICENSE/".config('laravel-modules-command.composer.license') => 'LICENSE',
             '.editorconfig' => '.editorconfig',
             '.gitattributes' => '.gitattributes',
             '.gitignore' => '.gitignore',
             'composer.json' => 'composer.json',
+
+            'LICENSE/'.config('laravel-modules-command.composer.license') => 'LICENSE',
             'package.json' => 'package.json',
-            'webpack.mix.js' => 'webpack.mix.js',
+            'phpunit.xml' => 'phpunit.xml',
             'README.md' => 'README.md',
+            'webpack.mix.js' => 'webpack.mix.js',
         ],
         'replacements' => array_merge(
             [
                 'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE', 'PROVIDER_NAMESPACE'],
             ],
-            array_map(fn($item) => [
+            array_map(fn ($item) => [
                 'AUTHOR_EMAIL',
                 'AUTHOR_NAME',
                 'AUTHOR_ROLE',
@@ -205,7 +207,7 @@ return [
     'register' => [
         'translations' => true,
         /**
-         * load files on boot or register method
+         * load files on boot or register method.
          *
          * Note: boot not compatible with asgardcms
          *

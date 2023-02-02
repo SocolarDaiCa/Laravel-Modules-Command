@@ -58,7 +58,7 @@ class HttpKernelMakeCommand extends GeneratorCommand
         $module = $this->laravel['modules']->findOrFail($this->getModuleName());
 
         return (new Stub('/http-kernel.stub', [
-            'NAMESPACE'            => $this->getClassNamespace($module),
+            'NAMESPACE' => $this->getClassNamespace($module),
             // 'CLASS'                => $this->getFileName(),
             // 'MODULE_NAMESPACE'     => $this->laravel['modules']->config('namespace'),
             // 'MODULE'               => $this->getModuleName(),
@@ -88,7 +88,7 @@ class HttpKernelMakeCommand extends GeneratorCommand
 
         $generatorPath = GenerateConfigReader::read('http-kernel');
 
-        return $path . $generatorPath->getPath() . '/' . $this->getFileName() . '.php';
+        return $path.$generatorPath->getPath().'/'.$this->getFileName().'.php';
     }
 
     // /**
@@ -107,7 +107,7 @@ class HttpKernelMakeCommand extends GeneratorCommand
     //     return '/' . $this->laravel['modules']->config('stubs.files.routes/api', 'Routes/api.php');
     // }
 
-    public function getDefaultNamespace() : string
+    public function getDefaultNamespace(): string
     {
         $module = $this->laravel['modules'];
 

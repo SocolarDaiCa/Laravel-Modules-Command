@@ -28,16 +28,15 @@ class LaravelIdeHelperModelsCommand extends ModelsCommand
         $fkProp->setAccessible(true);
 
         if ($relation === 'belongsTo') {
-            return $this->issetNullableColumns($fkProp->getValue($relationObj)) ||
-                !$this->issetForeignKeyConstraintsColumns($fkProp->getValue($relationObj));
+            return $this->issetNullableColumns($fkProp->getValue($relationObj))
+                || !$this->issetForeignKeyConstraintsColumns($fkProp->getValue($relationObj));
         }
 
         return $this->issetNullableColumns($fkProp->getValue($relationObj));
     }
 
     /**
-     * @param string|array $columns
-     * @return bool
+     * @param array|string $columns
      */
     protected function issetNullableColumns($columns): bool
     {

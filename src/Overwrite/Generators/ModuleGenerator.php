@@ -16,14 +16,12 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
     /**
      * Get the contents of the specified stub file by given stub name.
      *
-     * @param $stub
-     *
      * @return string
      */
     protected function getStubContents($stub)
     {
         return (new Stub(
-            '/' . $stub . '.stub',
+            '/'.$stub.'.stub',
             $this->getReplacement($stub)
         )
         )->render();
@@ -32,7 +30,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
     public function generateFiles()
     {
         foreach ($this->getFiles() as $stub => $file) {
-            $path = $this->module->getModulePath($this->getName()) . $this->getGenerateFilePath($stub, $file);
+            $path = $this->module->getModulePath($this->getName()).$this->getGenerateFilePath($stub, $file);
 
             if (!$this->filesystem->isDirectory($dir = dirname($path))) {
                 $this->filesystem->makeDirectory($dir, 0775, true);
@@ -47,6 +45,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
     }
 
     protected bool $flagUpdate = false;
+
     public function setFlagUpdate($flagUpdate)
     {
         $this->flagUpdate = $flagUpdate;
@@ -59,8 +58,8 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
         $replaces = $this->getReplacement($stub);
 
         foreach ($replaces as $search => $replace) {
-            $file = str_replace('$' . strtoupper($search) . '$', $replace, $file);
-            $file = str_replace('__' . strtoupper($search) . '__', $replace, $file);
+            $file = str_replace('$'.strtoupper($search).'$', $replace, $file);
+            $file = str_replace('__'.strtoupper($search).'__', $replace, $file);
         }
 
         return $file;
@@ -149,7 +148,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
     /**
      * Generate the module.
      */
-    public function generate() : int
+    public function generate(): int
     {
         $name = $this->getName();
 
@@ -186,11 +185,11 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
     }
 
     /**
-     * Generate the module.json file
+     * Generate the module.json file.
      */
     private function generateModuleJsonFile()
     {
-        $path = $this->module->getModulePath($this->getName()) . 'module.json';
+        $path = $this->module->getModulePath($this->getName()).'module.json';
 
         if (!$this->filesystem->isDirectory($dir = dirname($path))) {
             $this->filesystem->makeDirectory($dir, 0775, true);
@@ -205,17 +204,17 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
 
     /**
      * Remove the default service provider that was added in the module.json file
-     * This is needed when a --plain module was created
+     * This is needed when a --plain module was created.
      */
     private function cleanModuleJsonFile()
     {
-        $path = $this->module->getModulePath($this->getName()) . 'module.json';
+        $path = $this->module->getModulePath($this->getName()).'module.json';
 
         $content = $this->filesystem->get($path);
         $namespace = $this->getModuleNamespaceReplacement();
         $studlyName = $this->getStudlyNameReplacement();
 
-        $provider = '"' . $namespace . '\\\\' . $studlyName . '\\\\Providers\\\\' . $studlyName . 'ServiceProvider"';
+        $provider = '"'.$namespace.'\\\\'.$studlyName.'\\\\Providers\\\\'.$studlyName.'ServiceProvider"';
 
         $content = str_replace($provider, '', $content);
 
@@ -234,7 +233,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
                 continue;
             }
 
-            $path = $this->module->getModulePath($this->getName()) . '/' . $folder->getPath();
+            $path = $this->module->getModulePath($this->getName()).'/'.$folder->getPath();
 
             if (!is_dir($path)) {
                 $this->filesystem->makeDirectory($path, 0755, true);

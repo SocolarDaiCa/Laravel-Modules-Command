@@ -24,9 +24,9 @@ trait GeneratorDatabaseCommand
         );
 
         return $this->getGeneratorFolder($key)
-            . '/'
-            . $name
-            . '.php'
+            .'/'
+            .$name
+            .'.php'
         ;
     }
 }

@@ -38,12 +38,12 @@ use SocolaDaiCa\LaravelModulesCommand\Overwrite\LaravelFileRepository;
 class LaravelModulesCommandServiceProvider extends ServiceProvider
 {
     /**
-     * @var string $moduleName
+     * @var string
      */
     protected $moduleName = 'LaravelModulesCommand';
 
     /**
-     * @var string $moduleNameLower
+     * @var string
      */
     protected $moduleNameLower = 'laravelmodulescommand';
 
@@ -58,7 +58,8 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
             ->needs('$customStubPath')
             ->give(function ($app) {
                 return $app->basePath('stubs');
-            });
+            })
+        ;
         $this->commands([
             /* custom */
             CastMakeCommand::class,
@@ -73,7 +74,7 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
             ListenerMakeCommand::class,
             MailMakeCommand::class,
             MiddlewareMakeCommand::class,
-//            Migrations\StatusCommand::class,
+            //            Migrations\StatusCommand::class,
             MigrateMakeCommand::class,
             ModelMakeCommand::class,
             ModuleMakeCommand::class,
@@ -84,7 +85,7 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
             RequestMakeCommand::class,
             ResourceMakeCommand::class,
             RuleMakeCommand::class,
-//            SeedCommand::class,
+            //            SeedCommand::class,
             SeederMakeCommand::class,
             TestMakeCommand::class,
             /* new */
