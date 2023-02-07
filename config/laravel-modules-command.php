@@ -23,8 +23,7 @@ return [
     */
 
     'composer' => [
-        // 'vendor' => 'socoladaica',
-        'vendor' => 'licence528',
+        'vendor' => 'socoladaica',
         'php' => '^8.1',
         'license' => License::MIT,
         'author' => [
