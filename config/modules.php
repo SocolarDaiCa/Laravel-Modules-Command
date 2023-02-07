@@ -43,7 +43,7 @@ return [
             /* File */
             '.editorconfig' => '.editorconfig',
             '.gitattributes.stub' => '.gitattributes',
-            '.gitignore' => '.gitignore',
+            '.gitignore.stub' => '.gitignore',
             'composer.json' => 'composer.json',
 
             'LICENSE/'.config('laravel-modules-command.composer.license') => 'LICENSE',
