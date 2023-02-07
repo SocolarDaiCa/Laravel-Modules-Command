@@ -11,8 +11,7 @@ return [
     | Default module namespace.
     |
     */
-    // 'namespace' => 'SocolaDaiCa',
-    'namespace' => 'Licence528',
+    'namespace' => 'SocolaDaiCa',
 
     /*
     |--------------------------------------------------------------------------
