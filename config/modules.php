@@ -48,7 +48,7 @@ return [
 
             'LICENSE/'.config('laravel-modules-command.composer.license') => 'LICENSE',
             'package.json' => 'package.json',
-            'phpunit.xml' => 'phpunit.xml',
+            'phpunit.xml.stub' => 'phpunit.xml',
             'README.md' => 'README.md',
             'webpack.mix.js' => 'webpack.mix.js',
         ],
