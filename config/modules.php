@@ -41,7 +41,7 @@ return [
             'src/Providers/EventServiceProvider.php' => 'src/Providers/EventServiceProvider.php',
             'src/Providers/RouteServiceProvider.php' => 'src/Providers/RouteServiceProvider.php',
             /* File */
-            '.editorconfig' => '.editorconfig',
+            '.editorconfig.stub' => '.editorconfig',
             '.gitattributes.stub' => '.gitattributes',
             '.gitignore.stub' => '.gitignore',
             'composer.json' => 'composer.json',
