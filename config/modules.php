@@ -42,7 +42,7 @@ return [
             'src/Providers/RouteServiceProvider.php' => 'src/Providers/RouteServiceProvider.php',
             /* File */
             '.editorconfig' => '.editorconfig',
-            '.gitattributes' => '.gitattributes',
+            '.gitattributes.stub' => '.gitattributes',
             '.gitignore' => '.gitignore',
             'composer.json' => 'composer.json',
 
