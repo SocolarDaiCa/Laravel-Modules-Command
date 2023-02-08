@@ -13,12 +13,12 @@
     ],
     "require": {
         "php": "__PHP__",
-        "laravel/framework": "^9.0"
+        "laravel/framework": "^9.0",
+        "socoladaica/laravel-badassium": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*",
-        "socoladaica/laravel-audit": "*",
-        "socoladaica/laravel-badassium": "*"
+        "socoladaica/laravel-audit": "*"
     },
     "extra": {
         "laravel": {
