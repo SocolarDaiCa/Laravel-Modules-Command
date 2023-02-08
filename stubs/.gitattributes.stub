@@ -20,7 +20,6 @@
 .php_cs.dist.php        export-ignore
 CHANGELOG.md            export-ignore
 composer.lock           export-ignore
-module.json             export-ignore
 phpstan-baseline.neon   export-ignore
 phpstan.neon.dist       export-ignore
 phpunit.xml             export-ignore
