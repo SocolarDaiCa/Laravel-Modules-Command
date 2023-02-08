@@ -26,7 +26,7 @@ return [
             'public/.gitkeep' => 'public/.gitkeep',
             'resources/assets/js/app.js' => 'resources/assets/js/app.js',
             'resources/assets/sass/app.scss' => 'resources/assets/sass/app.scss',
-            'resources/assets/img/,gitkeep' => 'resources/assets/img/,gitkeep',
+            'resources/assets/img/.gitkeep' => 'resources/assets/img/.gitkeep',
             'resources/views/pages/.gitkeep' => 'resources/views/pages/.gitkeep',
             'routes/api.php' => 'routes/api.php',
             'routes/channels.php' => 'routes/channels.php',
