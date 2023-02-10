@@ -92,6 +92,16 @@ trait GeneratorCommand
         return $rootNamespace.'\\'.str_replace('/', '\\', $namespace);
     }
 
+    public function getDefaultNamespaceByType($type)
+    {
+        $module = $this->laravel['modules'];
+        $rootNamespace = $this->rootNamespace();
+
+        $namespace = $module->config("paths.generator.{$type}.namespace") ?: $module->config("paths.generator.{$type}.path");
+
+        return trim($rootNamespace, '\\').'\\'.str_replace('/', '\\', $namespace);
+    }
+
     public function getType()
     {
         $type = Str::lower($this->type);

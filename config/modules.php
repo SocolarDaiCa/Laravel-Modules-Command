@@ -194,8 +194,10 @@ return [
         // 'enabled' => false && app()->runningInConsole() == false,
         'enabled' => false,
         'key' => 'laravel-modules',
-        // 'lifetime' => 60000,
         'lifetime' => 0,
+
+        // 'enabled' => true,
+        // 'lifetime' => 60000,
     ],
     /*
     |--------------------------------------------------------------------------
