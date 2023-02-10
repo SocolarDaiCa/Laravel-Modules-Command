@@ -76,10 +76,8 @@ METHOD_INDEX_FROM => <<<METHOD_INDEX_TO
 METHOD_INDEX_TO,
             <<<METHOD_STORE_FROM
     public function store(Request \$request)
-    {
-        //
 METHOD_STORE_FROM => <<<METHOD_STORE_TO
-    public function store(StoreRequest \$request
+    public function store(StoreRequest \$request)
 METHOD_STORE_TO,
 
             <<<METHOD_UPDATE_FROM
