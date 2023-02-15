@@ -41,7 +41,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
 
         $indexRequestClass = "{$controllerName}\IndexRequest";
         $storeRequestClass = "{$controllerName}\StoreRequest";
-        $updateRequestClass = "{$controllerName}\UpdateeRequest";
+        $updateRequestClass = "{$controllerName}\UpdateRequest";
         $namespacedRequests = ""
             ."use {$requestNamespace}\\{$indexRequestClass};".PHP_EOL
             ."use {$requestNamespace}\\{$storeRequestClass};".PHP_EOL
@@ -62,6 +62,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         ]);
 
         $replace = [
+            "use Illuminate\Support\Facades\Request" => $namespacedRequests,
             "     * @return \Illuminate\Http\Response\n" => '',
             <<<METHOD_INDEX_FROM
     public function index()
