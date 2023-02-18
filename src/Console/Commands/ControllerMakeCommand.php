@@ -21,6 +21,10 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
 
     protected function buildFormRequestReplacementsByController($controllerName)
     {
+        if (!$this->option('resource') && !$this->option('api')) {
+            return [];
+        }
+
         if (Str::endsWith($controllerName, 'Controller')) {
             $controllerName = Str::beforeLast($controllerName, 'Controller');
         }
@@ -62,31 +66,69 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         ]);
 
         $replace = [
-            "use Illuminate\Support\Facades\Request" => $namespacedRequests,
+            "use Illuminate\Http\Request;" => $namespacedRequests,
             "     * @return \Illuminate\Http\Response\n" => '',
-            <<<METHOD_INDEX_FROM
+        ];
+
+        if ($this->option('api')) {
+            $replace[<<<METHOD_INDEX_FROM
+    public function index()
+METHOD_INDEX_FROM] = <<<METHOD_INDEX_TO
+    public function index(IndexRequest \$request)
+METHOD_INDEX_TO;
+        }
+
+        $replace[<<<METHOD_STORE_FROM
+    public function store(Request \$request)
+METHOD_STORE_FROM] = <<<METHOD_STORE_TO
+    public function store(StoreRequest \$request)
+METHOD_STORE_TO;
+
+        $replace[<<<METHOD_UPDATE_FROM
+    public function update(Request \$request
+METHOD_UPDATE_FROM] = <<<METHOD_UPDATE_TO
+    public function update(StoreRequest \$request
+METHOD_UPDATE_TO;
+
+        if ($this->option('resource')) {
+            $replace[<<<METHOD_INDEX_FROM
     public function index()
     {
         //
-METHOD_INDEX_FROM => <<<METHOD_INDEX_TO
+METHOD_INDEX_FROM] = <<<METHOD_INDEX_TO
     public function index(IndexRequest \$request)
     {
         return view('{$packageNamePrefix}::pages.{$viewFolder}.index', compact([
 
         ]));
-METHOD_INDEX_TO,
-            <<<METHOD_STORE_FROM
-    public function store(Request \$request)
-METHOD_STORE_FROM => <<<METHOD_STORE_TO
-    public function store(StoreRequest \$request)
-METHOD_STORE_TO,
+METHOD_INDEX_TO;
 
-            <<<METHOD_UPDATE_FROM
-    public function update(Request \$request
-METHOD_UPDATE_FROM => <<<METHOD_UPDATE_TO
-    public function update(StoreRequest \$request
-METHOD_UPDATE_TO
-        ];
+            $replace[<<<METHOD_CREATE_FROM
+    public function create(\$id)
+    {
+        //
+METHOD_CREATE_FROM] = <<<METHOD_STORE_TO
+    public function create()
+    {
+        return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
+
+        ]));
+METHOD_STORE_TO;
+
+            $replace[<<<METHOD_CREATE_FROM
+    public function edit(\$id)
+    {
+        //
+METHOD_CREATE_FROM] = <<<METHOD_STORE_TO
+    public function edit(\$id)
+    {
+        return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
+
+        ]));
+METHOD_STORE_TO;
+        }
+        /* todo: template cho option model */
+
 
         return $replace;
     }

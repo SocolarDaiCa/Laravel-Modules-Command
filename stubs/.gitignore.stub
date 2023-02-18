@@ -19,3 +19,4 @@ phpstan.neon
 phpunit.xml
 testbench.yaml
 yarn-error.log
+.php-cs-fixer.cache
