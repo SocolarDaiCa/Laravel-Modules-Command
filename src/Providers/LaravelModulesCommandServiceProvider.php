@@ -38,16 +38,6 @@ use SocolaDaiCa\LaravelModulesCommand\Overwrite\LaravelFileRepository;
 class LaravelModulesCommandServiceProvider extends ServiceProvider
 {
     /**
-     * @var string
-     */
-    protected $moduleName = 'LaravelModulesCommand';
-
-    /**
-     * @var string
-     */
-    protected $moduleNameLower = 'laravelmodulescommand';
-
-    /**
      * Boot the application events.
      *
      * @return void

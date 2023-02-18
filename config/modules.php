@@ -176,9 +176,14 @@ return [
     */
 
     'scan' => [
-        'enabled' => true,
+        // 'enabled' => true,
+        // 'paths' => [
+        //     base_path('vendor/*/*'),
+        // ],
+
+        'enabled' => false,
         'paths' => [
-            base_path('vendor/*/*'),
+            base_path('Modules/*'),
         ],
     ],
 
