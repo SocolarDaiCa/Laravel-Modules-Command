@@ -10,8 +10,6 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
 
     protected function buildClass($name)
     {
-        $class = parent::buildClass($name);
-
-        return $class;
+        return parent::buildClass($name);
     }
 }

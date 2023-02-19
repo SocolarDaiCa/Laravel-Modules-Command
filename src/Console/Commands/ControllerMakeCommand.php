@@ -12,11 +12,10 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
     protected function getOptions()
     {
         $options = parent::getOptions();
-        $options = array_values(
-            array_filter($options, fn($option) => $option[0] != 'requests')
-        );
 
-        return $options;
+        return array_values(
+            array_filter($options, fn ($option) => $option[0] != 'requests')
+        );
     }
 
     protected function buildFormRequestReplacementsByController($controllerName)
@@ -35,18 +34,18 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         $viewFolder = Str::replace('\\', '/', $viewFolder);
         $viewFolder = explode('/', $viewFolder);
         $viewFolder = collect($viewFolder)
-            ->map(fn($e) => Str::lcfirst($e))
-            ->map(fn($e) => Str::snake($e, '-'))
+            ->map(fn ($e) => Str::lcfirst($e))
+            ->map(fn ($e) => Str::snake($e, '-'))
             ->join('.')
         ;
         $packageNamePrefix = Str::snake($this->module->getName(), '-');
 
         $requestNamespace = $this->getDefaultNamespaceByType('request');
 
-        $indexRequestClass = "{$controllerName}\IndexRequest";
-        $storeRequestClass = "{$controllerName}\StoreRequest";
-        $updateRequestClass = "{$controllerName}\UpdateRequest";
-        $namespacedRequests = ""
+        $indexRequestClass = "{$controllerName}\\IndexRequest";
+        $storeRequestClass = "{$controllerName}\\StoreRequest";
+        $updateRequestClass = "{$controllerName}\\UpdateRequest";
+        $namespacedRequests = ''
             ."use {$requestNamespace}\\{$indexRequestClass};".PHP_EOL
             ."use {$requestNamespace}\\{$storeRequestClass};".PHP_EOL
             ."use {$requestNamespace}\\{$updateRequestClass};"
@@ -55,7 +54,6 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         $this->call('make:request', [
             'name' => $indexRequestClass,
         ]);
-
 
         $this->call('make:request', [
             'name' => $storeRequestClass,
@@ -66,8 +64,8 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         ]);
 
         $replace = [
-            "use Illuminate\Http\Request;" => $namespacedRequests,
-            "     * @return \Illuminate\Http\Response\n" => '',
+            'use Illuminate\\Http\\Request;' => $namespacedRequests,
+            "     * @return \\Illuminate\\Http\\Response\n" => '',
         ];
 
         if ($this->option('api')) {
@@ -129,7 +127,6 @@ METHOD_STORE_TO;
         }
         /* todo: template cho option model */
 
-
         return $replace;
     }
 
@@ -138,7 +135,9 @@ METHOD_STORE_TO;
         $replace = $this->buildFormRequestReplacementsByController($name);
 
         return str_replace(
-            array_keys($replace), array_values($replace), parent::buildClass($name)
+            array_keys($replace),
+            array_values($replace),
+            parent::buildClass($name)
         );
     }
 }
