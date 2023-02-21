@@ -1,4 +1,4 @@
-name: Run php-cs-fixer
+name: Run php-cs-fixer 1
 
 on: [push]
 
