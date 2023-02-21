@@ -22,6 +22,7 @@ return [
             // /**/
             // /**/
             /* Folder */
+            '.github/workflows/php-cs-fixer.yml' => '.github/workflows/php-cs-fixer.yml',
             'config/config.php' => 'config/__LOWER_NAME__.php',
             'public/.gitkeep' => 'public/.gitkeep',
             'resources/assets/js/app.js' => 'resources/assets/js/app.js',
@@ -51,6 +52,9 @@ return [
             'phpunit.xml.stub' => 'phpunit.xml',
             'README.md' => 'README.md',
             'webpack.mix.js' => 'webpack.mix.js',
+        ],
+        'force_overwire' => [
+            '.github/workflows/php-cs-fixer.yml',
         ],
         'replacements' => array_merge(
             [
