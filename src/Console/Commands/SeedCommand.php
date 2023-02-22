@@ -11,8 +11,6 @@ class SeedCommand extends \Illuminate\Database\Console\Seeds\SeedCommand
 
     /**
      * Create a new database seed command instance.
-     *
-     * @return void
      */
     public function __construct(Resolver $resolver)
     {

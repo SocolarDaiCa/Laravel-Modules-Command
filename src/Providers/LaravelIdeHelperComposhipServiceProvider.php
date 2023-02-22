@@ -19,8 +19,6 @@ class LaravelIdeHelperComposhipServiceProvider extends ServiceProvider
 
     /**
      * Boot the application events.
-     *
-     * @return void
      */
     public function boot()
     {
@@ -32,8 +30,6 @@ class LaravelIdeHelperComposhipServiceProvider extends ServiceProvider
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -42,8 +38,6 @@ class LaravelIdeHelperComposhipServiceProvider extends ServiceProvider
 
     /**
      * Register config.
-     *
-     * @return void
      */
     protected function registerConfig()
     {
@@ -58,8 +52,6 @@ class LaravelIdeHelperComposhipServiceProvider extends ServiceProvider
 
     /**
      * Register views.
-     *
-     * @return void
      */
     public function registerViews()
     {
@@ -76,8 +68,6 @@ class LaravelIdeHelperComposhipServiceProvider extends ServiceProvider
 
     /**
      * Register translations.
-     *
-     * @return void
      */
     public function registerTranslations()
     {

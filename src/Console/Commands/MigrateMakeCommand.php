@@ -12,8 +12,6 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
 
     /**
      * Create a new migration install command instance.
-     *
-     * @return void
      */
     public function __construct(MigrationCreator $creator, Composer $composer)
     {

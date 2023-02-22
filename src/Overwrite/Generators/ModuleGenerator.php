@@ -40,7 +40,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
                 $this->filesystem->put($path, $this->getStubContents($stub));
 
                 $this->console->info("Created : {$path}");
-            } else if (in_array($stub, config('modules.stubs.force_overwire', []))){
+            } elseif (in_array($stub, config('modules.stubs.force_overwire', []))) {
                 $this->filesystem->put($path, $this->getStubContents($stub));
 
                 $this->console->warn("Overwire : {$path}");

@@ -28,8 +28,6 @@ class Kernel
 
     /**
      * Define the application's command schedule.
-     *
-     * @return void
      */
     protected function schedule(Schedule $schedule)
     {
@@ -40,8 +38,6 @@ class Kernel
      * Register the commands for the application.
      *
      * @throws ReflectionException
-     *
-     * @return void
      */
     protected function commands()
     {
@@ -56,8 +52,6 @@ class Kernel
      * @param array|string $paths
      *
      * @throws ReflectionException
-     *
-     * @return void
      */
     protected function load($paths)
     {

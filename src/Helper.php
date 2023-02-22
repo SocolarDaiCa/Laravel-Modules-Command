@@ -11,8 +11,6 @@ class Helper
      *
      * @param string $path
      * @param string $key
-     *
-     * @return void
      */
     public static function overwriteConfigFrom($path, $key)
     {
