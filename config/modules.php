@@ -23,6 +23,7 @@ return [
             // /**/
             /* Folder */
             '.github/workflows/php-cs-fixer.yml' => '.github/workflows/php-cs-fixer.yml',
+            '.github/dependabot.yml' => '.github/dependabot.yml',
             'config/config.php' => 'config/__LOWER_NAME__.php',
             'public/.gitkeep' => 'public/.gitkeep',
             'resources/assets/js/app.js' => 'resources/assets/js/app.js',
@@ -55,6 +56,7 @@ return [
         ],
         'force_overwire' => [
             '.github/workflows/php-cs-fixer.yml',
+            '.github/dependabot.yml',
         ],
         'replacements' => array_merge(
             [
