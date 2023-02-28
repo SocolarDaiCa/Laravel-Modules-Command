@@ -1,7 +1,0 @@
-name: Run php-cs-fixer
-
-on: [push]
-
-jobs:
-  phpcs:
-    uses: SocolaDaiCa/.github/.github/workflows/php-cs-fixer.yml@main
