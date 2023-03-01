@@ -3,12 +3,29 @@
 namespace __MODULE_NAMESPACE__\__STUDLY_NAME__\Providers;
 
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Console\Kernel as ConsoleKernel;
-use __MODULE_NAMESPACE__\__STUDLY_NAME__\Exceptions\Handler;
+use __MODULE_NAMESPACE__\__STUDLY_NAME__\Exceptions\Handler as ExceptionsHandler;
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class __STUDLY_NAME__ServiceProvider extends ServiceProvider
 {
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $this->registerConfig();
+        app(ExceptionsHandler::class);
+
+        $this->app->register(BroadcastServiceProvider::class);
+        $this->app->register(EventServiceProvider::class);
+        $this->app->register(RouteServiceProvider::class);
+        $this->app->register(HttpKernel::class);
+    }
+
     /**
      * Boot the application events.
      *
@@ -17,7 +34,6 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerTranslations();
-        $this->registerConfig();
         $this->registerViews();
         $this->registerAssets();
         $this->registerMigrations();
@@ -30,21 +46,6 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        app(Handler::class);
-
-        $this->app->register(BroadcastServiceProvider::class);
-        $this->app->register(EventServiceProvider::class);
-        $this->app->register(RouteServiceProvider::class);
-        $this->app->register(HttpKernel::class);
-    }
-
-    /**
      * Register config.
      *
      * @return void
@@ -54,8 +55,8 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../../__PATH_CONFIG__/__LOWER_NAME__.php', '__LOWER_NAME__');
 
         $this->publishes([
-            __DIR__.'/../__PATH_CONFIG__/__LOWER_NAME__.php' => config_path('__LOWER_NAME__.php'),
-        ], 'configs');
+            __DIR__.'/../../__PATH_CONFIG__/__LOWER_NAME__.php' => config_path('__LOWER_NAME__.php'),
+        ], 'config');
     }
 
     /**
@@ -70,6 +71,8 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../../__PATH_VIEWS__' => resource_path('views/vendor/__LOWER_NAME__'),
         ], 'views');
+
+        Blade::componentNamespace('__MODULE_NAMESPACE__\\__STUDLY_NAME__\\View\\Components', '__LOWER_NAME__');
     }
 
     /**
@@ -81,7 +84,7 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/../../public/__VENDOR__/__LOWER_NAME__/' => public_path('vendor/__VENDOR__/__LOWER_NAME__'),
-        ], 'assets');
+        ], 'public');
     }
 
     /**

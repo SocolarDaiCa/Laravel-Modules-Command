@@ -37,6 +37,15 @@ use SocolaDaiCa\LaravelModulesCommand\Overwrite\LaravelFileRepository;
 
 class LaravelModulesCommandServiceProvider extends ServiceProvider
 {
+    public function register()
+    {
+        $this->app->singleton(RepositoryInterface::class, function ($app) {
+            $path = $app['config']->get('modules.paths.modules');
+
+            return new LaravelFileRepository($app, $path);
+        });
+    }
+
     /**
      * Boot the application events.
      */
@@ -48,50 +57,8 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
                 return $app->basePath('stubs');
             })
         ;
-        $this->commands([
-            /* custom */
-            CastMakeCommand::class,
-            ChannelMakeCommand::class,
-            ComponentMakeCommand::class,
-            ConsoleMakeCommand::class,
-            ControllerMakeCommand::class,
-            EventMakeCommand::class,
-            ExceptionMakeCommand::class,
-            FactoryMakeCommand::class,
-            JobMakeCommand::class,
-            ListenerMakeCommand::class,
-            MailMakeCommand::class,
-            MiddlewareMakeCommand::class,
-            //            Migrations\StatusCommand::class,
-            MigrateMakeCommand::class,
-            ModelMakeCommand::class,
-            ModuleMakeCommand::class,
-            NotificationMakeCommand::class,
-            ObserverMakeCommand::class,
-            PolicyMakeCommand::class,
-            ProviderMakeCommand::class,
-            RequestMakeCommand::class,
-            ResourceMakeCommand::class,
-            RuleMakeCommand::class,
-            //            SeedCommand::class,
-            SeederMakeCommand::class,
-            TestMakeCommand::class,
-            /* new */
-            HttpKernelMakeCommand::class,
-            ProviderMake1Command::class,
-            StorageLinkCommand::class,
-        ]);
 
         $this->mergeConfigFrom(__DIR__.'/../../config/laravel-modules-command.php', 'laravel-modules-command');
         Helper::overwrireModulesConfig();
-    }
-
-    public function register()
-    {
-        $this->app->singleton(RepositoryInterface::class, function ($app) {
-            $path = $app['config']->get('modules.paths.modules');
-
-            return new LaravelFileRepository($app, $path);
-        });
     }
 }

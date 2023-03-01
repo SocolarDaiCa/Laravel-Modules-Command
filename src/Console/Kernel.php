@@ -9,6 +9,33 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use ReflectionClass;
 use ReflectionException;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\CastMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ChannelMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ComponentMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ConsoleMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ControllerMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\EventMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ExceptionMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\FactoryMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\HttpKernelMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\JobMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ListenerMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MailMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MiddlewareMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MigrateMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ModelMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ModuleMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\NotificationMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ObserverMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\PolicyMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ProviderMake1Command;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ProviderMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\RequestMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ResourceMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\RuleMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\SeederMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\StorageLinkCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\TestMakeCommand;
 use Symfony\Component\Finder\Finder;
 
 class Kernel
@@ -17,6 +44,37 @@ class Kernel
     {
         $this->commands();
         $this->registerCommands([
+            /* custom */
+            CastMakeCommand::class,
+            ChannelMakeCommand::class,
+            ComponentMakeCommand::class,
+            ConsoleMakeCommand::class,
+            ControllerMakeCommand::class,
+            EventMakeCommand::class,
+            ExceptionMakeCommand::class,
+            FactoryMakeCommand::class,
+            JobMakeCommand::class,
+            ListenerMakeCommand::class,
+            MailMakeCommand::class,
+            MiddlewareMakeCommand::class,
+            //            Migrations\StatusCommand::class,
+            MigrateMakeCommand::class,
+            ModelMakeCommand::class,
+            ModuleMakeCommand::class,
+            NotificationMakeCommand::class,
+            ObserverMakeCommand::class,
+            PolicyMakeCommand::class,
+            ProviderMakeCommand::class,
+            RequestMakeCommand::class,
+            ResourceMakeCommand::class,
+            RuleMakeCommand::class,
+            //            SeedCommand::class,
+            SeederMakeCommand::class,
+            TestMakeCommand::class,
+            /* new */
+            HttpKernelMakeCommand::class,
+            ProviderMake1Command::class,
+            StorageLinkCommand::class,
         ]);
 
         if (app()->runningInConsole()) {
@@ -41,7 +99,7 @@ class Kernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        // $this->load(__DIR__.'/Commands');
 
         require __DIR__.'/../../routes/console.php';
     }

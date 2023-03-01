@@ -45,7 +45,7 @@ class Kernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        // $this->load(__DIR__.'/Commands');
 
         require __DIR__.'/../../routes/console.php';
     }
