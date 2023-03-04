@@ -91,3 +91,4 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 - <https://github.com/spatie/package-skeleton-laravel>
 - <https://laravel-news.com/building-your-own-laravel-packages>
 - <https://laravelpackage.com/#reasons-to-develop-a-package>
+a
