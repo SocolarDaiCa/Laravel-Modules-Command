@@ -24,7 +24,6 @@
         }
     },
     "require": {
-        "socoladaica/laravel-badassium": "*",
         "nwidart/laravel-modules": "^8.2"
     }
 }
