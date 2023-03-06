@@ -25,7 +25,7 @@ return [
             '.github/workflows/audit.yml' => '.github/workflows/audit.yml',
             '.github/dependabot.yml' => '.github/dependabot.yml',
             'config/config.php' => 'config/__LOWER_NAME__.php',
-            'public/.gitkeep' => 'public/__VENDOR__/__LOWER_NAME__/.gitkeep',
+            'public/.gitkeep' => 'public/vendor/__VENDOR__/__LOWER_NAME__/.gitkeep',
             'resources/assets/js/app.js' => 'resources/assets/js/app.js',
             'resources/assets/sass/app.scss' => 'resources/assets/sass/app.scss',
             'resources/assets/img/.gitkeep' => 'resources/assets/img/.gitkeep',
