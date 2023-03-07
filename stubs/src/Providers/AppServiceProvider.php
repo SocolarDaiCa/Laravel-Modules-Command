@@ -83,7 +83,7 @@ class __STUDLY_NAME__ServiceProvider extends ServiceProvider
     public function registerAssets()
     {
         $this->publishes([
-            __DIR__.'/../../public/vendor' => public_path('vendor'),
+            __DIR__.'/../../public/vendor/__VENDOR__/__LOWER_NAME__' => public_path('vendor/__VENDOR__/__LOWER_NAME__'),
         ], 'laravel-assets');
     }
 
