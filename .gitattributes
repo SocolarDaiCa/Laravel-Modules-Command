@@ -2,7 +2,7 @@
 * text=auto
 *.md diff=markdown
 *.php diff=php
-.github export-ignore
+/.github export-ignore
 tests export-ignore
 .editorconfig export-ignore
 .gitattributes export-ignore
