@@ -148,6 +148,7 @@ return [
             'policies' => ['namespace' => 'Policies', 'path' => 'src/Policies', 'generate' => false],
             'policy' => ['namespace' => 'Policies', 'path' => 'src/Policies', 'generate' => false],
             'rules' => ['namespace' => 'Rules', 'path' => 'src/Rules', 'generate' => false],
+            'rule' => ['namespace' => 'Rules', 'path' => 'src/Rules', 'generate' => false],
             'jobs' => ['namespace' => 'Jobs', 'path' => 'src/Jobs', 'generate' => false],
             'emails' => ['namespace' => 'Mail', 'path' => 'src/Mail', 'generate' => false],
             'exception' => ['namespace' => 'Exceptions', 'path' => 'src/Exceptions', 'generate' => false],
