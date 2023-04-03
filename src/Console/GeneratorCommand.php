@@ -8,11 +8,14 @@ use Nwidart\Modules\Support\Config\GenerateConfigReader;
 use Nwidart\Modules\Traits\ModuleCommandTrait;
 use SocolaDaiCa\LaravelModulesCommand\Helper;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Path;
 
 trait GeneratorCommand
 {
     use ModuleCommandTrait;
     use CommonCommand;
+
+    private $filesCreated = [];
 
     /**
      * Create a new controller creator command instance.
@@ -25,7 +28,7 @@ trait GeneratorCommand
 
     protected function getPath($name)
     {
-        return $this->getDestinationFilePath();
+        return $this->filesCreated[] = $this->getDestinationFilePath();
     }
 
     /**
@@ -117,7 +120,10 @@ trait GeneratorCommand
 
         $commandPath = GenerateConfigReader::read($this->getType());
 
-        return $path.$commandPath->getPath().'/'.$this->getFileName().'.php';
+        return Path::join(
+            $path.$commandPath->getPath(),
+            $this->getFileName().'.php'
+        );
     }
 
     /**
@@ -141,22 +147,18 @@ trait GeneratorCommand
         return parent::handle();
     }
 
-    // public function call($command, array $arguments = [])
-    // {
-    //     if (Str::start($command, 'make:')) {
-    //         $command = "cms:{$command}";
-    //     }
-    //     dump($command);
-    //
-    //     parent::call($command, $arguments);
-    // }
-
     protected function runCommand($command, array $arguments, OutputInterface $output)
     {
-        // dump($command);
         $command = "cms:{$command}";
         $arguments['module'] = $this->argument('module');
 
         return parent::runCommand($command, $arguments, $output);
+    }
+
+    public function __destruct()
+    {
+        foreach ($this->filesCreated as $file) {
+            exec("\"C:\\Program Files\\JetBrains\\PhpStorm 2021.1.2\\bin\\phpstorm64.exe\" \"{$file}\"");
+        }
     }
 }
