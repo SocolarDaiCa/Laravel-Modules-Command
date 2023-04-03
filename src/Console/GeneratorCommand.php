@@ -158,6 +158,10 @@ trait GeneratorCommand
     public function __destruct()
     {
         foreach ($this->filesCreated as $file) {
+            if (file_exists($file) === false) {
+                continue;
+            }
+
             exec("\"C:\\Program Files\\JetBrains\\PhpStorm 2021.1.2\\bin\\phpstorm64.exe\" \"{$file}\"");
         }
     }
