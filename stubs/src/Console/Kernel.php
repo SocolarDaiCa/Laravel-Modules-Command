@@ -47,7 +47,7 @@ class Kernel
     {
         // $this->load(__DIR__.'/Commands');
 
-        require __DIR__.'/../../routes/console.php';
+        require_once __DIR__.'/../../routes/console.php';
     }
 
     /**
