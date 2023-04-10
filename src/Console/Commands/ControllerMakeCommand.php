@@ -85,7 +85,7 @@ METHOD_STORE_TO;
         $replace[<<<METHOD_UPDATE_FROM
     public function update(Request \$request
 METHOD_UPDATE_FROM] = <<<METHOD_UPDATE_TO
-    public function update(StoreRequest \$request
+    public function update(UpdateRequest \$request
 METHOD_UPDATE_TO;
 
         if ($this->option('resource')) {
