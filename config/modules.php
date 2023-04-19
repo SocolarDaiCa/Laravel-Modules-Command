@@ -153,6 +153,7 @@ return [
             'emails' => ['namespace' => 'Mail', 'path' => 'src/Mail', 'generate' => false],
             'exception' => ['namespace' => 'Exceptions', 'path' => 'src/Exceptions', 'generate' => false],
             'notifications' => ['namespace' => 'Notifications', 'path' => 'src/Notifications', 'generate' => false],
+            'notification' => ['namespace' => 'Notifications', 'path' => 'src/Notifications', 'generate' => false],
             'resource' => ['namespace' => 'Resources', 'path' => 'src/Resources', 'generate' => false],
             'component-view' => ['path' => 'resources/views/components', 'generate' => false],
             'component-class' => ['namespace' => 'View/Components', 'path' => 'src/View/Components', 'generate' => false],

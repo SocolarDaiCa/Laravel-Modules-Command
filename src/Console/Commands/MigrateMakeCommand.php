@@ -27,12 +27,12 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
     protected function getMigrationPath()
     {
         return $this->getGeneratorFolder('migration');
-//        if (! is_null($targetPath = $this->input->getOption('path'))) {
-//            return ! $this->usingRealPath()
-//                ? $this->laravel->basePath().'/'.$targetPath
-//                : $targetPath;
-//        }
-//
-//        return parent::getMigrationPath();
+        //        if (! is_null($targetPath = $this->input->getOption('path'))) {
+        //            return ! $this->usingRealPath()
+        //                ? $this->laravel->basePath().'/'.$targetPath
+        //                : $targetPath;
+        //        }
+        //
+        //        return parent::getMigrationPath();
     }
 }

@@ -46,8 +46,7 @@ class ModuleMakeCommand extends Command
                 ->setType($this->getModuleType())
                 // ->setActive(!$this->option('disabled'))
                 ->setActive(false)
-                ->generate()
-            ;
+                ->generate();
 
             if ($code === E_ERROR) {
                 $success = false;

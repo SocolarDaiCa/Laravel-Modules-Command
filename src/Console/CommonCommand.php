@@ -40,8 +40,7 @@ trait CommonCommand
     {
         return $this->getModule()->getPath()
             .'/'
-            .$this->laravel['config']['modules']['paths']['generator'][$key]['path']
-        ;
+            .$this->laravel['config']['modules']['paths']['generator'][$key]['path'];
     }
 
     public function getGeneratorPath($key, $name)
@@ -51,8 +50,7 @@ trait CommonCommand
         return $this->getGeneratorFolder($key)
             .'/'
             .str_replace('\\', '/', $name)
-            .'.php'
-        ;
+            .'.php';
     }
 
     public function getGeneratorNamespace($key)

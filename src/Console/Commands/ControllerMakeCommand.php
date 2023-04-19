@@ -36,8 +36,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         $viewFolder = collect($viewFolder)
             ->map(fn ($e) => Str::lcfirst($e))
             ->map(fn ($e) => Str::snake($e, '-'))
-            ->join('.')
-        ;
+            ->join('.');
         $packageNamePrefix = Str::snake($this->module->getName(), '-');
 
         $requestNamespace = $this->getDefaultNamespaceByType('request');
@@ -48,8 +47,7 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         $namespacedRequests = ''
             ."use {$requestNamespace}\\{$indexRequestClass};".PHP_EOL
             ."use {$requestNamespace}\\{$storeRequestClass};".PHP_EOL
-            ."use {$requestNamespace}\\{$updateRequestClass};"
-        ;
+            ."use {$requestNamespace}\\{$updateRequestClass};";
 
         $this->call('make:request', [
             'name' => $indexRequestClass,
