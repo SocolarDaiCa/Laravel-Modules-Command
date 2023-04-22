@@ -1,10 +1,15 @@
 # Laravel Modules Command
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/socoladaica/laravel-modules-command.svg?style=flat-square)](https://packagist.org/packages/socoladaica/laravel-modules-command)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/socoladaica/laravel-modules-command/Tests?label=tests)](https://github.com/socoladaica/laravel-modules-command/actions?query=workflow%3ATests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/socoladaica/laravel-modules-command.svg?style=flat-square)](https://packagist.org/packages/socoladaica/laravel-modules-command)
+Create Laravel package with structure like laravel application
 
-Generate Command for Laravel Modules base on laravel Generate Command
+[//]: # ([![Latest Version on Packagist]&#40;https://img.shields.io/packagist/v/socoladaica/laravel-modules-command.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/socoladaica/laravel-modules-command&#41;)
+
+[//]: # ([![GitHub Tests Action Status]&#40;https://img.shields.io/github/workflow/status/socoladaica/laravel-modules-command/Tests?label=tests&#41;]&#40;https://github.com/socoladaica/laravel-modules-command/actions?query=workflow%3ATests+branch%3Amaster&#41;)
+
+[//]: # ([![Total Downloads]&#40;https://img.shields.io/packagist/dt/socoladaica/laravel-modules-command.svg?style=flat-square&#41;]&#40;https://packagist.org/packages/socoladaica/laravel-modules-command&#41;)
+
+[//]: # ()
+[//]: # (Generate Command for Laravel Modules base on laravel Generate Command)
 
 ## Installation
 
@@ -16,78 +21,141 @@ composer require socoladaica/laravel-modules-command
 
 ## Usage
 
-```bash
-php artisan cms:make:module
+### Create new Package
 
-php artisan cms:make:cast <name> <module>
-php artisan cms:make:channel <name> <module> 
-php artisan cms:make:component <name> <module> 
-php artisan cms:make:controller <name> <module>
-php artisan cms:make:event <name> <module>
-php artisan cms:make:exception <name> <module> 
-php artisan cms:make:factory <name> <module>
-php artisan cms:make:job <name> <module>
-php artisan cms:make:listener <name> <module> 
-php artisan cms:make:mail <name> <module>
-php artisan cms:make:middleware <name> <module> 
-php artisan cms:make:migration <name> <module>
-php artisan cms:make:model <name> <module>
-php artisan cms:make:notification <name> <module>
-php artisan cms:make:observer <name> <module>
-php artisan cms:make:policy <name> <module>
-php artisan cms:make:provider <name> <module>
-php artisan cms:make:request <name> <module>
-php artisan cms:make:resource <name> <module>
-php artisan cms:make:rule <name> <module>
-php artisan cms:make:seeder <name> <module>
-php artisan cms:make:test <name> <module>
+```shell
+php artisan cms:make:module <package-name>
 ```
 
-You can use all option like laravel command. Example:
-```bash
-php artisan cms:make:controller <name> --resource <module>
-```
+See all command []
 
-## Publish stub
+[//]: # ()
+[//]: # (```bash)
 
-```bash
-php artisan stub:publish
-```
+[//]: # (php artisan cms:make:module)
 
-## Testing
+[//]: # ()
+[//]: # (php artisan cms:make:cast <name> <module>)
 
-```bash
-composer test
-```
+[//]: # (php artisan cms:make:channel <name> <module> )
 
-## Load local package
+[//]: # (php artisan cms:make:component <name> <module> )
 
-```
-```
+[//]: # (php artisan cms:make:controller <name> <module>)
 
-## Changelog
+[//]: # (php artisan cms:make:event <name> <module>)
 
-Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
+[//]: # (php artisan cms:make:exception <name> <module> )
 
-## Contributing
+[//]: # (php artisan cms:make:factory <name> <module>)
 
-Please see [CONTRIBUTING](.github/CONTRIBUTING.md) for details.
+[//]: # (php artisan cms:make:job <name> <module>)
 
-## Security Vulnerabilities
+[//]: # (php artisan cms:make:listener <name> <module> )
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+[//]: # (php artisan cms:make:mail <name> <module>)
 
-## Credits
+[//]: # (php artisan cms:make:middleware <name> <module> )
 
-- [Socola Dai Ca](https://github.com/SocolaDaiCa)
-- [All Contributors](../../contributors)
+[//]: # (php artisan cms:make:migration <name> <module>)
 
-## License
+[//]: # (php artisan cms:make:model <name> <module>)
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+[//]: # (php artisan cms:make:notification <name> <module>)
 
-## Reference
+[//]: # (php artisan cms:make:observer <name> <module>)
 
-- <https://github.com/spatie/package-skeleton-laravel>
-- <https://laravel-news.com/building-your-own-laravel-packages>
-- <https://laravelpackage.com/#reasons-to-develop-a-package>
+[//]: # (php artisan cms:make:policy <name> <module>)
+
+[//]: # (php artisan cms:make:provider <name> <module>)
+
+[//]: # (php artisan cms:make:request <name> <module>)
+
+[//]: # (php artisan cms:make:resource <name> <module>)
+
+[//]: # (php artisan cms:make:rule <name> <module>)
+
+[//]: # (php artisan cms:make:seeder <name> <module>)
+
+[//]: # (php artisan cms:make:test <name> <module>)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (You can use all option like laravel command. Example:)
+
+[//]: # (```bash)
+
+[//]: # (php artisan cms:make:controller <name> --resource <module>)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (## Publish stub)
+
+[//]: # ()
+[//]: # (```bash)
+
+[//]: # (php artisan stub:publish)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (## Testing)
+
+[//]: # ()
+[//]: # (```bash)
+
+[//]: # (composer test)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (## Load local package)
+
+[//]: # ()
+[//]: # (```)
+
+[//]: # (```)
+
+[//]: # ()
+[//]: # (## Changelog)
+
+[//]: # ()
+[//]: # (Please see [CHANGELOG]&#40;CHANGELOG.md&#41; for more information on what has changed recently.)
+
+[//]: # ()
+[//]: # (## Contributing)
+
+[//]: # ()
+[//]: # (Please see [CONTRIBUTING]&#40;.github/CONTRIBUTING.md&#41; for details.)
+
+[//]: # ()
+[//]: # (## Security Vulnerabilities)
+
+[//]: # ()
+[//]: # (Please review [our security policy]&#40;../../security/policy&#41; on how to report security vulnerabilities.)
+
+[//]: # ()
+[//]: # (## Credits)
+
+[//]: # ()
+[//]: # (- [Socola Dai Ca]&#40;https://github.com/SocolaDaiCa&#41;)
+
+[//]: # (- [All Contributors]&#40;../../contributors&#41;)
+
+[//]: # ()
+[//]: # (## License)
+
+[//]: # ()
+[//]: # (The MIT License &#40;MIT&#41;. Please see [License File]&#40;LICENSE.md&#41; for more information.)
+
+[//]: # ()
+[//]: # (## Reference)
+
+[//]: # ()
+[//]: # (- <https://github.com/spatie/package-skeleton-laravel>)
+
+[//]: # (- <https://laravel-news.com/building-your-own-laravel-packages>)
+
+[//]: # (- <https://laravelpackage.com/#reasons-to-develop-a-package>)

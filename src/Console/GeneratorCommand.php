@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Nwidart\Modules\Support\Config\GenerateConfigReader;
 use Nwidart\Modules\Traits\ModuleCommandTrait;
 use SocolaDaiCa\LaravelModulesCommand\Helper;
+use SocolaDaiCa\Phpstorm\Phpstiom;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Path;
 
@@ -161,7 +162,7 @@ trait GeneratorCommand
                 continue;
             }
 
-            exec("\"C:\\Program Files\\JetBrains\\PhpStorm 2021.1.2\\bin\\phpstorm64.exe\" \"{$file}\"");
+            app(Phpstiom::class)->open(file: $file);
         }
     }
 }

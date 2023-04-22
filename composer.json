@@ -15,7 +15,10 @@
             ],
             "aliases": {
 
-            }
+            },
+            "dont-discover": [
+                "nwidart/laravel-modules"
+            ]
         }
     },
     "autoload": {
@@ -24,6 +27,7 @@
         }
     },
     "require": {
-        "nwidart/laravel-modules": "^8.2"
+        "nwidart/laravel-modules": "^8.2",
+        "socoladaica/phpstorm": "1.x-dev"
     }
 }
