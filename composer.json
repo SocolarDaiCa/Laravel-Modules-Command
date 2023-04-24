@@ -15,10 +15,7 @@
             ],
             "aliases": {
 
-            },
-            "dont-discover": [
-                "nwidart/laravel-modules"
-            ]
+            }
         }
     },
     "autoload": {
