@@ -25,6 +25,7 @@
     },
     "require": {
         "nwidart/laravel-modules": "^8.2",
-        "socoladaica/phpstorm": "1.x-dev"
+        "socoladaica/phpstorm": "1.x-dev",
+        "nikic/php-parser": "*"
     }
 }
