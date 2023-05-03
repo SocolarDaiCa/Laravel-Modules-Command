@@ -3,8 +3,6 @@
 namespace SocolaDaiCa\LaravelModulesCommand\PhpParse;
 
 use PhpParser\Node;
-use PhpParser\Node\Stmt\Class_;
-use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\NodeVisitorAbstract;
 
 class PhpParseFactory
@@ -19,7 +17,7 @@ class PhpParseFactory
     public function makeMethod($code)
     {
         $code = "<?php
-            namespace A\B;
+            namespace A\\B;
 
             class A
             {
@@ -30,14 +28,21 @@ class PhpParseFactory
         // dd($code);
 
         $traverser = new \PhpParser\NodeTraverser();
-        $traverser->addVisitor(new class extends NodeVisitorAbstract {
-            public function leaveNode(Node $node) {
+        $traverser->addVisitor(new class() extends NodeVisitorAbstract {
+            public function leaveNode(Node $node)
+            {
                 $attributes = $node->getAttributes();
-                unset($attributes['startLine']);
-                unset($attributes['startTokenPos']);
-                unset($attributes['endLine']);
-                unset($attributes['endTokenPos']);
-                unset($attributes['origNode']);
+                // unset(
+                    // $attributes['startLine'],
+                    // $attributes['startTokenPos'],
+                    // $attributes['endLine'],
+                    // $attributes['endTokenPos'],
+                    // $attributes['origNode'],
+                // );
+                //
+                // $attributes['startLine'] = -1;
+                // $attributes['endLine'] = 6;
+
                 $node->setAttributes($attributes);
             }
         });

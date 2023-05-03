@@ -3,30 +3,36 @@
 namespace SocolaDaiCa\LaravelModulesCommand\PhpParse;
 
 use Illuminate\Support\Arr;
+use PhpParser\Node;
 use PhpParser\Node\Stmt\Class_;
 use PhpParser\Node\Stmt\ClassMethod;
 use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\NodeVisitorAbstract;
 use PhpParser\ParserFactory;
-use PhpParser\PrettyPrinter\Standard;
-use PhpParser\Node;
-
+use SocolaDaiCa\LaravelModulesCommand\PhpParse\PrettyPrinter\Standard;
 
 class PhpParse
 {
     protected Namespace_ $ast;
+
     protected \PhpParser\Lexer\Emulative $lexer;
+
     protected \PhpParser\Parser\Php7 $parser;
+
     /**
      * @var \PhpParser\Node[]
      */
     protected array $newStmts;
+
     protected array $oldTokens;
+
     protected Standard $printer;
+
     /**
      * @var \PhpParser\Node\Stmt[]|null
      */
     protected ?array $oldStmts;
+
     protected \PhpParser\NodeTraverser $traverser;
 
     protected PhpParseFactory $phpParseFactory;
@@ -45,7 +51,7 @@ class PhpParse
         $this->traverser = new \PhpParser\NodeTraverser();
         $this->traverser->addVisitor(new \PhpParser\NodeVisitor\CloningVisitor());
 
-        $this->printer = new \PhpParser\PrettyPrinter\Standard();
+        $this->printer = new Standard();
     }
 
     public function parseAst($code)
@@ -84,7 +90,6 @@ class PhpParse
         $this->newStmts = $this->traverser->traverse($this->oldStmts);
 
         $this->phpParseFactory = app(PhpParseFactory::class);
-        // $this->ast = $this->parse($code);
 
         return $this;
     }
@@ -92,15 +97,28 @@ class PhpParse
     public function parse($code)
     {
         $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
+
         return $parser->parse($code)[0];
     }
 
-    /**
-     * @return mixed
-     */
+    public function parseRawCode($code)
+    {
+        $parser = (new ParserFactory())->create(ParserFactory::PREFER_PHP7);
+
+        return $parser->parse("<?php \n".$code);
+    }
+
     public function getAst()
     {
         return $this->newStmts[0];
+    }
+
+    /**
+     * @return array
+     */
+    public function getNewStmts(): array
+    {
+        return $this->newStmts;
     }
 
     public function class(): Class_
@@ -128,7 +146,6 @@ class PhpParse
 
     public function addAttribute()
     {
-
     }
 
     // public function extends($class)

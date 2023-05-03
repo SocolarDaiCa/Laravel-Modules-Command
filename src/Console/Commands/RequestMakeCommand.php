@@ -28,11 +28,8 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
                 {
                     return __('{$module->getLowerName()}::entity.');
                 }
-            ")
-        ;
+            ");
 
-        $class = $phpParse->__toString();
-
-        return $class;
+        return $phpParse->__toString();
     }
 }

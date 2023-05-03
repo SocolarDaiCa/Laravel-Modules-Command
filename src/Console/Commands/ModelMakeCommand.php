@@ -25,13 +25,12 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
             ->addMethod("
                 protected \$table = '{$table}';
             ")
-            ->addMethod("
-                protected \$fillable = [];
-            ")
-            ->addMethod("
-                protected \$guarded = [];
-            ")
-            ->__toString()
-        ;
+            ->addMethod('
+                protected $fillable = [];
+            ')
+            ->addMethod('
+                protected $guarded = [];
+            ')
+            ->__toString();
     }
 }

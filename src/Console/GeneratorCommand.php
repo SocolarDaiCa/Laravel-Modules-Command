@@ -6,8 +6,8 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Support\Config\GenerateConfigReader;
 use Nwidart\Modules\Traits\ModuleCommandTrait;
+use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
 use SocolaDaiCa\LaravelModulesCommand\Helper;
-use SocolaDaiCa\Phpstorm\Phpstiom;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Path;
 
@@ -15,8 +15,6 @@ trait GeneratorCommand
 {
     use ModuleCommandTrait;
     use CommonCommand;
-
-    private $filesCreated = [];
 
     /**
      * Create a new controller creator command instance.
@@ -29,7 +27,7 @@ trait GeneratorCommand
 
     protected function getPath($name)
     {
-        return $this->filesCreated[] = $this->getDestinationFilePath();
+        return OpenPhpstorm::add($this->getDestinationFilePath());
     }
 
     /**
@@ -153,16 +151,5 @@ trait GeneratorCommand
         $arguments['module'] = $this->argument('module');
 
         return parent::runCommand($command, $arguments, $output);
-    }
-
-    public function __destruct()
-    {
-        foreach ($this->filesCreated as $file) {
-            if (file_exists($file) === false) {
-                continue;
-            }
-
-            app(Phpstiom::class)->open(file: $file);
-        }
     }
 }
