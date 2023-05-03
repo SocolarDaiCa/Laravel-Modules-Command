@@ -27,6 +27,24 @@ composer require socoladaica/laravel-modules-command
 php artisan cms:make:module <package-name>
 ```
 
+### Make Model
+
+```shell
+php artisan cms:make:model <model name> -mfsc <module>
+# Ex
+php artisan cms:make:model Admin -mfsc blog-common
+```
+
+### Make Controller
+
+```shell
+php artisan cms:make:controller <controller name> -mfsc <module>
+# Ex blade controller
+php artisan cms:make:controller CategoryController --resource blog-api-admin
+# Ex resource controller
+php artisan cms:make:controller --resource --api --model=App\Models\User CategoryController blog-api-admin
+```
+
 See all command []
 
 [//]: # ()

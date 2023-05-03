@@ -2,21 +2,14 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use SocolaDaiCa\LaravelModulesCommand\Console\GeneratorCommand;
+use SocolaDaiCa\LaravelModulesCommand\StubModify;
 
 class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCommand
 {
     use GeneratorCommand;
-
-    protected function getOptions()
-    {
-        $options = parent::getOptions();
-
-        return array_values(
-            array_filter($options, fn ($option) => $option[0] != 'requests')
-        );
-    }
 
     protected function buildFormRequestReplacementsByController($controllerName)
     {
@@ -132,10 +125,32 @@ METHOD_STORE_TO;
     {
         $replace = $this->buildFormRequestReplacementsByController($name);
 
-        return str_replace(
+        $code = parent::buildClass($name);
+
+        $code = str_replace(
             array_keys($replace),
             array_values($replace),
-            parent::buildClass($name)
+            $code
         );
+
+        $modelClass = null;
+        if ($this->option('model')) {
+            $modelClass = $this->parseModel($this->option('model'));
+        }
+
+        return app(StubModify::class)->controller(
+            $code,
+            api: $this->option('api'),
+            model: $modelClass,
+        );
+    }
+
+    protected function parseModel($model)
+    {
+        if (class_exists($model) && is_subclass_of($model, Model::class)) {
+            return $model;
+        }
+
+        return parent::parseModel($model);
     }
 }
