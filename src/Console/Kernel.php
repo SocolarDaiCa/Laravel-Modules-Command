@@ -21,6 +21,7 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\HttpKernelMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\JobMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ListenerMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MailMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MiddlewareMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MigrateMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ModelMakeCommand;
@@ -75,6 +76,7 @@ class Kernel
             HttpKernelMakeCommand::class,
             ProviderMake1Command::class,
             StorageLinkCommand::class,
+            MakeCommand::class,
         ]);
 
         if (app()->runningInConsole()) {
