@@ -64,23 +64,19 @@ composer test
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-[//]: # (## Contributing)
+## Contributing
 
-[//]: # (Please see [CONTRIBUTING]&#40;https://github.com/:author_username/.github/blob/main/CONTRIBUTING.md&#41; for details.)
+Please see [CONTRIBUTING](https://github.com/:author_username/.github/blob/main/CONTRIBUTING.md) for details.
 
-[//]: # ()
-[//]: # (## Security Vulnerabilities)
+## Security Vulnerabilities
 
-[//]: # ()
-[//]: # (Please review [our security policy]&#40;../../security/policy&#41; on how to report security vulnerabilities.)
+Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
-[//]: # ()
-[//]: # (## Credits)
+## Credits
 
-[//]: # ()
-[//]: # (- [:author_name]&#40;https://github.com/:author_username&#41;)
+- [:author_name](https://github.com/:author_username)
 
-[//]: # (- [All Contributors]&#40;../../contributors&#41;)
+- [All Contributors](../../contributors)
 
 ## License
 

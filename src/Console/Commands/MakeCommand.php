@@ -71,12 +71,8 @@ class MakeCommand extends Command
 
         $this->command = $this->choice(
             'Command?',
-            $choices
+            $choices,
         );
-
-        if ($this->command == 'back') {
-            return;
-        }
 
         match($this->command) {
             'cms:make:model' => $this->makeModel(),
@@ -87,14 +83,14 @@ class MakeCommand extends Command
 
     public function makeModel()
     {
-        $modelName = $this->ask('Model Name?');
+        $modelName = $this->ask("[{$this->command}] Model Name?");
 
         $this->line("model name: $modelName");
 
         Artisan::call(
             "$this->command {$modelName} {$this->module}",
             [
-                // '-mfs',
+                'mfs',
             ],
             $this->output
         );

@@ -32,14 +32,13 @@ class PhpParseFactory
             public function leaveNode(Node $node)
             {
                 $attributes = $node->getAttributes();
-                // unset(
-                    // $attributes['startLine'],
-                    // $attributes['startTokenPos'],
-                    // $attributes['endLine'],
-                    // $attributes['endTokenPos'],
-                    // $attributes['origNode'],
-                // );
-                //
+                unset(
+                    $attributes['startLine'],
+                    $attributes['startTokenPos'],
+                    $attributes['endLine'],
+                    $attributes['endTokenPos'],
+                    $attributes['origNode'],
+                );
                 // $attributes['startLine'] = -1;
                 // $attributes['endLine'] = 6;
 
