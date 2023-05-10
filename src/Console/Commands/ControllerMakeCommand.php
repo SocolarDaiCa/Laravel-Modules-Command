@@ -133,7 +133,7 @@ METHOD_STORE_TO;
             $code
         );
 
-        $modelClass = null;
+        $modelClass = '';
         if ($this->option('model')) {
             $modelClass = $this->parseModel($this->option('model'));
         }
