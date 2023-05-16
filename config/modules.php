@@ -150,6 +150,7 @@ return [
             'rules' => ['namespace' => 'Rules', 'path' => 'src/Rules', 'generate' => false],
             'rule' => ['namespace' => 'Rules', 'path' => 'src/Rules', 'generate' => false],
             'jobs' => ['namespace' => 'Jobs', 'path' => 'src/Jobs', 'generate' => false],
+            'job' => ['namespace' => 'Jobs', 'path' => 'src/Jobs', 'generate' => false],
             'emails' => ['namespace' => 'Mail', 'path' => 'src/Mail', 'generate' => false],
             'exception' => ['namespace' => 'Exceptions', 'path' => 'src/Exceptions', 'generate' => false],
             'notifications' => ['namespace' => 'Notifications', 'path' => 'src/Notifications', 'generate' => false],
