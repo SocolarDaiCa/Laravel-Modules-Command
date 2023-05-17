@@ -33,30 +33,20 @@ class StubModify
 
         if ($closureStmts) {
             $closure->stmts[] = array_shift($closureStmts);
-        } else {
-            array_push(
-                $closure->stmts,
-                ...$phpParse->parseRawCode('
-                    $table->id();
-                ')
-            );
+
+            if (in_array($table, ['categories'])) {
+                $closure->stmts[] = $phpParse->parseRawCode('$table->string(\'name\');')[0];
+            }
         }
 
-        if (in_array($table, ['categories'])) {
-            $closure->stmts[] = $phpParse->parseRawCode('$table->string(\'name\');')[0];
-        }
-
-        $closure->stmts[] = $phpParse->parseRawCode('$table->softDeletes();')[0];
-
-        if (!$closureStmts) {
+        if ($closureStmts) {
+            $closure->stmts[] = $phpParse->parseRawCode('$table->softDeletes();')[0];
             $closure->stmts[] = array_shift($closureStmts);
-        } else {
-            $closure->stmts[] = $phpParse->parseRawCode('$table->timestamps();')[0];
-        }
 
-        if (in_array($table, ['categories'])) {
-            $closure->stmts[] = $phpParse->parseRawCode('/**/')[0];
-            $closure->stmts[] = $phpParse->parseRawCode('$table->unique([\'name\']);')[0];
+            if (in_array($table, ['categories'])) {
+                $closure->stmts[] = $phpParse->parseRawCode('/**/')[0];
+                $closure->stmts[] = $phpParse->parseRawCode('$table->unique([\'name\']);')[0];
+            }
         }
 
         return $phpParse->__toString();

@@ -11,7 +11,7 @@ class MigrationCreator extends \Illuminate\Database\Migrations\MigrationCreator
     {
         $code = parent::populateStub($stub, $table);
 
-        return app(StubModify::class)->migration($stub, $table);
+        return app(StubModify::class)->migration($code, $table);
     }
 
     protected function getPath($name, $path)
