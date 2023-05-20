@@ -109,4 +109,25 @@ class StubModify
 
         return $phpParse->__toString();
     }
+
+    public function resource($stub)
+    {
+        $phpParse = app(PhpParse::class)
+            ->parseAst($stub)
+        ;
+
+        /** @var Finder $finder */
+        $finder = app(Finder::class);
+
+        $class = $finder->findFirstClass($phpParse->getNewStmts());
+
+        $class->setAttribute('comments', [
+            new Comment\Doc('/**
+ * @see
+ * @mixin
+ */')
+        ]);
+
+        return $phpParse->__toString();
+    }
 }
