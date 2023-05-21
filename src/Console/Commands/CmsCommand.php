@@ -3,19 +3,22 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
 use Nwidart\Modules\Facades\Module;
+use SocolaDaiCa\LaravelAudit\Helper;
+use Spatie\Once\Cache;
 use function PHPUnit\Framework\matches;
 use function Sodium\crypto_box_publickey_from_secretkey;
 
-class MakeCommand extends Command
+class CmsCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'cms:make';
+    protected $signature = 'cms';
 
     /**
      * The console command description.
@@ -32,6 +35,7 @@ class MakeCommand extends Command
      */
     public function handle()
     {
+        Cache::disable();
         $this->selectModule();
     }
 
@@ -42,24 +46,20 @@ class MakeCommand extends Command
         $choices = $modules->map(function (\SocolaDaiCa\LaravelModulesCommand\Overwrite\Module $module) {
             return $module->getLowerName();
         })->values()->all();
-        // dd($modules);
-        // $moduleTestRector = $modules;
-        // dd($moduleTestRector->getLowerName());
-        // dd($moduleTestRector);
 
-        $choices = array_merge(['exit'], $choices);
+        // $choices = array_merge(['exit'], $choices);
 
         $this->module = $this->choice(
             'Module?',
             $choices
         );
 
-        if ($this->module == 'exit') {
-            return;
-        }
+        // if ($this->module == 'exit') {
+        //     return;
+        // }
 
         $this->selectCommand();
-        $this->selectModule();
+        return $this->selectModule();
     }
 
     public function selectCommand()
@@ -67,6 +67,7 @@ class MakeCommand extends Command
         $choices = [
             'back',
             'cms:make:model',
+            'cms:make:resource',
         ];
 
         $this->command = $this->choice(
@@ -76,6 +77,8 @@ class MakeCommand extends Command
 
         match($this->command) {
             'cms:make:model' => $this->makeModel(),
+            'cms:make:resource' => $this->makeResource(),
+            default => null,
         };
 
         return $this->selectCommand();
@@ -94,5 +97,21 @@ class MakeCommand extends Command
             ],
             $this->output
         );
+    }
+
+    public function makeResource()
+    {
+        $models = Helper::getReflectionClassNameByParent(Model::class);
+        $model = $this->choice(
+            'Model?',
+            $models->all(),
+        );
+
+        Artisan::call('cms:make:resource', [
+            '--model' => $model,
+            'module' => $this->module,
+        ], $this->output);
+
+        // $modelName = $this->ask("[{$this->command}] Model Name?");
     }
 }

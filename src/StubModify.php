@@ -110,8 +110,12 @@ class StubModify
         return $phpParse->__toString();
     }
 
-    public function resource($stub)
+    public function resource($stub, $model)
     {
+        if ($model) {
+            $model = '\\' . ltrim($model, '\\');
+        }
+
         $phpParse = app(PhpParse::class)
             ->parseAst($stub)
         ;
@@ -122,11 +126,11 @@ class StubModify
         $class = $finder->findFirstClass($phpParse->getNewStmts());
 
         $class->setAttribute('comments', [
-            new Comment\Doc('/**
- * @see
- * @mixin
- */')
-        ]);
+            new Comment\Doc("/**
+ * @see {$model}
+ * @mixin {$model}
+ */")
+    ]);
 
         return $phpParse->__toString();
     }
