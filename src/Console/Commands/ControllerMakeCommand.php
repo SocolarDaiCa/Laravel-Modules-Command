@@ -134,6 +134,7 @@ METHOD_STORE_TO;
         );
 
         $modelClass = '';
+
         if ($this->option('model')) {
             $modelClass = $this->parseModel($this->option('model'));
         }

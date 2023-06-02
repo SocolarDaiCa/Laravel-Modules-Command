@@ -15,8 +15,9 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
 
         /** @var \SocolaDaiCa\LaravelModulesCommand\Overwrite\Module $module */
         $module = $this->getModule();
+        $phpParse = app(PhpParse::class);
 
-        $phpParse = app(PhpParse::class)
+        $phpParse
             ->parseAst($class)
             ->addMethod("
                 /**
@@ -28,8 +29,7 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
                 {
                     return __('{$module->getLowerName()}::entity.');
                 }
-            ")
-        ;
+            ");
 
         return $phpParse->__toString();
     }

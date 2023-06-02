@@ -113,9 +113,6 @@ class PhpParse
         return $this->newStmts[0];
     }
 
-    /**
-     * @return array
-     */
     public function getNewStmts(): array
     {
         return $this->newStmts;

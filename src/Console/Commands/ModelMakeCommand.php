@@ -20,7 +20,9 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
             $table = Str::singular($table);
         }
 
-        return app(PhpParse::class)
+        $phpParse = app(PhpParse::class);
+
+        return $phpParse
             ->parseAst($class)
             ->addMethod("
                 protected \$table = '{$table}';
@@ -31,6 +33,7 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
             ->addMethod('
                 protected $guarded = [];
             ')
-            ->__toString();
+            ->__toString()
+        ;
     }
 }

@@ -12,8 +12,9 @@ class MiddlewareMakeCommand extends \Illuminate\Routing\Console\MiddlewareMakeCo
     protected function buildClass($name)
     {
         $class = parent::buildClass($name);
+        $phpParse = app(PhpParse::class);
 
-        return app(PhpParse::class)
+        return $phpParse
             ->parseAst($class)
             ->addMethod('
                 public static function using()

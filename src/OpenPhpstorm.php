@@ -17,7 +17,9 @@ class OpenPhpstorm
 
     public function openAll()
     {
-        foreach ($this->files as $file) {
+        while (count($this->files) > 0) {
+            $file = array_pop($this->files);
+
             if (file_exists($file) === false) {
                 continue;
             }

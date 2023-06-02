@@ -18,8 +18,7 @@ class Finder
     {
         return $this->nodeFinder->find($stmts, function (Node $node) use ($name, $type) {
             return $node instanceof $type
-                && ($name == null || $node->name == $name)
-            ;
+                && ($name == null || $node->name == $name);
         });
     }
 
@@ -27,14 +26,13 @@ class Finder
     {
         return $this->nodeFinder->findFirst($stmts, function (Node $node) use ($name, $type) {
             return $node instanceof $type
-                && ($name == null || $node->name == $name)
-            ;
+                && ($name == null || $node->name == $name);
         });
     }
 
     /**
-     * @param array $stmts
-     * @param $name
+     * @param mixed|null $name
+     *
      * @return Node\Stmt\Class_[]
      */
     public function findClass(array $stmts, $name = null): array

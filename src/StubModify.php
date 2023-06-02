@@ -1,12 +1,12 @@
 <?php
 
 namespace SocolaDaiCa\LaravelModulesCommand;
+
 use Illuminate\Support\Str;
 use PhpParser\Comment;
-use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ControllerMakeCommand;
+use PhpParser\Node;
 use SocolaDaiCa\LaravelModulesCommand\PhpParse\Finder;
 use SocolaDaiCa\LaravelModulesCommand\PhpParse\PhpParse;
-use PhpParser\Node;
 use SocolaDaiCa\LaravelModulesCommand\PhpParse\Stmt\Raw_;
 
 class StubModify
@@ -14,8 +14,7 @@ class StubModify
     public function migration($stub, $table)
     {
         $phpParse = app(PhpParse::class)
-            ->parseAst($stub)
-        ;
+            ->parseAst($stub);
 
         $nodeFinder = new \PhpParser\NodeFinder();
         /** @var Finder $finder */
@@ -55,8 +54,7 @@ class StubModify
     public function controller($stub, bool $api = false, string $model = '')
     {
         $phpParse = app(PhpParse::class)
-            ->parseAst($stub)
-        ;
+            ->parseAst($stub);
 
         /** @var Finder $finder */
         $finder = app(Finder::class);
@@ -78,6 +76,7 @@ class StubModify
         }
 
         $methodStore = $finder->findFirstMethod($class, 'store');
+
         if ($methodStore && $api && $model) {
             $methodStore->stmts[0] = new Raw_("
                 \$item = {$modelName}::query()->create(\$request->validated();
@@ -87,6 +86,7 @@ class StubModify
         }
 
         $methodShow = $finder->findFirstMethod($class, 'show');
+
         if ($methodShow && $api && $model) {
             $methodShow->stmts[0] = new Raw_("
                 return {$modelName}Resource::make(\${$methodShow->params[0]->var->name});
@@ -94,6 +94,7 @@ class StubModify
         }
 
         $methodUpdate = $finder->findFirstMethod($class, 'update');
+
         if ($methodUpdate && $api && $model) {
             $methodUpdate->stmts[0] = new Raw_("
                 return {$modelName}Resource::make(\${$methodUpdate->params[1]->var->name});
@@ -101,6 +102,7 @@ class StubModify
         }
 
         $methodDestroy = $finder->findFirstMethod($class, 'destroy');
+
         if ($methodDestroy && $api && $model) {
             $methodDestroy->stmts[0] = new Raw_("
                 \${$methodDestroy->params[0]->var->name}->delete();
@@ -113,12 +115,11 @@ class StubModify
     public function resource($stub, $model)
     {
         if ($model) {
-            $model = '\\' . ltrim($model, '\\');
+            $model = '\\'.ltrim($model, '\\');
         }
 
         $phpParse = app(PhpParse::class)
-            ->parseAst($stub)
-        ;
+            ->parseAst($stub);
 
         /** @var Finder $finder */
         $finder = app(Finder::class);
@@ -129,8 +130,8 @@ class StubModify
             new Comment\Doc("/**
  * @see {$model}
  * @mixin {$model}
- */")
-    ]);
+ */"),
+        ]);
 
         return $phpParse->__toString();
     }

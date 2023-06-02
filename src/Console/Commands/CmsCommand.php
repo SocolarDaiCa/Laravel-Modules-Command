@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\Artisan;
 use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelAudit\Helper;
 use Spatie\Once\Cache;
-use function PHPUnit\Framework\matches;
-use function Sodium\crypto_box_publickey_from_secretkey;
 
 class CmsCommand extends Command
 {
@@ -28,6 +26,7 @@ class CmsCommand extends Command
     protected $description = 'Help genrerate code';
 
     protected $module = '';
+
     protected $command = '';
 
     /**
@@ -59,6 +58,7 @@ class CmsCommand extends Command
         // }
 
         $this->selectCommand();
+
         return $this->selectModule();
     }
 
@@ -75,7 +75,7 @@ class CmsCommand extends Command
             $choices,
         );
 
-        match($this->command) {
+        match ($this->command) {
             'cms:make:model' => $this->makeModel(),
             'cms:make:resource' => $this->makeResource(),
             default => null,
@@ -88,10 +88,10 @@ class CmsCommand extends Command
     {
         $modelName = $this->ask("[{$this->command}] Model Name?");
 
-        $this->line("model name: $modelName");
+        $this->line("model name: {$modelName}");
 
         Artisan::call(
-            "$this->command {$modelName} {$this->module}",
+            "{$this->command} {$modelName} {$this->module}",
             [
                 'mfs',
             ],
