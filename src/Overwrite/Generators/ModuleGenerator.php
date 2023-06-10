@@ -160,7 +160,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
             if ($this->flagUpdate) {
                 /* do nothing */
             } elseif ($this->force) {
-                $this->module->delete($name);
+                $this->module->delete();
             } else {
                 $this->console->error("Module [{$name}] already exist!");
 
