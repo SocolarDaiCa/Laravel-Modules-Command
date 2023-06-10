@@ -113,6 +113,7 @@ class CommandKernelMakeCommand extends GeneratorCommand
 
         return $module->config('paths.generator.commnad-kernel.namespace') ?: $module->config('paths.generator.command-kernel.path', 'Http');
     }
+
     //
     // /**
     //  * @return string

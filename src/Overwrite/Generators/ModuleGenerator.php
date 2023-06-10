@@ -50,7 +50,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
 
     protected bool $flagUpdate = false;
 
-    public function setFlagUpdate($flagUpdate)
+    public function setFlagUpdate(bool $flagUpdate)
     {
         $this->flagUpdate = $flagUpdate;
 
@@ -233,7 +233,7 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
         foreach ($this->getFolders() as $key => $folder) {
             $folder = GenerateConfigReader::read($key);
 
-            if ($folder->generate() === false) {
+            if (!$folder->generate()) {
                 continue;
             }
 

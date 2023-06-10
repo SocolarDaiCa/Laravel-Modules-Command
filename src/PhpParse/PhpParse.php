@@ -11,7 +11,7 @@ use PhpParser\NodeVisitorAbstract;
 use PhpParser\ParserFactory;
 use SocolaDaiCa\LaravelModulesCommand\PhpParse\PrettyPrinter\Standard;
 
-class PhpParse
+class PhpParse implements \Stringable
 {
     protected Namespace_ $ast;
 
@@ -19,18 +19,14 @@ class PhpParse
 
     protected \PhpParser\Parser\Php7 $parser;
 
-    /**
-     * @var \PhpParser\Node[]
-     */
+    /** @var \PhpParser\Node[] */
     protected array $newStmts;
 
     protected array $oldTokens;
 
     protected Standard $printer;
 
-    /**
-     * @var \PhpParser\Node\Stmt[]|null
-     */
+    /** @var \PhpParser\Node\Stmt[]|null */
     protected ?array $oldStmts;
 
     protected \PhpParser\NodeTraverser $traverser;

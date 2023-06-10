@@ -19,6 +19,7 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\EventMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ExceptionMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\FactoryMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\HttpKernelMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\IdeHelperCommnad;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\JobMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ListenerMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MailMakeCommand;
@@ -77,6 +78,7 @@ class Kernel
             ProviderMake1Command::class,
             StorageLinkCommand::class,
             CmsCommand::class,
+            IdeHelperCommnad::class,
         ]);
 
         if (app()->runningInConsole()) {

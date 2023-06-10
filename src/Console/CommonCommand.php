@@ -22,9 +22,7 @@ trait CommonCommand
         parent::__construct();
     }
 
-    /**
-     * @var \Nwidart\Modules\Laravel\Module
-     */
+    /** @var \Nwidart\Modules\Laravel\Module */
     protected $module;
 
     public function getModule(): \Nwidart\Modules\Laravel\Module
