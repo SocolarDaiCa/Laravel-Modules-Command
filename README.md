@@ -177,3 +177,7 @@ See all command []
 [//]: # (- <https://laravel-news.com/building-your-own-laravel-packages>)
 
 [//]: # (- <https://laravelpackage.com/#reasons-to-develop-a-package>)
+
+## Reference
+
+- <https://laravelpackage.com/#reasons-to-develop-a-package>

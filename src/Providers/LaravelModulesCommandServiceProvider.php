@@ -33,8 +33,10 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->singleton(ConsoleKernel::class);
-        $this->app->make(ConsoleKernel::class);
+        if ($this->app->runningInConsole()) {
+            $this->app->singleton(ConsoleKernel::class);
+            $this->app->make(ConsoleKernel::class);
+        }
 
         $this->app->when(MigrationCreator::class)
             ->needs('$customStubPath')
