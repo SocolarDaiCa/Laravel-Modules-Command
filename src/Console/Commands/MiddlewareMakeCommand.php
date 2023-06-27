@@ -19,7 +19,7 @@ class MiddlewareMakeCommand extends \Illuminate\Routing\Console\MiddlewareMakeCo
             ->addMethod('
                 public static function using()
                 {
-                    return static::class . \':\' . implode(\',\', func_get_args());
+                    return static::class.\':\'.implode(\',\', func_get_args());
                 }
             ')
             ->__toString()
