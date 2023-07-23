@@ -45,6 +45,11 @@ class Kernel extends ServiceProvider
 
     public function register()
     {
+        //
+    }
+
+    public function boot()
+    {
         $kernel = app(\Illuminate\Contracts\Http\Kernel::class);
         $router = app(Router::class);
 
