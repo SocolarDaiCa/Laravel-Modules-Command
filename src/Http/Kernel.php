@@ -5,7 +5,7 @@ namespace SocolaDaiCa\LaravelModulesCommand\Http;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Routing\Router;
 
-class Kernel extends ServiceProvider
+class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Http\Kernel
 {
     /**
      * The application's global HTTP middleware stack.
@@ -42,41 +42,4 @@ class Kernel extends ServiceProvider
      */
     protected $routeMiddleware = [
     ];
-
-    public function register()
-    {
-        //
-    }
-
-    public function boot()
-    {
-        $kernel = app(\Illuminate\Contracts\Http\Kernel::class);
-        $router = app(Router::class);
-
-        foreach ($this->middleware as $middleware) {
-            $kernel->pushMiddleware($middleware);
-        }
-
-        foreach ($this->middlewareGroups as $groupName => $middlewares) {
-            if ($router->hasMiddlewareGroup($groupName)) {
-                continue;
-            }
-
-            $router->middlewareGroup($groupName, $middlewares);
-        }
-
-        foreach ($this->extendMiddlewareGroups as $groupName => $middlewares) {
-            foreach ($middlewares as $middleware) {
-                $router->pushMiddlewareToGroup($groupName, $middleware);
-            }
-        }
-
-        foreach ($this->routeMiddleware as $alias => $middleware) {
-            if (array_key_exists($alias, $router->getMiddleware())) {
-                continue;
-            }
-
-            $router->aliasMiddleware($alias, $middleware);
-        }
-    }
 }
