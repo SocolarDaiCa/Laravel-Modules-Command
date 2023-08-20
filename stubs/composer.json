@@ -44,6 +44,12 @@
             "__MODULE_NAMESPACE__\\__STUDLY_NAME__\\Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.socoladaica.com"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
