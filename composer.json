@@ -8,6 +8,11 @@
         }
     ],
     "license": "MIT",
+    "require": {
+        "nwidart/laravel-modules": "^8.2",
+        "socoladaica/phpstorm": "^1.0",
+        "nikic/php-parser": "*"
+    },
     "extra": {
         "laravel": {
             "providers": [
@@ -23,9 +28,10 @@
             "SocolaDaiCa\\LaravelModulesCommand\\": "src/"
         }
     },
-    "require": {
-        "nwidart/laravel-modules": "^8.2",
-        "socoladaica/phpstorm": "1.x-dev",
-        "nikic/php-parser": "*"
-    }
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packagist.socoladaica.com"
+        }
+    ]
 }
