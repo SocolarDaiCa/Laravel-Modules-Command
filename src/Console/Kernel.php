@@ -40,54 +40,8 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\StorageLinkCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\TestMakeCommand;
 use Symfony\Component\Finder\Finder;
 
-class Kernel
+class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
 {
-    public function __construct()
-    {
-        $this->commands();
-        $this->registerCommands([
-            /* custom */
-            CastMakeCommand::class,
-            ChannelMakeCommand::class,
-            ComponentMakeCommand::class,
-            ConsoleMakeCommand::class,
-            ControllerMakeCommand::class,
-            EventMakeCommand::class,
-            ExceptionMakeCommand::class,
-            FactoryMakeCommand::class,
-            JobMakeCommand::class,
-            ListenerMakeCommand::class,
-            MailMakeCommand::class,
-            MiddlewareMakeCommand::class,
-            //            Migrations\StatusCommand::class,
-            MigrateMakeCommand::class,
-            ModelMakeCommand::class,
-            ModuleMakeCommand::class,
-            NotificationMakeCommand::class,
-            ObserverMakeCommand::class,
-            PolicyMakeCommand::class,
-            ProviderMakeCommand::class,
-            RequestMakeCommand::class,
-            ResourceMakeCommand::class,
-            RuleMakeCommand::class,
-            //            SeedCommand::class,
-            SeederMakeCommand::class,
-            TestMakeCommand::class,
-            /* new */
-            HttpKernelMakeCommand::class,
-            ProviderMake1Command::class,
-            StorageLinkCommand::class,
-            CmsCommand::class,
-            IdeHelperCommnad::class,
-        ]);
-
-        if (app()->runningInConsole()) {
-            app()->booted(function () {
-                $this->schedule(app(Schedule::class));
-            });
-        }
-    }
-
     /**
      * Define the application's command schedule.
      */
@@ -104,50 +58,42 @@ class Kernel
     protected function commands()
     {
         // $this->load(__DIR__.'/Commands');
+        $this->registerCommands([
+            /* custom */
+            CastMakeCommand::class,
+            ChannelMakeCommand::class,
+            ComponentMakeCommand::class,
+            ConsoleMakeCommand::class,
+            ControllerMakeCommand::class,
+            EventMakeCommand::class,
+            ExceptionMakeCommand::class,
+            FactoryMakeCommand::class,
+            JobMakeCommand::class,
+            ListenerMakeCommand::class,
+            MailMakeCommand::class,
+            MiddlewareMakeCommand::class,
+            // Migrations\StatusCommand::class,
+            MigrateMakeCommand::class,
+            ModelMakeCommand::class,
+            ModuleMakeCommand::class,
+            NotificationMakeCommand::class,
+            ObserverMakeCommand::class,
+            PolicyMakeCommand::class,
+            ProviderMakeCommand::class,
+            RequestMakeCommand::class,
+            ResourceMakeCommand::class,
+            RuleMakeCommand::class,
+            // SeedCommand::class,
+            SeederMakeCommand::class,
+            TestMakeCommand::class,
+            /* new */
+            HttpKernelMakeCommand::class,
+            ProviderMake1Command::class,
+            StorageLinkCommand::class,
+            CmsCommand::class,
+            IdeHelperCommnad::class,
+        ]);
 
         require_once __DIR__.'/../../routes/console.php';
-    }
-
-    /**
-     * Register all of the commands in the given directory.
-     *
-     * @param array|string $paths
-     *
-     * @throws ReflectionException
-     */
-    protected function load($paths)
-    {
-        $paths = array_unique(Arr::wrap($paths));
-
-        $paths = array_filter($paths, function ($path) {
-            return is_dir($path);
-        });
-
-        if (empty($paths)) {
-            return;
-        }
-
-        $namespace = Str::before(static::class, '\Kernel');
-
-        foreach ((new Finder())->in($paths)->files() as $command) {
-            $command = $namespace.str_replace(
-                ['/', '.php'],
-                ['\\', ''],
-                Str::after($command->getRealPath(), __DIR__)
-            );
-
-            if (is_subclass_of($command, Command::class) && !(new ReflectionClass($command))->isAbstract()) {
-                Artisan::starting(function ($artisan) use ($command) {
-                    $artisan->resolve($command);
-                });
-            }
-        }
-    }
-
-    public function registerCommands($commands)
-    {
-        Artisan::starting(function (Artisan $artisan) use ($commands) {
-            $artisan->resolveCommands($commands);
-        });
     }
 }
