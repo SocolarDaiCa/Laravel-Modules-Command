@@ -2,11 +2,11 @@
 
 namespace __MODULE_NAMESPACE__\__STUDLY_NAME__\Providers;
 
-use Illuminate\Support\Facades\Blade;
-use Illuminate\Support\ServiceProvider;
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Console\Kernel as ConsoleKernel;
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Exceptions\Handler as ExceptionsHandler;
 use __MODULE_NAMESPACE__\__STUDLY_NAME__\Http\Kernel as HttpKernel;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\ServiceProvider;
 
 class __STUDLY_NAME__ServiceProvider extends ServiceProvider
 {

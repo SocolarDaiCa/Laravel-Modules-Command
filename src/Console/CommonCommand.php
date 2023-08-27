@@ -9,6 +9,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 trait CommonCommand
 {
+    /**
+     * @var \Nwidart\Modules\Laravel\Module
+     */
+    protected $module;
+
     public function __construct()
     {
         if (!empty($this->getName())) {
@@ -21,9 +26,6 @@ trait CommonCommand
 
         parent::__construct();
     }
-
-    /** @var \Nwidart\Modules\Laravel\Module */
-    protected $module;
 
     public function getModule(): \Nwidart\Modules\Laravel\Module
     {

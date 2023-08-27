@@ -10,7 +10,7 @@ class Raw_ extends Node\Stmt
 {
     public array $contents;
 
-    public function __construct(string|array $contents, array $attributes = [])
+    public function __construct(array|string $contents, array $attributes = [])
     {
         parent::__construct();
 

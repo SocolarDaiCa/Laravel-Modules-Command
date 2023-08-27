@@ -2,9 +2,6 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Http;
 
-use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-use Illuminate\Routing\Router;
-
 class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Http\Kernel
 {
     /**

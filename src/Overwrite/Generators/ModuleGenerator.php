@@ -8,6 +8,8 @@ use SocolaDaiCa\LaravelModulesCommand\Overwrite\Stub;
 
 class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
 {
+    protected bool $flagUpdate = false;
+
     protected function getLowerNameReplacement()
     {
         return Str::kebab($this->getName());
@@ -15,6 +17,8 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
 
     /**
      * Get the contents of the specified stub file by given stub name.
+     *
+     * @param mixed $stub
      *
      * @return string
      */
@@ -47,8 +51,6 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
             }
         }
     }
-
-    protected bool $flagUpdate = false;
 
     public function setFlagUpdate(bool $flagUpdate)
     {

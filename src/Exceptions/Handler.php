@@ -28,16 +28,6 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    /**
-     * Register the exception handling callbacks for the application.
-     */
-    public function register()
-    {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
-    }
-
     public function __construct(Container $container)
     {
         parent::__construct($container);
@@ -54,5 +44,15 @@ class Handler extends ExceptionHandler
                 })
             ;
         }
+    }
+
+    /**
+     * Register the exception handling callbacks for the application.
+     */
+    public function register()
+    {
+        $this->reportable(function (Throwable $e) {
+            //
+        });
     }
 }

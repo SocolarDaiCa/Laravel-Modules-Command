@@ -3,22 +3,23 @@
 namespace SocolaDaiCa\LaravelModulesCommand\PhpParse;
 
 use PhpParser\Node;
-use PhpParser\NodeVisitorAbstract;
+
 class PhpParseFactory
 {
     protected \SocolaDaiCa\LaravelModulesCommand\PhpParse\PhpParse $phpParse;
+
     public function __construct()
     {
         $this->phpParse = app(\SocolaDaiCa\LaravelModulesCommand\PhpParse\PhpParse::class);
     }
+
     public function makeMethod($code)
     {
         $code = "<?php\n            namespace A\\B;\n\n            class A\n            {\n                {$code}\n            }\n        ";
         // dd($code);
         $traverser = new \PhpParser\NodeTraverser();
-        $traverser->addVisitor(new class extends \PhpParser\NodeVisitorAbstract
-        {
-            public function leaveNode(\PhpParser\Node $node)
+        $traverser->addVisitor(new class() extends \PhpParser\NodeVisitorAbstract {
+            public function leaveNode(Node $node)
             {
                 $attributes = $node->getAttributes();
                 unset($attributes['startLine'], $attributes['startTokenPos'], $attributes['endLine'], $attributes['endTokenPos'], $attributes['origNode']);
@@ -28,6 +29,7 @@ class PhpParseFactory
             }
         });
         $class = $this->phpParse->parseAst($code)->getAst()->stmts[0];
+
         return $traverser->traverse($class->stmts)[0];
     }
 }

@@ -135,7 +135,8 @@ trait GeneratorCommand
 
         return collect(explode('/', $filename))
             ->map(fn ($item) => trim(Str::studly($item), '/'))
-            ->join('/');
+            ->join('/')
+        ;
     }
 
     public function handle()

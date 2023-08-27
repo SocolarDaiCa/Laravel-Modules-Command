@@ -10,8 +10,9 @@ use PhpParser\Node\Stmt\Namespace_;
 use PhpParser\NodeVisitorAbstract;
 use PhpParser\ParserFactory;
 use SocolaDaiCa\LaravelModulesCommand\PhpParse\PrettyPrinter\Standard;
+use Stringable;
 
-class PhpParse implements \Stringable
+class PhpParse implements Stringable
 {
     protected Namespace_ $ast;
 
@@ -19,14 +20,18 @@ class PhpParse implements \Stringable
 
     protected \PhpParser\Parser\Php7 $parser;
 
-    /** @var \PhpParser\Node[] */
+    /**
+     * @var \PhpParser\Node[]
+     */
     protected array $newStmts;
 
     protected array $oldTokens;
 
     protected Standard $printer;
 
-    /** @var \PhpParser\Node\Stmt[]|null */
+    /**
+     * @var \PhpParser\Node\Stmt[]|null
+     */
     protected ?array $oldStmts;
 
     protected \PhpParser\NodeTraverser $traverser;

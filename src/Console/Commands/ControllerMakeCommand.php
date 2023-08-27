@@ -29,7 +29,8 @@ class ControllerMakeCommand extends \Illuminate\Routing\Console\ControllerMakeCo
         $viewFolder = collect($viewFolder)
             ->map(fn ($e) => Str::lcfirst($e))
             ->map(fn ($e) => Str::snake($e, '-'))
-            ->join('.');
+            ->join('.')
+        ;
         $packageNamePrefix = Str::snake($this->module->getName(), '-');
 
         $requestNamespace = $this->getDefaultNamespaceByType('request');
@@ -116,7 +117,7 @@ METHOD_CREATE_FROM] = <<<METHOD_STORE_TO
         ]));
 METHOD_STORE_TO;
         }
-        
+
         /* todo: template cho option model */
 
         return $replace;

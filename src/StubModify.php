@@ -14,7 +14,8 @@ class StubModify
     public function migration($stub, $table)
     {
         $phpParse = app(PhpParse::class)
-            ->parseAst($stub);
+            ->parseAst($stub)
+        ;
 
         $nodeFinder = new \PhpParser\NodeFinder();
         /** @var Finder $finder */
@@ -54,7 +55,8 @@ class StubModify
     public function controller($stub, bool $api = false, string $model = '')
     {
         $phpParse = app(PhpParse::class)
-            ->parseAst($stub);
+            ->parseAst($stub)
+        ;
 
         /** @var Finder $finder */
         $finder = app(Finder::class);
@@ -119,7 +121,8 @@ class StubModify
         }
 
         $phpParse = app(PhpParse::class)
-            ->parseAst($stub);
+            ->parseAst($stub)
+        ;
 
         /** @var Finder $finder */
         $finder = app(Finder::class);

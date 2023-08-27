@@ -2,12 +2,8 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
-use Illuminate\Console\Application as Artisan;
 use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
-use Illuminate\Support\Arr;
-use Illuminate\Support\Str;
-use ReflectionClass;
 use ReflectionException;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\CastMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ChannelMakeCommand;
@@ -38,7 +34,6 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\RuleMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\SeederMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\StorageLinkCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\TestMakeCommand;
-use Symfony\Component\Finder\Finder;
 
 class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
 {
