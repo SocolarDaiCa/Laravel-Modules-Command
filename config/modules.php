@@ -22,7 +22,7 @@ return [
             // /**/
             // /**/
             /* Folder */
-            '.github/workflows/audit.yml' => '.github/workflows/audit.yml',
+            '.github/workflows/php-cs-fixer.yml' => '.github/workflows/php-cs-fixer.yml',
             '.github/dependabot.yml' => '.github/dependabot.yml',
             'config/config.php' => 'config/__LOWER_NAME__.php',
             'public/.gitkeep' => 'public/vendor/__VENDOR__/__LOWER_NAME__/.gitkeep',
@@ -94,7 +94,7 @@ return [
         |
         */
 
-        'modules' => base_path('Modules'),
+        'modules' => base_path('Modules/temp'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path
@@ -192,7 +192,8 @@ return [
 
         'enabled' => false,
         'paths' => [
-            base_path('Modules/*'),
+            // base_path('Modules/*'),
+            base_path('Modules/*/*'),
         ],
     ],
 
