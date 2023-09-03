@@ -3,7 +3,7 @@ name: Run Review Code
 on: [push]
 
 jobs:
-  phpcs:
+  review-code:
     uses: SocolarDaiCa/.github/.github/workflows/review-code.yml@1.x
     secrets:
       COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}

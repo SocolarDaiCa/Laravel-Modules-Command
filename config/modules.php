@@ -23,6 +23,7 @@ return [
             // /**/
             /* Folder */
             '.github/workflows/php-cs-fixer.yml' => '.github/workflows/php-cs-fixer.yml',
+            '.github/workflows/review-code.yml' => '.github/workflows/review-code.yml',
             '.github/dependabot.yml' => '.github/dependabot.yml',
             'config/config.php' => 'config/__LOWER_NAME__.php',
             'public/.gitkeep' => 'public/vendor/__VENDOR__/__LOWER_NAME__/.gitkeep',
@@ -56,7 +57,10 @@ return [
         ],
         'force_overwire' => [
             '.github/workflows/php-cs-fixer.yml',
+            '.github/workflows/review-code.yml',
             '.github/dependabot.yml',
+            '.gitattributes.stub',
+            '.gitignore.stub',
         ],
         'replacements' => array_merge(
             [
@@ -94,7 +98,7 @@ return [
         |
         */
 
-        'modules' => base_path('Modules/temp'),
+        'modules' => base_path('Modules/socoladaica'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path

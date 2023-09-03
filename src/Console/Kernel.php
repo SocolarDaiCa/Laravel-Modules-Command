@@ -23,6 +23,7 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MiddlewareMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\MigrateMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ModelMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ModuleMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ModuleUpdateCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\NotificationMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ObserverMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\PolicyMakeCommand;
@@ -87,6 +88,7 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
             StorageLinkCommand::class,
             CmsCommand::class,
             IdeHelperCommnad::class,
+            ModuleUpdateCommand::class,
         ]);
 
         require_once __DIR__.'/../../routes/console.php';
