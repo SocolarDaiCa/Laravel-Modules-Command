@@ -14,10 +14,10 @@
 # Folders
 /.github                export-ignore
 /art                    export-ignore
+/bin                    export-ignore
 /docs                   export-ignore
 /tests                  export-ignore
 /types                  export-ignore
-/bin export-ignore
 # Files
 .editorconfig           export-ignore
 .gitattributes          export-ignore
