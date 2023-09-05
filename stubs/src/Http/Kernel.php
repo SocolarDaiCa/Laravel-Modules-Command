@@ -11,7 +11,7 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Http\Kernel
      *
      * @var array<int, class-string|string>
      */
-    protected $middleware = [
+    protected array $middleware = [
     ];
 
     /**
@@ -19,7 +19,7 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Http\Kernel
      *
      * @var array<string, array<int, class-string|string>>
      */
-    protected $middlewareGroups = [
+    protected array $middlewareGroups = [
     ];
 
     /**
@@ -27,7 +27,7 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Http\Kernel
      *
      * @var array<string, array<int, class-string|string>>
      */
-    protected $extendMiddlewareGroups = [
+    protected array $extendMiddlewareGroups = [
     ];
 
     /**
@@ -37,6 +37,6 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Http\Kernel
      *
      * @var array<string, class-string|string>
      */
-    protected $routeMiddleware = [
+    protected array $routeMiddleware = [
     ];
 }
