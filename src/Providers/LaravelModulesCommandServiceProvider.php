@@ -14,6 +14,9 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
 {
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../../config/laravel-modules-command.php', 'laravel-modules-command');
+        Helper::overwrireModulesConfig();
+
         $this->app->singleton(RepositoryInterface::class, function ($app) {
             $path = $app['config']->get('modules.paths.modules');
 
@@ -26,6 +29,8 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
                 $app->basePath('stubs')
             );
         });
+
+        $this->app->register(\Nwidart\Modules\LaravelModulesServiceProvider::class);
     }
 
     /**
@@ -44,9 +49,6 @@ class LaravelModulesCommandServiceProvider extends ServiceProvider
                 return $app->basePath('stubs');
             })
         ;
-
-        $this->mergeConfigFrom(__DIR__.'/../../config/laravel-modules-command.php', 'laravel-modules-command');
-        Helper::overwrireModulesConfig();
 
         $this->app->singleton(OpenPhpstorm::class);
     }

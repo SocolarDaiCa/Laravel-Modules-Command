@@ -15,6 +15,9 @@
     },
     "extra": {
         "laravel": {
+            "dont-discover": [
+                "nwidart/laravel-modules"
+            ],
             "providers": [
                 "SocolaDaiCa\\LaravelModulesCommand\\Providers\\LaravelModulesCommandServiceProvider"
             ],
