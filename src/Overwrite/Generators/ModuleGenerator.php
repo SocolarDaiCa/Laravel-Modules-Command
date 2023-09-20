@@ -18,8 +18,6 @@ class ModuleGenerator extends \Nwidart\Modules\Generators\ModuleGenerator
     /**
      * Get the contents of the specified stub file by given stub name.
      *
-     * @param mixed $stub
-     *
      * @return string
      */
     protected function getStubContents($stub)

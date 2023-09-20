@@ -2,10 +2,8 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
-use Nwidart\Modules\Support\Config\GenerateConfigReader;
 use SocolaDaiCa\LaravelModulesCommand\Console\GeneratorCommand;
 use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
-use Symfony\Component\Filesystem\Path;
 
 class ViewMakeCommand extends \Illuminate\Foundation\Console\ViewMakeCommand
 {

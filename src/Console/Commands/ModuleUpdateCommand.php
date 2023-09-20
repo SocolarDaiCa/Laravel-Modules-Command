@@ -27,6 +27,7 @@ class ModuleUpdateCommand extends Command
     public function handle()
     {
         $modules = Module::all();
+
         foreach ($modules as $module) {
             /** @var \SocolaDaiCa\LaravelModulesCommand\Overwrite\Module $module */
             $this->call('cms:make:module', [
