@@ -35,6 +35,7 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\RuleMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\SeederMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\StorageLinkCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\TestMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ViewMakeCommand;
 
 class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
 {
@@ -82,6 +83,7 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
             // SeedCommand::class,
             SeederMakeCommand::class,
             TestMakeCommand::class,
+            ViewMakeCommand::class,
             /* new */
             HttpKernelMakeCommand::class,
             ProviderMake1Command::class,

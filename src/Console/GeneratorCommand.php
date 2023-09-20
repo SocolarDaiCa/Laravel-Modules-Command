@@ -77,9 +77,12 @@ trait GeneratorCommand
      */
     protected function viewPath($path = '')
     {
-        $views = $this->getModule()->getPath().'/'.$this->laravel['config']['modules']['paths']['generator']['views']['path'];
-
-        return $views.($path ? DIRECTORY_SEPARATOR.$path : $path);
+        return Path::join(
+            $this->getModule()->getPath(),
+            $this->laravel['config']['modules']['paths']['generator']['views']['path'],
+            'pages',
+            $path
+        );
     }
 
     public function getDefaultNamespace($rootNamespace)

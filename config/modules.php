@@ -100,7 +100,7 @@ return [
         |
         */
 
-        'modules' => base_path('Modules'),
+        'modules' => base_path('Modules/socoladaica'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path
@@ -146,6 +146,7 @@ return [
             'assets' => ['path' => 'resources/assets', 'generate' => true],
             'lang' => ['path' => 'resources/lang', 'generate' => true],
             'views' => ['path' => 'resources/views', 'generate' => true],
+            'view' => ['path' => 'resources/views', 'generate' => true],
             'test' => ['namespace' => 'Tests/Unit', 'path' => 'tests/Unit', 'generate' => true],
             'test-feature' => ['namespace' => 'Tests/Feature', 'path' => 'tests/Feature', 'generate' => true],
             'repository' => ['namespace' => 'Repositories', 'path' => 'src/Repositories', 'generate' => false],
