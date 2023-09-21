@@ -3,12 +3,9 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Providers;
 
 use Illuminate\Database\Migrations\MigrationCreator;
-use Illuminate\Support\ServiceProvider;
 use Nwidart\Modules\Contracts\RepositoryInterface;
 use Nwidart\Modules\LaravelModulesServiceProvider;
-use SocolaDaiCa\LaravelModulesCommand\Console\Kernel as ConsoleKernel;
 use SocolaDaiCa\LaravelModulesCommand\Helper;
-use SocolaDaiCa\LaravelModulesCommand\OpenPhpstorm;
 use SocolaDaiCa\LaravelModulesCommand\Overwrite\LaravelFileRepository;
 
 class OverwriteLaravelModulesServiceProvider extends LaravelModulesServiceProvider
