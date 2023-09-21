@@ -100,7 +100,7 @@ return [
         |
         */
 
-        'modules' => base_path('Modules/socoladaica'),
+        'modules' => base_path('Modules'),
         /*
         |--------------------------------------------------------------------------
         | Modules assets path
