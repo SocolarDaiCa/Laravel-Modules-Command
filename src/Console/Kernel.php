@@ -83,7 +83,7 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
             // SeedCommand::class,
             SeederMakeCommand::class,
             TestMakeCommand::class,
-            // ViewMakeCommand::class,
+            ViewMakeCommand::class,
             /* new */
             HttpKernelMakeCommand::class,
             ProviderMake1Command::class,
