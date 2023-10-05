@@ -35,7 +35,11 @@ class Helper
 
     public static function overwrireModulesConfig()
     {
-        Helper::overwriteConfigFrom(__DIR__.'/../config/modules.php', 'modules');
+        // Helper::overwriteConfigFrom(__DIR__.'/../config/modules.php', 'modules');
+        \SocolaDaiCa\LaravelBadassium\Helpers\Helper::appendsConfig(
+            'modules',
+            __DIR__.'/../config/modules.php',
+        );
         \SocolaDaiCa\LaravelBadassium\Helpers\Helper::appendsConfig(
             'modules',
             __DIR__.'/../config/laravel-modules-command.php',
