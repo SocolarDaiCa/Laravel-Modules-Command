@@ -13,7 +13,7 @@ class OverwriteLaravelModulesServiceProvider extends LaravelModulesServiceProvid
     public function register()
     {
         parent::register();
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'modules');
+        $this->mergeConfigFrom(base_path('vendor/nwidart/laravel-modules/config/config.php'), 'modules');
         Helper::overwrireModulesConfig();
 
         $this->app->singleton(RepositoryInterface::class, function ($app) {
