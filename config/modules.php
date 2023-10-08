@@ -197,9 +197,10 @@ return [
         //     base_path('vendor/*/*'),
         // ],
 
-        'enabled' => false,
+        'enabled' => true,
         'paths' => [
-            // base_path('Modules/*'),
+            base_path('vendor/*/*'),
+            base_path('Modules/*'),
             base_path('Modules/*/*'),
         ],
     ],
