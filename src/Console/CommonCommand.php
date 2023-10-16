@@ -10,12 +10,12 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 trait CommonCommand
 {
+    use PromptsAble;
+
     /**
      * @var \Nwidart\Modules\Laravel\Module
      */
     protected $module;
-
-    use PromptsAble;
 
     public function __construct()
     {
@@ -93,21 +93,21 @@ trait CommonCommand
     protected function promptForMissingArgumentsUsing()
     {
         $prompts = parent::promptForMissingArgumentsUsing();
+
         if (!empty($prompts['name'])) {
-            $prompts['name'] = match($this->type) {
-                'Model' => fn() => $this->anticipate(
+            $prompts['name'] = match ($this->type) {
+                'Model' => fn () => $this->anticipate(
                     $prompts['name'][0],
-                    fn($input) => collect([
+                    fn ($input) => collect([
                         'Admin',
                         'User',
                         'Role',
                         'Permission',
                         'Post',
                     ])
-                        ->filter(fn($item) => $item != $input)
-                        ->filter(fn($item) => Str::startsWith($item, $input))
-                        ->toArray()
-                    ,
+                        ->filter(fn ($item) => $item != $input)
+                        ->filter(fn ($item) => Str::startsWith($item, $input))
+                        ->toArray(),
                 ),
                 default => $prompts['name'],
             };

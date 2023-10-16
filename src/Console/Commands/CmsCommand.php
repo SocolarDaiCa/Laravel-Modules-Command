@@ -4,12 +4,9 @@ namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
-use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelAudit\Helper;
 use SocolaDaiCa\LaravelBadassium\Contracts\Console\Command;
 use Spatie\Once\Cache;
-use function Laravel\Prompts\suggest;
-use function Laravel\Prompts\text;
 
 class CmsCommand extends Command
 {
@@ -73,7 +70,7 @@ class CmsCommand extends Command
         );
 
         if ($this->command == 'back') {
-            return null;
+            return;
         }
 
         $parameters = match ($this->command) {
