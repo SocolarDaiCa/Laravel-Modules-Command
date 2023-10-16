@@ -37,6 +37,6 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Http\Kernel
      *
      * @var array<string, class-string|string>
      */
-    protected array $routeMiddleware = [
+    protected array $middlewareAliases = [
     ];
 }
