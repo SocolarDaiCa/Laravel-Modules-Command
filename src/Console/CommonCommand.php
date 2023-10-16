@@ -4,6 +4,7 @@ namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
+use SocolaDaiCa\LaravelBadassium\Helpers\PromptsAble;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -13,6 +14,8 @@ trait CommonCommand
      * @var \Nwidart\Modules\Laravel\Module
      */
     protected $module;
+
+    use PromptsAble;
 
     public function __construct()
     {
@@ -68,8 +71,8 @@ trait CommonCommand
     protected function getArguments()
     {
         return [
-            ...parent::getArguments(),
             ['module', InputArgument::REQUIRED, 'The name of module will be used.'],
+            ...parent::getArguments(),
         ];
     }
 
@@ -85,5 +88,31 @@ trait CommonCommand
         $command = 'cms:'.$command.' '.$this->argument('module');
 
         return parent::runCommand($command, $arguments, $output);
+    }
+
+    protected function promptForMissingArgumentsUsing()
+    {
+        $prompts = parent::promptForMissingArgumentsUsing();
+        if (!empty($prompts['name'])) {
+            $prompts['name'] = match($this->type) {
+                'Model' => fn() => $this->anticipate(
+                    $prompts['name'][0],
+                    fn($input) => collect([
+                        'Admin',
+                        'User',
+                        'Role',
+                        'Permission',
+                        'Post',
+                    ])
+                        ->filter(fn($item) => $item != $input)
+                        ->filter(fn($item) => Str::startsWith($item, $input))
+                        ->toArray()
+                    ,
+                ),
+                default => $prompts['name'],
+            };
+        }
+
+        return $prompts;
     }
 }

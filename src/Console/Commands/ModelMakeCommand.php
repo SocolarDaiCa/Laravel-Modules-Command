@@ -14,6 +14,16 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
     {
         $class = parent::buildClass($name);
 
+        $replaces = [
+            'use Illuminate\Database\Eloquent\Model;' => 'use SocolaDaiCa\LaravelBadassium\Contracts\Models\Model;',
+        ];
+
+        $class = str_replace(
+            array_keys($replaces),
+            array_values($replaces),
+            $class
+        );
+
         $table = Str::snake(Str::pluralStudly($this->argument('name')));
 
         if ($this->option('pivot')) {

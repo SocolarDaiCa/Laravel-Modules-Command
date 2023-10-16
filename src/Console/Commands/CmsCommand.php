@@ -2,12 +2,14 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
-use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
 use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelAudit\Helper;
+use SocolaDaiCa\LaravelBadassium\Contracts\Console\Command;
 use Spatie\Once\Cache;
+use function Laravel\Prompts\suggest;
+use function Laravel\Prompts\text;
 
 class CmsCommand extends Command
 {
@@ -46,16 +48,10 @@ class CmsCommand extends Command
             return $module->getLowerName();
         })->values()->all();
 
-        // $choices = array_merge(['exit'], $choices);
-
         $this->module = $this->choice(
             'Module?',
             $choices
         );
-
-        // if ($this->module == 'exit') {
-        //     return;
-        // }
 
         $this->selectCommand();
 
@@ -67,7 +63,8 @@ class CmsCommand extends Command
         $choices = [
             'back',
             'cms:make:model',
-            'cms:make:resource',
+            'cms:make:controller',
+            // 'cms:make:resource',
         ];
 
         $this->command = $this->choice(
@@ -75,28 +72,29 @@ class CmsCommand extends Command
             $choices,
         );
 
-        match ($this->command) {
-            'cms:make:model' => $this->makeModel(),
-            'cms:make:resource' => $this->makeResource(),
+        if ($this->command == 'back') {
+            return null;
+        }
+
+        $parameters = match ($this->command) {
+            'cms:make:model' => [
+                '-m' => true,
+                '-f' => true,
+                '-s' => true,
+            ],
+            // 'cms:make:resource' => $this->makeResource(),
+            'cms:make:controller' => [],
             default => null,
         };
 
+        if ($parameters !== null) {
+            Artisan::call($this->command, [
+                ...$parameters,
+                'module' => $this->module,
+            ], $this->output);
+        }
+
         return $this->selectCommand();
-    }
-
-    public function makeModel()
-    {
-        $modelName = $this->ask("[{$this->command}] Model Name?");
-
-        $this->line("model name: {$modelName}");
-
-        Artisan::call(
-            "{$this->command} {$modelName} {$this->module}",
-            [
-                'mfs',
-            ],
-            $this->output
-        );
     }
 
     public function makeResource()
@@ -111,7 +109,5 @@ class CmsCommand extends Command
             '--model' => $model,
             'module' => $this->module,
         ], $this->output);
-
-        // $modelName = $this->ask("[{$this->command}] Model Name?");
     }
 }
