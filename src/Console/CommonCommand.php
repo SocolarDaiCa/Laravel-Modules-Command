@@ -5,6 +5,7 @@ namespace SocolaDaiCa\LaravelModulesCommand\Console;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelBadassium\Helpers\PromptsAble;
+use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -109,10 +110,20 @@ trait CommonCommand
                         ->filter(fn ($item) => Str::startsWith($item, $input))
                         ->toArray(),
                 ),
+                // todo: make:command auto complete
                 default => $prompts['name'],
             };
         }
 
         return $prompts;
+    }
+
+    public function handle()
+    {
+        $result = parent::handle();
+
+        OpenPhpstorm::openAll();
+
+        return $result;
     }
 }

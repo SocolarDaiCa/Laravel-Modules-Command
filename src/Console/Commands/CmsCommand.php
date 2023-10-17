@@ -61,6 +61,8 @@ class CmsCommand extends Command
             'back',
             'cms:make:model',
             'cms:make:controller',
+            'cms:make:command',
+            'cms:ide-helper',
             // 'cms:make:resource',
         ];
 
@@ -78,16 +80,22 @@ class CmsCommand extends Command
                 '-m' => true,
                 '-f' => true,
                 '-s' => true,
+                'module' => $this->module,
             ],
             // 'cms:make:resource' => $this->makeResource(),
-            'cms:make:controller' => [],
+            'cms:make:controller' => [
+                'module' => $this->module,
+            ],
+            'cms:make:command' => [
+                'module' => $this->module,
+            ],
+            'cms:ide-helper' => [],
             default => null,
         };
 
         if ($parameters !== null) {
             Artisan::call($this->command, [
                 ...$parameters,
-                'module' => $this->module,
             ], $this->output);
         }
 

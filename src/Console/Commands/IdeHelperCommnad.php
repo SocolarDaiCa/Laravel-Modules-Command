@@ -34,6 +34,7 @@ class IdeHelperCommnad extends Command
                     'Modules/*/src/Models',
                 ],
                 '--no-interaction' => true,
+                '--nowrite' => true,
             ],
             'ide-helper:meta' => [],
             'ide-helper:eloquent' => [],

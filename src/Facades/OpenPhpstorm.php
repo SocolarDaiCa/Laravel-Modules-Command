@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \SocolaDaiCa\LaravelModulesCommand\OpenPhpstorm
+ * @mixin \SocolaDaiCa\LaravelModulesCommand\OpenPhpstorm
  */
 class OpenPhpstorm extends Facade
 {
