@@ -6,6 +6,8 @@ use Illuminate\Support\Str;
 
 class LaravelFileRepository extends \Nwidart\Modules\Laravel\LaravelFileRepository
 {
+    protected $modules;
+
     /**
      * @inheritDoc
      */
@@ -52,6 +54,4 @@ class LaravelFileRepository extends \Nwidart\Modules\Laravel\LaravelFileReposito
 
         return $this->modules;
     }
-
-    protected $modules = null;
 }
