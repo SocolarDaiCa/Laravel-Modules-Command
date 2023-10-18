@@ -3,7 +3,6 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
 use Illuminate\Support\Str;
-use Log;
 use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelBadassium\Helpers\PromptsAble;
 use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
@@ -155,6 +154,7 @@ trait CommonCommand
                 $namespaces = collect($namespaces)
                     ->map(function ($item) use ($postFix, $postFixRegex) {
                         $item = str_replace('/', '\\', $item);
+
                         if (Str::endsWith($item, '\\')) {
                             return trim($item, '\\');
                         }

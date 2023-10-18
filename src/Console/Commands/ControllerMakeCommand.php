@@ -173,10 +173,11 @@ METHOD_STORE_TO;
         $modelPath = array_map('glob', $modelPath);
         $modelPath = Arr::flatten($modelPath);
 
-        return collect((new Finder)->files()->depth(0)->in($modelPath))
+        return collect((new Finder())->files()->depth(0)->in($modelPath))
             ->map(fn ($file) => $file->getBasename('.php'))
             ->sort()
             ->values()
-            ->all();
+            ->all()
+        ;
     }
 }
