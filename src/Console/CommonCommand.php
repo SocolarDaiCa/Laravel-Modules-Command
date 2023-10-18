@@ -8,6 +8,7 @@ use SocolaDaiCa\LaravelBadassium\Helpers\PromptsAble;
 use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Path;
 
 trait CommonCommand
 {
@@ -77,20 +78,6 @@ trait CommonCommand
         ];
     }
 
-    /**
-     * Run the given the console command.
-     *
-     * @param string|\Symfony\Component\Console\Command\Command $command
-     *
-     * @return int
-     */
-    protected function runCommand($command, array $arguments, OutputInterface $output)
-    {
-        $command = 'cms:'.$command.' '.$this->argument('module');
-
-        return parent::runCommand($command, $arguments, $output);
-    }
-
     protected function promptForMissingArgumentsUsing()
     {
         $prompts = parent::promptForMissingArgumentsUsing();
@@ -108,7 +95,12 @@ trait CommonCommand
                     ])
                         ->filter(fn ($item) => $item != $input)
                         ->filter(fn ($item) => Str::startsWith($item, $input))
-                        ->toArray(),
+                        ->all(),
+                ),
+                'Controller' => fn () => $this->autoCompleteClassName(
+                    $prompts['name'][0],
+                    config('modules.paths.generator.controller.path'),
+                    'Controller'
                 ),
                 // todo: make:command auto complete
                 default => $prompts['name'],
@@ -116,6 +108,82 @@ trait CommonCommand
         }
 
         return $prompts;
+    }
+
+    public function autoCompleteClassName($question, $namespacePath, $postFix = '')
+    {
+        $this->anticipate(
+            $question,
+            function ($input) use ($postFix, $namespacePath) {
+                $module = Module::find($this->argument('module'));
+                $parent = Path::join(
+                    $module->getPath(),
+                    $namespacePath,
+                );
+                $namespaces = [];
+                $queue = [
+                    $parent,
+                ];
+
+                while (count($queue) > 0) {
+                    $current = array_shift($queue);
+                    $namespaces[] = $current;
+                    $queue = array_merge(
+                        $queue,
+                        \Illuminate\Support\Facades\File::directories(
+                            $current
+                        )
+                    );
+                }
+
+                $namespaces = array_map(function ($directory) use ($parent) {
+                    $directory = \Illuminate\Support\Str::after(
+                        $directory,
+                        $parent
+                    );
+
+                    $directory = trim($directory, '\\/');
+                    $directory .= '\\';
+
+                    return $directory;
+                }, $namespaces);
+
+                $postFixRegex = $this->getPostFixRegex($postFix);
+
+                return collect($namespaces)
+                    ->filter(fn ($item) => $item != $input)
+                    ->filter(fn ($item) => Str::startsWith($item, $input))
+                    ->map(function ($item) use ($postFix, $postFixRegex) {
+                        if (Str::endsWith($item, '\\') || $postFixRegex != '') {
+                            return $item;
+                        }
+
+                        return preg_replace($postFixRegex, $postFix, $item);
+                    })
+                    ->all()
+                ;
+            }
+        );
+    }
+
+    public function getPostFixRegex($postFix)
+    {
+        if ($postFix == '') {
+            return '';
+        }
+
+        $postFixRegex = [];
+
+        $length = \Illuminate\Support\Str::length($postFix);
+        for($i = 0; $i < $length; $i++) {
+            $postFixRegex[] = \Illuminate\Support\Str::substr($postFix, $i, $length - $i);
+
+        }
+
+        $postFixRegex = implode('|', $postFixRegex);
+        $postFixRegex = "/({$postFix}|)$/";
+
+        return $postFixRegex;
     }
 
     public function handle()

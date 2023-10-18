@@ -2,7 +2,6 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
-use Illuminate\Console\Command;
 use Illuminate\Console\Scheduling\Schedule;
 use ReflectionException;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\CastMakeCommand;
@@ -13,6 +12,7 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ConsoleMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ControllerMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\EventMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ExceptionMakeCommand;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\FacadeMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\FactoryMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\HttpKernelMakeCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Commands\IdeHelperCommnad;
@@ -40,6 +40,50 @@ use SocolaDaiCa\LaravelModulesCommand\Console\Commands\ViewMakeCommand;
 class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
 {
     /**
+     * The Artisan commands provided by the application.
+     *
+     * @var array
+     */
+    protected $commands = [
+        /* custom */
+        CastMakeCommand::class,
+        ChannelMakeCommand::class,
+        ComponentMakeCommand::class,
+        ConsoleMakeCommand::class,
+        ControllerMakeCommand::class,
+        EventMakeCommand::class,
+        ExceptionMakeCommand::class,
+        FactoryMakeCommand::class,
+        JobMakeCommand::class,
+        ListenerMakeCommand::class,
+        MailMakeCommand::class,
+        MiddlewareMakeCommand::class,
+        // Migrations\StatusCommand::class,
+        MigrateMakeCommand::class,
+        ModelMakeCommand::class,
+        ModuleMakeCommand::class,
+        NotificationMakeCommand::class,
+        ObserverMakeCommand::class,
+        PolicyMakeCommand::class,
+        ProviderMakeCommand::class,
+        RequestMakeCommand::class,
+        ResourceMakeCommand::class,
+        RuleMakeCommand::class,
+        // SeedCommand::class,
+        SeederMakeCommand::class,
+        TestMakeCommand::class,
+        ViewMakeCommand::class,
+        /* new */
+        HttpKernelMakeCommand::class,
+        ProviderMake1Command::class,
+        StorageLinkCommand::class,
+        CmsCommand::class,
+        IdeHelperCommnad::class,
+        ModuleUpdateCommand::class,
+        FacadeMakeCommand::class,
+    ];
+
+    /**
      * Define the application's command schedule.
      */
     protected function schedule(Schedule $schedule)
@@ -55,44 +99,6 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
     protected function commands()
     {
         // $this->load(__DIR__.'/Commands');
-        $this->registerCommands([
-            /* custom */
-            CastMakeCommand::class,
-            ChannelMakeCommand::class,
-            ComponentMakeCommand::class,
-            ConsoleMakeCommand::class,
-            ControllerMakeCommand::class,
-            EventMakeCommand::class,
-            ExceptionMakeCommand::class,
-            FactoryMakeCommand::class,
-            JobMakeCommand::class,
-            ListenerMakeCommand::class,
-            MailMakeCommand::class,
-            MiddlewareMakeCommand::class,
-            // Migrations\StatusCommand::class,
-            MigrateMakeCommand::class,
-            ModelMakeCommand::class,
-            ModuleMakeCommand::class,
-            NotificationMakeCommand::class,
-            ObserverMakeCommand::class,
-            PolicyMakeCommand::class,
-            ProviderMakeCommand::class,
-            RequestMakeCommand::class,
-            ResourceMakeCommand::class,
-            RuleMakeCommand::class,
-            // SeedCommand::class,
-            SeederMakeCommand::class,
-            TestMakeCommand::class,
-            ViewMakeCommand::class,
-            /* new */
-            HttpKernelMakeCommand::class,
-            ProviderMake1Command::class,
-            StorageLinkCommand::class,
-            CmsCommand::class,
-            IdeHelperCommnad::class,
-            ModuleUpdateCommand::class,
-        ]);
-
         require_once __DIR__.'/../../routes/console.php';
     }
 }

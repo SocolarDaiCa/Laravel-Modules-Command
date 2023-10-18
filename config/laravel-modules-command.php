@@ -24,7 +24,7 @@ return [
 
     'composer' => [
         'vendor' => 'socoladaica',
-        'php' => '^8.1',
+        'php' => '^8.2',
         'license' => License::MIT,
         'author' => [
             'name' => 'Socola Đại Ca',

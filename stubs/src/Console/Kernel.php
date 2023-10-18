@@ -33,11 +33,6 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
     protected function commands(): void
     {
         // $this->load(__DIR__.'/Commands');
-        
-        $this->registerCommands([
-            //
-        ]);
-
         require_once __DIR__.'/../../routes/console.php';
     }
 }

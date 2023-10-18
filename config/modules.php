@@ -134,6 +134,7 @@ return [
             'command' => ['namespace' => 'Console/Commands', 'path' => 'src/Console/Commands', 'generate' => false],
             'cast' => ['namespace' => 'Casts', 'path' => 'src/Casts', 'generate' => false],
             'migration' => ['namespace' => 'Database/Migrations', 'path' => 'database/migrations', 'generate' => true],
+            'facade' => ['namespace' => 'Facades', 'path' => 'src/Facades', 'generate' => false],
             'seeder' => ['namespace' => 'Database/Seeders', 'path' => 'database/seeders', 'generate' => false],
             'factory' => ['namespace' => 'Database/Factories', 'path' => 'database/factories', 'generate' => true],
             'model' => ['namespace' => 'Models', 'path' => 'src/Models', 'generate' => false],

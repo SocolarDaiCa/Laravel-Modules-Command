@@ -62,8 +62,9 @@ class CmsCommand extends Command
             'cms:make:model',
             'cms:make:controller',
             'cms:make:command',
-            'cms:ide-helper',
+            'cms:make:facade',
             // 'cms:make:resource',
+            'cms:ide-helper',
         ];
 
         $this->command = $this->choice(

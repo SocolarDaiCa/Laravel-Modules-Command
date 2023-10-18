@@ -142,13 +142,6 @@ trait GeneratorCommand
         ;
     }
 
-    public function handle()
-    {
-        Helper::overwrireModulesConfig();
-
-        return parent::handle();
-    }
-
     protected function runCommand($command, array $arguments, OutputInterface $output)
     {
         $command = "cms:{$command}";
