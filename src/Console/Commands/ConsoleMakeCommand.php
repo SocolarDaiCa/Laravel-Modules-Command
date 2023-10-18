@@ -3,7 +3,6 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
 use SocolaDaiCa\LaravelModulesCommand\Console\GeneratorCommand;
-use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
 
 class ConsoleMakeCommand extends \Illuminate\Foundation\Console\ConsoleMakeCommand
 {

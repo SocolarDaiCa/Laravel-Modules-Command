@@ -34,16 +34,14 @@ class FacadeMakeCommand extends \Illuminate\Console\GeneratorCommand
         $stub = parent::buildClass($name);
 
         $replacements = [
-            "@see \DummyTarget\n" => "@see \DummyTarget\n * @mixin \DummyTarget\n",
+            "@see \\DummyTarget\n" => "@see \\DummyTarget\n * @mixin \\DummyTarget\n",
             'DummyTarget' => $this->argument('class') ?: $this->rootNamespace().$this->argument('name'),
         ];
 
-        $stub = str_replace(
+        return str_replace(
             array_keys($replacements),
             array_values($replacements),
             $stub
         );
-
-        return $stub;
     }
 }

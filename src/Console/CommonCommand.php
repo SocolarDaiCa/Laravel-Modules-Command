@@ -7,7 +7,6 @@ use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelBadassium\Helpers\PromptsAble;
 use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Path;
 
 trait CommonCommand
@@ -175,15 +174,14 @@ trait CommonCommand
         $postFixRegex = [];
 
         $length = \Illuminate\Support\Str::length($postFix);
-        for($i = 0; $i < $length; $i++) {
-            $postFixRegex[] = \Illuminate\Support\Str::substr($postFix, $i, $length - $i);
 
+        for ($i = 0; $i < $length; $i++) {
+            $postFixRegex[] = \Illuminate\Support\Str::substr($postFix, $i, $length - $i);
         }
 
         $postFixRegex = implode('|', $postFixRegex);
-        $postFixRegex = "/({$postFix}|)$/";
 
-        return $postFixRegex;
+        return "/({$postFix}|)$/";
     }
 
     public function handle()
