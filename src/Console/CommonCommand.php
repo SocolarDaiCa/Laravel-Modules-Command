@@ -3,6 +3,7 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
 use Illuminate\Support\Str;
+use Log;
 use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelBadassium\Helpers\PromptsAble;
 use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
@@ -111,7 +112,7 @@ trait CommonCommand
 
     public function autoCompleteClassName($question, $namespacePath, $postFix = '')
     {
-        $this->anticipate(
+        return $this->anticipate(
             $question,
             function ($input) use ($postFix, $namespacePath) {
                 $module = Module::find($this->argument('module'));
@@ -147,20 +148,30 @@ trait CommonCommand
                     return $directory;
                 }, $namespaces);
 
+                $namespaces[] = $input;
+
                 $postFixRegex = $this->getPostFixRegex($postFix);
 
-                return collect($namespaces)
-                    ->filter(fn ($item) => $item != $input)
-                    ->filter(fn ($item) => Str::startsWith($item, $input))
+                $namespaces = collect($namespaces)
                     ->map(function ($item) use ($postFix, $postFixRegex) {
-                        if (Str::endsWith($item, '\\') || $postFixRegex != '') {
-                            return $item;
+                        $item = str_replace('/', '\\', $item);
+                        if (Str::endsWith($item, '\\')) {
+                            return trim($item, '\\');
+                        }
+
+                        if (!preg_match($postFixRegex, $item)) {
+                            return $item.$postFix;
                         }
 
                         return preg_replace($postFixRegex, $postFix, $item);
                     })
+                    ->filter(fn ($item) => Str::startsWith($item, $input))
+                    ->filter(fn ($item) => $item != $input)
+                    ->values()
                     ->all()
                 ;
+
+                return $namespaces;
             }
         );
     }
@@ -176,12 +187,12 @@ trait CommonCommand
         $length = \Illuminate\Support\Str::length($postFix);
 
         for ($i = 0; $i < $length; $i++) {
-            $postFixRegex[] = \Illuminate\Support\Str::substr($postFix, $i, $length - $i);
+            $postFixRegex[] = \Illuminate\Support\Str::substr($postFix, 0, $length - $i);
         }
 
         $postFixRegex = implode('|', $postFixRegex);
 
-        return "/({$postFix}|)$/";
+        return "/({$postFixRegex})$/";
     }
 
     public function handle()

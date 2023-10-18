@@ -3,6 +3,7 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use SocolaDaiCa\LaravelModulesCommand\Console\GeneratorCommand;
 use SocolaDaiCa\LaravelModulesCommand\StubModify;
@@ -157,20 +158,25 @@ METHOD_STORE_TO;
 
         return parent::parseModel($model);
     }
-    //
-    // /**
-    //  * Get a list of possible model names.
-    //  *
-    //  * @return array<int, string>
-    //  */
-    // protected function possibleModels()
-    // {
-    //     $modelPath = is_dir(base_path('Modules')) ? app_path('Models') : app_path();
-    //
-    //     return collect((new Finder)->files()->depth(0)->in($modelPath))
-    //         ->map(fn ($file) => $file->getBasename('.php'))
-    //         ->sort()
-    //         ->values()
-    //         ->all();
-    // }
+
+    /**
+     * Get a list of possible model names.
+     *
+     * @return array<int, string>
+     */
+    protected function possibleModels()
+    {
+        $modelPath = [
+            base_path('Modules/*/src/Models'),
+            base_path('Modules/*/*/src/Models'),
+        ];
+        $modelPath = array_map('glob', $modelPath);
+        $modelPath = Arr::flatten($modelPath);
+
+        return collect((new Finder)->files()->depth(0)->in($modelPath))
+            ->map(fn ($file) => $file->getBasename('.php'))
+            ->sort()
+            ->values()
+            ->all();
+    }
 }
