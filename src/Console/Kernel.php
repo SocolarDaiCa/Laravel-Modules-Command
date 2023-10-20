@@ -45,42 +45,7 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
      * @var array
      */
     protected $commands = [
-        /* custom */
-        CastMakeCommand::class,
-        ChannelMakeCommand::class,
-        ComponentMakeCommand::class,
-        ConsoleMakeCommand::class,
-        ControllerMakeCommand::class,
-        EventMakeCommand::class,
-        ExceptionMakeCommand::class,
-        FactoryMakeCommand::class,
-        JobMakeCommand::class,
-        ListenerMakeCommand::class,
-        MailMakeCommand::class,
-        MiddlewareMakeCommand::class,
-        // Migrations\StatusCommand::class,
-        MigrateMakeCommand::class,
-        ModelMakeCommand::class,
-        ModuleMakeCommand::class,
-        NotificationMakeCommand::class,
-        ObserverMakeCommand::class,
-        PolicyMakeCommand::class,
-        ProviderMakeCommand::class,
-        RequestMakeCommand::class,
-        ResourceMakeCommand::class,
-        RuleMakeCommand::class,
-        // SeedCommand::class,
-        SeederMakeCommand::class,
-        TestMakeCommand::class,
-        ViewMakeCommand::class,
-        /* new */
-        HttpKernelMakeCommand::class,
-        ProviderMake1Command::class,
-        StorageLinkCommand::class,
-        CmsCommand::class,
-        IdeHelperCommnad::class,
-        ModuleUpdateCommand::class,
-        FacadeMakeCommand::class,
+       //
     ];
 
     /**

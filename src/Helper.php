@@ -17,10 +17,6 @@ class Helper
         if (!(app() instanceof CachesConfiguration && app()->configurationIsCached())) {
             $config = app()->make('config');
 
-            // dd(array_merge(
-            //     $config->get($key, []), require $path
-            // ));
-
             $config->set($key, array_merge(
                 $config->get($key, []),
                 require $path
