@@ -87,7 +87,8 @@ class CmsCommand extends Command
             'cms:make:controller' => [
                 'module' => $this->module,
             ],
-            'cms:make:command' => [
+            'cms:make:command',
+            'cms:make:facade' => [
                 'module' => $this->module,
             ],
             'cms:ide-helper' => [],
