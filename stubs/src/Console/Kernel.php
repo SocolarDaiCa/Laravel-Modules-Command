@@ -14,6 +14,12 @@ use Symfony\Component\Finder\Finder;
 class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
 {
     /**
+     * The Artisan commands provided by the application.
+     *
+     * @var array
+     */
+    protected $commands = [];
+    /**
      * Define the application's command schedule.
      *
      * @return void

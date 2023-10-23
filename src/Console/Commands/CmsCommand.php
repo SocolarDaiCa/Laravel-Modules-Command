@@ -4,6 +4,7 @@ namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Str;
 use SocolaDaiCa\LaravelAudit\Helper;
 use SocolaDaiCa\LaravelBadassium\Contracts\Console\Command;
 use Spatie\Once\Cache;
@@ -59,16 +60,23 @@ class CmsCommand extends Command
     {
         $choices = [
             'back',
-            'cms:make:model',
-            'cms:make:controller',
-            'cms:make:command',
-            'cms:make:facade',
-            // 'cms:make:resource',
-            'cms:ide-helper',
+            ...collect(array_keys(Artisan::all()))
+                ->filter(fn ($command) => Str::startsWith($command, 'cms:'))
+                ->filter(fn ($command) => in_array($command, [
+                    'cms:make:model',
+                    'cms:make:controller',
+                    'cms:make:command',
+                    'cms:make:facade',
+                    // 'cms:make:resource',
+                    'cms:ide-helper',
+                    'cms:project:setup',
+                    'cms:ec2:setup',
+                ]))
+                ->all(),
         ];
 
         $this->command = $this->choice(
-            'Command?',
+            "[{$this->module}] Command?",
             $choices,
         );
 
@@ -92,7 +100,7 @@ class CmsCommand extends Command
                 'module' => $this->module,
             ],
             'cms:ide-helper' => [],
-            default => null,
+            default => [],
         };
 
         if ($parameters !== null) {
