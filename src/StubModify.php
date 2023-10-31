@@ -28,6 +28,10 @@ class StubModify
         /** @var Node\Expr\Closure $closure */
         $closure = $finder->findFirst($methodUp->stmts, Node\Expr\Closure::class);
 
+        if (!$closure) {
+            return $phpParse->__toString();
+        }
+
         $closureStmts = $closure->stmts;
         $closure->stmts = [];
 
