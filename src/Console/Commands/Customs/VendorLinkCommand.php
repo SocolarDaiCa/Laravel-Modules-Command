@@ -8,16 +8,9 @@ use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelBadassium\Contracts\Console\Command;
 use SocolaDaiCa\LaravelModulesCommand\Console\CommonCommand;
 
-class VendorLinkCommand  extends \Illuminate\Foundation\Console\StorageLinkCommand
+class VendorLinkCommand extends \Illuminate\Foundation\Console\StorageLinkCommand
 {
     use CommonCommand;
-
-    public function __construct()
-    {
-        $this->signature = str_replace('storage:link', 'cms:vendor:link {module?}', $this->signature);
-
-        parent::__construct();
-    }
 
     /**
      * The console command description.
@@ -25,6 +18,13 @@ class VendorLinkCommand  extends \Illuminate\Foundation\Console\StorageLinkComma
      * @var string
      */
     protected $description = 'Command description';
+
+    public function __construct()
+    {
+        $this->signature = str_replace('storage:link', 'cms:vendor:link {module?}', $this->signature);
+
+        parent::__construct();
+    }
 
     protected function links()
     {
