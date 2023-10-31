@@ -12,20 +12,6 @@ class StorageLinkCommand extends \Illuminate\Foundation\Console\StorageLinkComma
 
     protected function links()
     {
-        // if (!file_exists(public_path('vendor'))) {
-        //     mkdir(public_path('vendor'), 0000);
-        // }
-        //
-        // chmod(public_path('vendor'), 000);
-        //
-        // // $vendorNamespace = "{$this->getModule()->getComposerAttr('name')}";
-        //
-        // return [
-        //     // public_path("vendor/{$this->getModule()->getLowerName()}") => "{$this->getModule()->getPath()}/public",
-        //     // public_path("vendor/{$vendorNamespace}") => "{$this->getModule()->getPath()}/public/{$vendorNamespace}",
-        //     public_path("vendor/{$this->getModule()->getLowerName()}") => "{$this->getModule()->getPath()}/public/",
-        // ];
-
         $vendorNamespace = "{$this->getModule()->getComposerAttr('name')}";
         $author = Str::before($vendorNamespace, '/');
         $vendorRelativePath = "vendor/{$vendorNamespace}";

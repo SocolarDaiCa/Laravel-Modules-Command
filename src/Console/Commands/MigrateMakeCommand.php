@@ -15,7 +15,8 @@ class MigrateMakeCommand extends \Illuminate\Database\Console\Migrations\Migrate
      */
     public function __construct(MigrationCreator $creator, Composer $composer)
     {
-        $this->signature = 'cms:'.$this->signature.'{module}';
+        $this->signature = str_replace('make:migration', 'cms:make:migration {module}', $this->signature);
+
         parent::__construct($creator, $composer);
     }
 

@@ -249,6 +249,8 @@ return [
         FacadeMakeCommand::class,
         /**/
         ModelMakeCommand::class,
+        /* Customs */
+        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs\VendorLinkCommand::class,
     ],
 
     /*
