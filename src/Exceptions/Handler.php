@@ -2,7 +2,6 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Exceptions;
 
-use Illuminate\Contracts\Container\Container;
 use SocolaDaiCa\LaravelBadassium\Contracts\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
