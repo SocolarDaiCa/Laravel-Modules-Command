@@ -32,6 +32,7 @@ class IdeHelperCommnad extends Command
                 '--dir' => [
                     'app/Models',
                     'Modules/*/src/Models',
+                    'Modules/*/*/src/Models',
                 ],
                 '--no-interaction' => true,
                 '--nowrite' => true,
