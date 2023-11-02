@@ -28,24 +28,6 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
-    public function __construct(Container $container)
-    {
-        parent::__construct($container);
-
-        $handler = app(\Illuminate\Contracts\Debug\ExceptionHandler::class);
-
-        if ($handler instanceof \App\Exceptions\Handler) {
-            $handler
-                ->renderable(function (Throwable $e, $request) {
-                    return $this->renderViaCallbacks($request, $e);
-                })
-                ->reportable(function (Throwable $e) {
-                    $this->report($e);
-                })
-            ;
-        }
-    }
-
     /**
      * Register the exception handling callbacks for the application.
      *
