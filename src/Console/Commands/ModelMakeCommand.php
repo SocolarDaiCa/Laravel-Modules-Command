@@ -16,6 +16,7 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
 
         $replaces = [
             'use Illuminate\Database\Eloquent\Model;' => 'use SocolaDaiCa\LaravelBadassium\Contracts\Models\Model;',
+            'use Illuminate\Database\Eloquent\Relations\Pivot;' => 'use SocolaDaiCa\LaravelBadassium\Contracts\Models\Pivot;',
         ];
 
         $class = str_replace(

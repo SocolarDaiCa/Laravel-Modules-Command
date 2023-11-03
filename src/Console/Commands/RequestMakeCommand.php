@@ -13,6 +13,16 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
     {
         $class = parent::buildClass($name);
 
+        $replaces = [
+            'use use Illuminate\Foundation\Http\FormRequest;'=> 'use SocolaDaiCa\LaravelBadassium\Illuminate\Foundation\Http\FormRequest;',
+        ];
+
+        return str_replace(
+            array_keys($replaces),
+            array_values($replaces),
+            $class
+        );
+
         /** @var \SocolaDaiCa\LaravelModulesCommand\Overwrite\Module $module */
         $module = $this->getModule();
         $phpParse = app(PhpParse::class);
