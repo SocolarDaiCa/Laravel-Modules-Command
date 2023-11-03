@@ -14,7 +14,7 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
         $class = parent::buildClass($name);
 
         $replaces = [
-            'use use Illuminate\Foundation\Http\FormRequest;'=> 'use SocolaDaiCa\LaravelBadassium\Illuminate\Foundation\Http\FormRequest;',
+            'use use Illuminate\Foundation\Http\FormRequest;' => 'use SocolaDaiCa\LaravelBadassium\Illuminate\Foundation\Http\FormRequest;',
         ];
 
         return str_replace(
