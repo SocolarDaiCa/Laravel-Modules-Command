@@ -81,7 +81,7 @@ trait CommonCommand
     {
         $prompts = parent::promptForMissingArgumentsUsing();
 
-        if (!empty($prompts['name'])) {
+        if (!empty($prompts['name']) && !empty($this->type)) {
             $prompts['name'] = match ($this->type) {
                 'Model' => fn () => $this->anticipate(
                     $prompts['name'][0],
