@@ -3,7 +3,6 @@
 namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Foundation\Console\ComponentMakeCommand;
 use Illuminate\Support\Str;
 use Nwidart\Modules\Support\Config\GenerateConfigReader;
 use Nwidart\Modules\Traits\ModuleCommandTrait;
