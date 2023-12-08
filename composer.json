@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "nwidart/laravel-modules": "*",
+        "nwidart/laravel-modules": "^10",
         "socoladaica/phpstorm": "^1.0",
         "nikic/php-parser": "*"
     },
