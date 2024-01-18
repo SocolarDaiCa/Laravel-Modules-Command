@@ -11,6 +11,7 @@
     "require": {
         "nwidart/laravel-modules": "^10",
         "socoladaica/phpstorm": "^1.0",
+        "stevebauman/autodoc-facades": "*",
         "nikic/php-parser": "*"
     },
     "extra": {

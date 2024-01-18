@@ -5,6 +5,9 @@ namespace SocolaDaiCa\LaravelModulesCommand\Facades;
 use Illuminate\Support\Facades\Facade;
 
 /**
+ * @method static void add(void $file)
+ * @method static void openAll()
+ *
  * @see \SocolaDaiCa\LaravelModulesCommand\OpenPhpstorm
  *
  * @mixin \SocolaDaiCa\LaravelModulesCommand\OpenPhpstorm

@@ -247,6 +247,7 @@ return [
         IdeHelperCommnad::class,
         ModuleUpdateCommand::class,
         FacadeMakeCommand::class,
+        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs\FacadeDocsCommand::class,
         /**/
         ModelMakeCommand::class,
         /* Customs */
