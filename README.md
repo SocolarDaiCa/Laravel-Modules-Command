@@ -181,3 +181,5 @@ See all command []
 ## Reference
 
 - <https://laravelpackage.com/#reasons-to-develop-a-package>
+
+[//]: # (1)
