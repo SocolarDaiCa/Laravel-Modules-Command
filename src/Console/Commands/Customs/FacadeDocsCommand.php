@@ -48,6 +48,6 @@ class FacadeDocsCommand extends Command
 
         Artisan::call('autodoc:facades', [
             'paths' => $facadesFolders,
-        ]);
+        ], $this->output);
     }
 }
