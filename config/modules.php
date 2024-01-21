@@ -239,6 +239,8 @@ return [
         SeederMakeCommand::class,
         TestMakeCommand::class,
         ViewMakeCommand::class,
+        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\MigrateCommand::class,
+        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\RollbackCommand::class,
         /* new */
         HttpKernelMakeCommand::class,
         ProviderMake1Command::class,
