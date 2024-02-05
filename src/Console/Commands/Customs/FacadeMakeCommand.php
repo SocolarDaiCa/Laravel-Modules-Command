@@ -2,7 +2,7 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs;
 
-use Composer\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputArgument;
 
 class FacadeMakeCommand extends \Illuminate\Console\GeneratorCommand
 {
