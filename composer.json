@@ -12,6 +12,7 @@
         "nwidart/laravel-modules": "^10",
         "socoladaica/phpstorm": "^1.0",
         "stevebauman/autodoc-facades": "*",
+        "symfony/filesystem": "*",
         "nikic/php-parser": "*"
     },
     "extra": {
