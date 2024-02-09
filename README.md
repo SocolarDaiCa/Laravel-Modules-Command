@@ -182,4 +182,4 @@ See all command []
 
 - <https://laravelpackage.com/#reasons-to-develop-a-package>
 
-[//]: # (1)
+[//]: # (2)
