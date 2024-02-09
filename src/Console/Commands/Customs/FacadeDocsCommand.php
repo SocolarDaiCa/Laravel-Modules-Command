@@ -33,8 +33,10 @@ class FacadeDocsCommand extends Command
         $modules = Module::all();
         /** @var \SocolaDaiCa\LaravelModulesCommand\Overwrite\Module $module */
         $facadesFolders = [];
+
         foreach ($modules as $module) {
             $facadesFolder = Path::join($module->getPath(), config('modules.paths.generator.facade.path'));
+
             if (File::isDirectory($facadesFolder) == false) {
                 continue;
             }

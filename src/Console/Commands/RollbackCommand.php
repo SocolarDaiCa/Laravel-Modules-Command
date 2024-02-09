@@ -2,7 +2,6 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
-use Illuminate\Database\Migrations\Migrator;
 use SocolaDaiCa\LaravelModulesCommand\Console\BaseCommand;
 use SocolaDaiCa\LaravelModulesCommand\Overwrite\MigratorForModule;
 

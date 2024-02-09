@@ -239,22 +239,22 @@ return [
         SeederMakeCommand::class,
         TestMakeCommand::class,
         ViewMakeCommand::class,
-        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\MigrateCommand::class,
-        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\RollbackCommand::class,
+        SocolaDaiCa\LaravelModulesCommand\Console\Commands\MigrateCommand::class,
+        SocolaDaiCa\LaravelModulesCommand\Console\Commands\RollbackCommand::class,
         /* new */
         HttpKernelMakeCommand::class,
         ProviderMake1Command::class,
         StorageLinkCommand::class,
-        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\StorageUnlinkCommand::class,
+        SocolaDaiCa\LaravelModulesCommand\Console\Commands\StorageUnlinkCommand::class,
         CmsCommand::class,
         IdeHelperCommnad::class,
         ModuleUpdateCommand::class,
         FacadeMakeCommand::class,
-        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs\FacadeDocsCommand::class,
+        SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs\FacadeDocsCommand::class,
         /**/
         ModelMakeCommand::class,
         /* Customs */
-        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs\VendorLinkCommand::class,
+        SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs\VendorLinkCommand::class,
     ],
 
     /*

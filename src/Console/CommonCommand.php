@@ -136,7 +136,7 @@ trait CommonCommand
                 }
 
                 $namespaces = array_map(function ($directory) use ($parent) {
-                    $directory = \Illuminate\Support\Str::after(
+                    $directory = Str::after(
                         $directory,
                         $parent
                     );
@@ -184,10 +184,10 @@ trait CommonCommand
 
         $postFixRegex = [];
 
-        $length = \Illuminate\Support\Str::length($postFix);
+        $length = Str::length($postFix);
 
         for ($i = 0; $i < $length; $i++) {
-            $postFixRegex[] = \Illuminate\Support\Str::substr($postFix, 0, $length - $i);
+            $postFixRegex[] = Str::substr($postFix, 0, $length - $i);
         }
 
         $postFixRegex = implode('|', $postFixRegex);

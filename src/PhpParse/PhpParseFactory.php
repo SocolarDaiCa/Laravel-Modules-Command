@@ -6,11 +6,11 @@ use PhpParser\Node;
 
 class PhpParseFactory
 {
-    protected \SocolaDaiCa\LaravelModulesCommand\PhpParse\PhpParse $phpParse;
+    protected PhpParse $phpParse;
 
     public function __construct()
     {
-        $this->phpParse = app(\SocolaDaiCa\LaravelModulesCommand\PhpParse\PhpParse::class);
+        $this->phpParse = app(PhpParse::class);
     }
 
     public function makeMethod($code)

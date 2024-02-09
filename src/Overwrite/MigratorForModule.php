@@ -6,14 +6,12 @@ use Illuminate\Console\View\Components\Info;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Database\ConnectionResolverInterface as Resolver;
 use Illuminate\Database\Events\NoPendingMigrations;
-use Illuminate\Database\Migrations\MigrationRepositoryInterface;
 use Illuminate\Database\Migrations\Migrator;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Arr;
 
 class MigratorForModule extends Migrator
 {
-    public function __construct(Resolver $resolver, Filesystem $files, Dispatcher $dispatcher = null)
+    public function __construct(Resolver $resolver, Filesystem $files, ?Dispatcher $dispatcher = null)
     {
         $repository = app('migration.repository');
         parent::__construct($repository, $resolver, $files, $dispatcher);
@@ -22,8 +20,8 @@ class MigratorForModule extends Migrator
     /**
      * Rollback the last migration operation.
      *
-     * @param  array|string  $paths
-     * @param  array  $options
+     * @param array|string $paths
+     *
      * @return array
      */
     public function rollback($paths = [], array $options = [])
