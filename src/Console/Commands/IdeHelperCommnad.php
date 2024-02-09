@@ -26,6 +26,8 @@ class IdeHelperCommnad extends Command
      */
     public function handle()
     {
+        config()->set('ide-helper.write_model_magic_where', false);
+
         $commands = [
             'ide-helper:generate' => [],
             'ide-helper:models' => [
@@ -35,7 +37,10 @@ class IdeHelperCommnad extends Command
                     'Modules/*/*/src/Models',
                 ],
                 '--no-interaction' => true,
-                '--nowrite' => true,
+                // '--nowrite' => true,
+                '--write' => true,
+                // '--write-mixin' => true,
+                '--reset' => true,
             ],
             'ide-helper:meta' => [],
             'ide-helper:eloquent' => [],
