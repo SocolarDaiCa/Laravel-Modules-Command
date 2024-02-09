@@ -15,6 +15,9 @@
         "symfony/filesystem": "*",
         "nikic/php-parser": "*"
     },
+    "require-dev": {
+        "socoladaica/laravel-audit": "^1.0"
+    },
     "extra": {
         "laravel": {
             "dont-discover": [
