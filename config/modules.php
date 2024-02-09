@@ -245,6 +245,7 @@ return [
         HttpKernelMakeCommand::class,
         ProviderMake1Command::class,
         StorageLinkCommand::class,
+        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\StorageUnlinkCommand::class,
         CmsCommand::class,
         IdeHelperCommnad::class,
         ModuleUpdateCommand::class,
