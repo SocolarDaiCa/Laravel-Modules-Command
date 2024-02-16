@@ -13,7 +13,7 @@
         "socoladaica/phpstorm": "^1.0",
         "stevebauman/autodoc-facades": "*",
         "symfony/filesystem": "*",
-        "nikic/php-parser": "*"
+        "nikic/php-parser": "^4"
     },
     "require-dev": {
         "socoladaica/laravel-audit": "^1.0"
