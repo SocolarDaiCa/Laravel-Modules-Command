@@ -48,12 +48,11 @@ class RuleMakeCommand extends \Illuminate\Foundation\Console\RuleMakeCommand
         return 'The :attribute must be uppercase.';
     }";
         $to = str_replace("\r\n", "\n", $to);
-        $class = str_replace(
+
+        return str_replace(
             $from,
             $to,
             $class
         );
-
-        return $class;
     }
 }
