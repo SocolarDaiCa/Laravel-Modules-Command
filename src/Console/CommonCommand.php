@@ -208,9 +208,8 @@ trait CommonCommand
     /**
      * Run the given the console command.
      *
-     * @param  \Symfony\Component\Console\Command\Command|string  $command
-     * @param  array  $arguments
-     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @param string|\Symfony\Component\Console\Command\Command $command
+     *
      * @return int
      */
     protected function runCommand($command, array $arguments, OutputInterface $output)
