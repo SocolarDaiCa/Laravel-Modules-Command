@@ -2,10 +2,9 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands\Migrations;
 
-use SocolaDaiCa\LaravelModulesCommand\Console\BaseCommand;
 use SocolaDaiCa\LaravelModulesCommand\Console\Traits\MigrationsCommand;
 
-class StatusCommand extends \Illuminate\Database\Console\Migrations\StatusCommand
+class FreshCommand extends \Illuminate\Database\Console\Migrations\FreshCommand
 {
     use MigrationsCommand;
 }

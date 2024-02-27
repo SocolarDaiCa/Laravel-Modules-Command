@@ -4,6 +4,7 @@ namespace SocolaDaiCa\LaravelModulesCommand\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use ReflectionException;
+use SocolaDaiCa\LaravelModulesCommand\Console\Commands\Migrations;
 
 class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
 {
@@ -13,7 +14,9 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
      * @var array
      */
     protected $commands = [
-        //
+        Migrations\RefreshCommand::class,
+        Migrations\ResetCommand::class,
+        Migrations\FreshCommand::class,
     ];
 
     /**

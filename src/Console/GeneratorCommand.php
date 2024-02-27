@@ -140,12 +140,4 @@ trait GeneratorCommand
             ->join('/')
         ;
     }
-
-    protected function runCommand($command, array $arguments, OutputInterface $output)
-    {
-        $command = "cms:{$command}";
-        $arguments['module'] = $this->argument('module');
-
-        return parent::runCommand($command, $arguments, $output);
-    }
 }

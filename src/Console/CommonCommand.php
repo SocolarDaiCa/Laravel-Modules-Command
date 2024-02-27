@@ -7,6 +7,7 @@ use Nwidart\Modules\Facades\Module;
 use SocolaDaiCa\LaravelBadassium\Helpers\PromptsAble;
 use SocolaDaiCa\LaravelModulesCommand\Facades\OpenPhpstorm;
 use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Path;
 
 trait CommonCommand
@@ -20,6 +21,8 @@ trait CommonCommand
 
     public function __construct()
     {
+        parent::__construct();
+
         if (!empty($this->getName())) {
             $this->setName('cms:'.$this->getName());
         }
@@ -27,8 +30,6 @@ trait CommonCommand
         if (!empty($this->signature)) {
             $this->signature = 'cms:'.$this->signature.' {module}';
         }
-
-        parent::__construct();
     }
 
     public function getModule(): \Nwidart\Modules\Laravel\Module
@@ -202,5 +203,28 @@ trait CommonCommand
         OpenPhpstorm::openAll();
 
         return $result;
+    }
+
+    /**
+     * Run the given the console command.
+     *
+     * @param  \Symfony\Component\Console\Command\Command|string  $command
+     * @param  array  $arguments
+     * @param  \Symfony\Component\Console\Output\OutputInterface  $output
+     * @return int
+     */
+    protected function runCommand($command, array $arguments, OutputInterface $output)
+    {
+        if (Str::startsWith($command, 'cms:') == false) {
+            $command = 'cms:'.$command;
+            $arguments = array_merge(
+                [
+                    'module' => $this->argument('module'),
+                ],
+                $arguments,
+            );
+        }
+
+        return parent::runCommand($command, $arguments, $output);
     }
 }

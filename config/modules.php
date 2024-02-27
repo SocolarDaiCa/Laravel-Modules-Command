@@ -225,7 +225,7 @@ return [
         ListenerMakeCommand::class,
         MailMakeCommand::class,
         MiddlewareMakeCommand::class,
-        // Migrations\StatusCommand::class,
+        \SocolaDaiCa\LaravelModulesCommand\Console\Commands\Migrations\StatusCommand::class,
         MigrateMakeCommand::class,
         ModuleMakeCommand::class,
         NotificationMakeCommand::class,

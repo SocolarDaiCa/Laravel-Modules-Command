@@ -13,6 +13,7 @@ class ModelMakeCommand extends \Illuminate\Foundation\Console\ModelMakeCommand
     protected function buildClass($name)
     {
         $class = parent::buildClass($name);
+        $class = Str::replace("\n    //\n", '', $class);
 
         $replaces = [
             'use Illuminate\Database\Eloquent\Model;' => 'use SocolaDaiCa\LaravelBadassium\Contracts\Models\Model;',
