@@ -49,6 +49,7 @@ class EditorModel extends EditorClass
     {
         $this->addRelation('hasMany', '[]', $relation, $related, $foreignKey, $localKey);
     }
+
     public function addHasOneRelation($relation, $related, array $foreignKey, array $localKey)
     {
         $this->addRelation('hasOne', '', $relation, $related, $foreignKey, $localKey);

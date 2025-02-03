@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use JsonException;
+use ReflectionClass;
 use SocolaDaiCa\LaravelAudit\Audit\AuditModel;
 use SocolaDaiCa\LaravelAudit\Audit\AuditTable;
 
@@ -20,15 +21,15 @@ class Editor
         $classes = array_keys($classes);
         $classes = collect($classes)
             ->filter(function ($class) {
-                return Str::contains($class, '\\Models\\');
+                return Str::contains($class, '\Models\\');
             })
             ->filter(function ($class) {
-                $reflectionClass = new \ReflectionClass($class);
+                $reflectionClass = new ReflectionClass($class);
+
                 return is_subclass_of($class, Model::class)
                     && !$reflectionClass->isAbstract()
                     && !$reflectionClass->isTrait()
-                    && !$reflectionClass->isInterface()
-                ;
+                    && !$reflectionClass->isInterface();
             })
         ;
 
@@ -100,7 +101,7 @@ class Editor
 
             if (
                 !$auditModel2->reflectionClass->hasMethod($relations2)
-//                && $tableToAuditTables[$table2]->isUnique($foreignKey1['columns'])
+                //                && $tableToAuditTables[$table2]->isUnique($foreignKey1['columns'])
             ) {
                 $editorModel2->addHasOneRelation(
                     $relations2,
@@ -110,32 +111,32 @@ class Editor
                 );
             }
 
-//            foreach ($foreignKeys as $foreignKeyIndex2 => $foreignKey2) {
-//                if ($foreignKey1['table'] == $foreignKey2['table']) {
-//                    // belongsToMany
-//                    $relations3 = Str::plural(Str::camel($foreignKey2['foreign_table']));
-//
-////                    Cannot redeclare SocolaDaiCa\Ncm\Models\TraRoute::masInputs()
-//
-//                    if (
-//                        $foreignKeyIndex1 != $foreignKeyIndex2
-//                        && !$auditModel1->reflectionClass->hasMethod($relations3)
-//                    ) {
-////                        dd(
-////                            $table1,
-////                            $relations3,
-////                            $foreignKey1,
-////                            $foreignKey2,
-////                        );
-//                        $editorModel1->addBelongsToManyRelation(
-//                            $relations3,
-//                            $tableToModelClass[$foreignKey2['foreign_table']],
-//                            $foreignKey1['columns'],
-//                            $foreignKey2['columns'],
-//                        );
-//                    }
-//                }
-//            }
+            //            foreach ($foreignKeys as $foreignKeyIndex2 => $foreignKey2) {
+            //                if ($foreignKey1['table'] == $foreignKey2['table']) {
+            //                    // belongsToMany
+            //                    $relations3 = Str::plural(Str::camel($foreignKey2['foreign_table']));
+            //
+            ////                    Cannot redeclare SocolaDaiCa\Ncm\Models\TraRoute::masInputs()
+            //
+            //                    if (
+            //                        $foreignKeyIndex1 != $foreignKeyIndex2
+            //                        && !$auditModel1->reflectionClass->hasMethod($relations3)
+            //                    ) {
+            ////                        dd(
+            ////                            $table1,
+            ////                            $relations3,
+            ////                            $foreignKey1,
+            ////                            $foreignKey2,
+            ////                        );
+            //                        $editorModel1->addBelongsToManyRelation(
+            //                            $relations3,
+            //                            $tableToModelClass[$foreignKey2['foreign_table']],
+            //                            $foreignKey1['columns'],
+            //                            $foreignKey2['columns'],
+            //                        );
+            //                    }
+            //                }
+            //            }
 
             $editorModel1->save();
             $editorModel2->save();
