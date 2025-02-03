@@ -24,7 +24,7 @@ class EditorModel extends EditorClass
 
         $code = "
             /**
-             * @return \\Illuminate\\Database\\Eloquent\\Relations\\{$typeStudly}<{$related}>|{$related}{$returnType}
+             * @return \\Illuminate\\Database\\Eloquent\\Relations\\{$typeStudly}<\\{$related}>|\\{$related}{$returnType}
              */
             public function {$relation}()
             {
