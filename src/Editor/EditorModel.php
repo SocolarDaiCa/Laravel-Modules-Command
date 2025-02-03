@@ -37,6 +37,7 @@ class EditorModel extends EditorClass
         ";
 
         $this->phpParse->addMethod($code);
+        $this->save();
     }
 
     public function addBelongsToRelation($relation, $related, array $foreignKey, array $localKey)
@@ -47,6 +48,10 @@ class EditorModel extends EditorClass
     public function addHasManyRelation($relation, $related, array $foreignKey, array $localKey)
     {
         $this->addRelation('hasMany', '[]', $relation, $related, $foreignKey, $localKey);
+    }
+    public function addHasOneRelation($relation, $related, array $foreignKey, array $localKey)
+    {
+        $this->addRelation('hasOne', '', $relation, $related, $foreignKey, $localKey);
     }
 
     public function addBelongsToManyRelation(string $relations, string $related, mixed $foreignKey, mixed $localKey)

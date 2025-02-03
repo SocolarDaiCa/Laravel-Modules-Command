@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 use JsonException;
 use SocolaDaiCa\LaravelAudit\Audit\AuditModel;
+use SocolaDaiCa\LaravelAudit\Audit\AuditTable;
 
 class Editor
 {
@@ -19,7 +20,15 @@ class Editor
         $classes = array_keys($classes);
         $classes = collect($classes)
             ->filter(function ($class) {
-                return is_subclass_of($class, Model::class);
+                return Str::contains($class, '\\Models\\');
+            })
+            ->filter(function ($class) {
+                $reflectionClass = new \ReflectionClass($class);
+                return is_subclass_of($class, Model::class)
+                    && !$reflectionClass->isAbstract()
+                    && !$reflectionClass->isTrait()
+                    && !$reflectionClass->isInterface()
+                ;
             })
         ;
 
@@ -32,10 +41,15 @@ class Editor
 
         /** @var AuditModel[] $tableToAuditModels */
         $tableToAuditModels = [];
+        /** @var AuditTable[] $tableToAuditTables */
+        $tableToAuditTables = [];
 
         foreach ($tableToModelClass as $table => $modelClass) {
             $auditModelClass = AuditModel::makeByClass($modelClass);
             $tableToAuditModels[$table] = $auditModelClass;
+
+            $auditTable = AuditTable::make($table);
+            $tableToAuditTables[$table] = $auditTable;
         }
 
         $foreignKeys = collect([]);
@@ -47,19 +61,19 @@ class Editor
             }
         }
 
-        foreach ($foreignKeys as $foreignKey1) {
+        foreach ($foreignKeys as $foreignKeyIndex1 => $foreignKey1) {
             // belongsTo
             $table1 = $foreignKey1['table'];
             $auditModel1 = $tableToAuditModels[$table1];
             $editorModel1 = EditorModel::openFile($auditModel1->reflectionClass->getFileName());
-            $relations1 = Str::singular(Str::camel($foreignKey['foreign_table']));
+            $relations1 = Str::singular(Str::camel($foreignKey1['foreign_table']));
 
             if (!$auditModel1->reflectionClass->hasMethod($relations1)) {
                 $editorModel1->addBelongsToRelation(
                     $relations1,
-                    $tableToModelClass[$foreignKey['foreign_table']],
-                    $foreignKey['columns'],
-                    $foreignKey['foreign_columns'],
+                    $tableToModelClass[$foreignKey1['foreign_table']],
+                    $foreignKey1['columns'],
+                    $foreignKey1['foreign_columns'],
                 );
             }
 
@@ -67,32 +81,61 @@ class Editor
             $table2 = $foreignKey1['foreign_table'];
             $auditModel2 = $tableToAuditModels[$table2];
             $editorModel2 = EditorModel::openFile($auditModel2->reflectionClass->getFileName());
-            $relations2 = Str::plural(Str::camel($foreignKey['table']));
+            $relations2 = Str::plural(Str::camel($foreignKey1['table']));
 
-            if (!$auditModel2->reflectionClass->hasMethod($relations2)) {
+            if (
+                !$auditModel2->reflectionClass->hasMethod($relations2)
+                && !$tableToAuditTables[$table2]->isUnique($foreignKey1['columns'])
+            ) {
                 $editorModel2->addHasManyRelation(
                     $relations2,
-                    $tableToModelClass[$foreignKey['table']],
-                    $foreignKey['columns'],
-                    $foreignKey['foreign_columns'],
+                    $tableToModelClass[$foreignKey1['table']],
+                    $foreignKey1['columns'],
+                    $foreignKey1['foreign_columns'],
                 );
             }
 
-            foreach ($foreignKeys as $foreignKey2) {
-                if ($foreignKey1['table'] == $foreignKey2['table']) {
-                    // belongsToMany
-                    $relations3 = Str::plural(Str::camel($foreignKey2['foreign_table']));
+            // hasOne
+            $relations2 = Str::singular(Str::camel($foreignKey1['table']));
 
-                    if (!$auditModel2->reflectionClass->hasMethod($relations3)) {
-                        $editorModel2->addBelongsToManyRelation(
-                            $relations3,
-                            $tableToModelClass[$foreignKey['foreign_table']],
-                            $foreignKey['columns'],
-                            $foreignKey['foreign_columns'],
-                        );
-                    }
-                }
+            if (
+                !$auditModel2->reflectionClass->hasMethod($relations2)
+//                && $tableToAuditTables[$table2]->isUnique($foreignKey1['columns'])
+            ) {
+                $editorModel2->addHasOneRelation(
+                    $relations2,
+                    $tableToModelClass[$foreignKey1['table']],
+                    $foreignKey1['columns'],
+                    $foreignKey1['foreign_columns'],
+                );
             }
+
+//            foreach ($foreignKeys as $foreignKeyIndex2 => $foreignKey2) {
+//                if ($foreignKey1['table'] == $foreignKey2['table']) {
+//                    // belongsToMany
+//                    $relations3 = Str::plural(Str::camel($foreignKey2['foreign_table']));
+//
+////                    Cannot redeclare SocolaDaiCa\Ncm\Models\TraRoute::masInputs()
+//
+//                    if (
+//                        $foreignKeyIndex1 != $foreignKeyIndex2
+//                        && !$auditModel1->reflectionClass->hasMethod($relations3)
+//                    ) {
+////                        dd(
+////                            $table1,
+////                            $relations3,
+////                            $foreignKey1,
+////                            $foreignKey2,
+////                        );
+//                        $editorModel1->addBelongsToManyRelation(
+//                            $relations3,
+//                            $tableToModelClass[$foreignKey2['foreign_table']],
+//                            $foreignKey1['columns'],
+//                            $foreignKey2['columns'],
+//                        );
+//                    }
+//                }
+//            }
 
             $editorModel1->save();
             $editorModel2->save();

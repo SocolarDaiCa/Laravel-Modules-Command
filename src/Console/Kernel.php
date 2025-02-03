@@ -59,6 +59,8 @@ class Kernel extends \SocolaDaiCa\LaravelBadassium\Contracts\Console\Kernel
         Commands\ModelMakeCommand::class,
         /* Customs */
         Commands\Customs\VendorLinkCommand::class,
+        Commands\FindMissingCommand::class,
+        Commands\EditorCommand::class,
     ];
 
     /**
