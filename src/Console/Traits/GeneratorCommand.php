@@ -119,6 +119,7 @@ trait GeneratorCommand
         $types = [
             'console command' => 'command',
             'component' => 'component-class',
+            'resource collection' => 'resource',
         ];
 
         return $types[$type] ?? $type;
