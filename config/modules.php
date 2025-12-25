@@ -83,7 +83,6 @@ return [
             '.gitattributes.stub' => '.gitattributes',
             '.gitignore.stub' => '.gitignore',
             'composer.json' => 'composer.json',
-
             'LICENSE/'.config('laravel-modules-command.composer.license') => 'LICENSE',
             'package.json' => 'package.json',
             'phpunit.xml.stub' => 'phpunit.xml',
@@ -209,7 +208,6 @@ return [
             'component-class' => ['namespace' => 'View/Components', 'path' => 'src/View/Components', 'generate' => false],
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Package commands
@@ -265,7 +263,6 @@ return [
         /* Customs */
         SocolaDaiCa\LaravelModulesCommand\Console\Commands\Customs\VendorLinkCommand::class,
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Scan Path
@@ -289,7 +286,6 @@ return [
             base_path('Modules/*/*'),
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Caching
@@ -303,7 +299,6 @@ return [
         'enabled' => false,
         'key' => 'laravel-modules',
         'lifetime' => 0,
-
         // 'enabled' => true,
         // 'lifetime' => 60000,
     ],
@@ -325,7 +320,6 @@ return [
          */
         'files' => 'register',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Activators
@@ -344,6 +338,5 @@ return [
             // 'cache-lifetime' => 0,
         ],
     ],
-
     'activator' => 'file',
 ];

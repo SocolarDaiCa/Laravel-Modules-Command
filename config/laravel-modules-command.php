@@ -12,7 +12,6 @@ return [
     |
     */
     'namespace' => 'SocolaDaiCa',
-
     /*
     |--------------------------------------------------------------------------
     | Composer File Template
