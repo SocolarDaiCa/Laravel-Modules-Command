@@ -156,12 +156,8 @@ class StubModify
                 ->paginate()
             ;
 
-            \$method = 'post';
-            \$action = route('{$packageNamePrefix}::{$viewFolder}.store');
-
-            return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
-                'method',
-                'action',
+            return view('{$packageNamePrefix}::pages.{$viewFolder}.index', compact([
+                'items',
             ]));
         ");
 

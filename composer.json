@@ -12,13 +12,13 @@
     "require": {
         "nikic/php-parser": "^5",
         "nwidart/laravel-modules": "^10",
-        "socoladaica/laravel-badassium": "^12.0",
-        "socoladaica/phpstorm": "^12.0",
+        "socoladaica/laravel-badassium": "12.0.0",
+        "socoladaica/phpstorm": "12.0.0",
         "stevebauman/autodoc-facades": "*",
         "symfony/filesystem": "*"
     },
     "require-dev": {
-        "socoladaica/laravel-audit": "^12.0",
+        "socoladaica/laravel-audit": "12.0.0",
         "orchestra/testbench": "^9.3.0"
     },
     "extra": {
