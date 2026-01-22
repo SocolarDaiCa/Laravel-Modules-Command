@@ -56,8 +56,13 @@ class StubModify
         return $phpParse->__toString();
     }
 
-    public function controller($stub, bool $api = false, string $model = '')
-    {
+    public function controller(
+        $stub,
+        $packageNamePrefix,
+        string $viewFolder,
+        bool $api = false,
+        string $model = '',
+    ) {
         $phpParse = app(PhpParse::class)
             ->parseAst($stub)
         ;
@@ -81,7 +86,9 @@ class StubModify
             ");
         }
 
+        $methodCreate = $finder->findFirstMethod($class, 'create');
         $methodStore = $finder->findFirstMethod($class, 'store');
+        $methodEdit = $finder->findFirstMethod($class, 'edit');
 
         if ($methodStore && $api && $model) {
             $methodStore->stmts[0] = new Raw_("
@@ -115,7 +122,91 @@ class StubModify
             ");
         }
 
+        if (!$api) {
+            $this->controllerAdminModel(
+                modelName: $modelName,
+                packageNamePrefix: $packageNamePrefix,
+                viewFolder: $viewFolder,
+                methodIndex: $methodIndex,
+                methodCreate: $methodCreate,
+                methodStore: $methodStore,
+                methodShow: $methodShow,
+                methodEdit: $methodEdit,
+                methodUpdate: $methodUpdate,
+            );
+        }
+
+
         return $phpParse->__toString();
+    }
+
+    function controllerAdminModel(
+        string $modelName,
+        $packageNamePrefix,
+        string $viewFolder,
+        Node\Stmt\ClassMethod $methodIndex,
+        Node\Stmt\ClassMethod $methodCreate,
+        Node\Stmt\ClassMethod $methodStore,
+        Node\Stmt\ClassMethod $methodShow,
+        Node\Stmt\ClassMethod $methodEdit,
+        Node\Stmt\ClassMethod $methodUpdate,
+    ) {
+        $methodIndex->stmts[0] = new Raw_("
+            \$items = {$modelName}::query()
+                ->paginate()
+            ;
+
+            \$method = 'post';
+            \$action = route('{$packageNamePrefix}::{$viewFolder}.store');
+
+            return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
+                'method',
+                'action',
+            ]));
+        ");
+
+        $methodCreate->stmts[0] = new Raw_("
+            \$method = 'post';
+            \$action = route('{$packageNamePrefix}::{$viewFolder}.store');
+            \$item = {$modelName}::query()->make([]);
+
+            return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
+                'method',
+                'action',
+                'item',
+            ]));
+        ");
+
+        $methodStore->stmts[0] = new Raw_("
+            {$modelName}::query()->create(\$request->validated());
+
+            return redirect()->route('{$packageNamePrefix}::{$viewFolder}.index');
+        ");
+
+        $methodShow->stmts[0] = new Raw_("
+            \$item = \${$methodShow->params[0]->var->name};
+
+            return view('{$packageNamePrefix}::pages.{$viewFolder}.show', compact([
+                'item',
+            ]));
+        ");
+
+        $methodEdit->stmts[0] = new Raw_("
+            \$method = 'post';
+            \$action = route('{$packageNamePrefix}::{$viewFolder}.store');
+            \$item = \${$methodEdit->params[0]->var->name};
+
+            return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
+                'method',
+                'action',
+            ]));
+        ");
+
+        $methodUpdate->stmts[0] = new Raw_("
+            \${$methodUpdate->params[1]->var->name}->update(\$request->validated());
+
+            return redirect()->route('{$packageNamePrefix}::{$viewFolder}.index');
+        ");
     }
 
     public function resource($stub, $model)
@@ -141,5 +232,10 @@ class StubModify
         ]);
 
         return $phpParse->__toString();
+    }
+
+    public function request()
+    {
+
     }
 }

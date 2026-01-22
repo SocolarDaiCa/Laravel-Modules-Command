@@ -2,7 +2,10 @@
 
 namespace SocolaDaiCa\LaravelModulesCommand\Console\Commands;
 
+use PhpParser\Node\Expr\ConstFetch;
+use PhpParser\Node\Stmt\Return_;
 use SocolaDaiCa\LaravelModulesCommand\Console\Traits\GeneratorCommand;
+use SocolaDaiCa\LaravelModulesCommand\PhpParse\Finder;
 use SocolaDaiCa\LaravelModulesCommand\PhpParse\PhpParse;
 
 class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeCommand
@@ -17,7 +20,7 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
             'use use Illuminate\Foundation\Http\FormRequest;' => 'use SocolaDaiCa\LaravelBadassium\Illuminate\Foundation\Http\FormRequest;',
         ];
 
-        return str_replace(
+        $class = str_replace(
             array_keys($replaces),
             array_values($replaces),
             $class,
@@ -41,6 +44,18 @@ class RequestMakeCommand extends \Illuminate\Foundation\Console\RequestMakeComma
                 }
             ")
         ;
+
+//        /** @var Finder $finder */
+//        $finder = app(Finder::class);
+//        $class = $finder->findFirstClass($phpParse->getNewStmts());
+//
+//        $methodAuthorize = $finder->findFirstMethod($class, 'authorize');
+//        /** @var Return_ $return */
+//        $return = $methodAuthorize->stmts[0];
+//        /** @var ConstFetch $origNode */
+//        $origNode = $return->expr->getAttribute('origNode');
+//        $origNode->name->name = 'xxx';
+//        dd($phpParse->__toString());
 
         return $phpParse->__toString();
     }

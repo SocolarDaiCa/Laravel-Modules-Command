@@ -83,41 +83,13 @@ METHOD_UPDATE_FROM] = <<<METHOD_UPDATE_TO
 METHOD_UPDATE_TO;
 
         if ($this->option('resource')) {
-            $replace[<<<METHOD_INDEX_FROM
-    public function index()
-    {
-        //
-METHOD_INDEX_FROM] = <<<METHOD_INDEX_TO
-    public function index(IndexRequest \$request)
-    {
-        return view('{$packageNamePrefix}::pages.{$viewFolder}.index', compact([
+            $this->call('make:view', [
+                'name' => "{$viewFolder}.index",
+            ]);
 
-        ]));
-METHOD_INDEX_TO;
-
-            $replace[<<<METHOD_CREATE_FROM
-    public function create(\$id)
-    {
-        //
-METHOD_CREATE_FROM] = <<<METHOD_STORE_TO
-    public function create()
-    {
-        return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
-
-        ]));
-METHOD_STORE_TO;
-
-            $replace[<<<METHOD_CREATE_FROM
-    public function edit(\$id)
-    {
-        //
-METHOD_CREATE_FROM] = <<<METHOD_STORE_TO
-    public function edit(\$id)
-    {
-        return view('{$packageNamePrefix}::pages.{$viewFolder}.form', compact([
-
-        ]));
-METHOD_STORE_TO;
+            $this->call('make:view', [
+                'name' => "{$viewFolder}.form",
+            ]);
         }
 
         /* todo: template cho option model */
@@ -143,10 +115,40 @@ METHOD_STORE_TO;
             $modelClass = $this->parseModel($this->option('model'));
         }
 
+        $controllerName = $name;
+
+        if (Str::endsWith($controllerName, 'Controller')) {
+            $controllerName = Str::beforeLast($controllerName, 'Controller');
+        }
+
+        $controllerName = Str::afterLast($controllerName, '\Controllers\\');
+
+        $viewFolder = $controllerName;
+        $viewFolder = Str::replace('\\', '/', $viewFolder);
+        $viewFolder = explode('/', $viewFolder);
+        $viewFolder = collect($viewFolder)
+            ->map(fn ($e) => Str::lcfirst($e))
+            ->map(fn ($e) => Str::snake($e, '-'))
+            ->join('.')
+        ;
+        $packageNamePrefix = Str::snake($this->module->getName(), '-');
+
+        $requestNamespace = $this->getDefaultNamespaceByType('request');
+
+        $indexRequestClass = "{$controllerName}\\IndexRequest";
+        $storeRequestClass = "{$controllerName}\\StoreRequest";
+        $updateRequestClass = "{$controllerName}\\UpdateRequest";
+        $namespacedRequests = ''
+            ."use {$requestNamespace}\\{$indexRequestClass};".PHP_EOL
+            ."use {$requestNamespace}\\{$storeRequestClass};".PHP_EOL
+            ."use {$requestNamespace}\\{$updateRequestClass};";
+
         return app(StubModify::class)->controller(
             $code,
             api: $this->option('api'),
             model: $modelClass,
+            packageNamePrefix: $packageNamePrefix,
+            viewFolder: $viewFolder,
         );
     }
 
